@@ -1,0 +1,165 @@
+<style>
+    #page {
+        font-family:Courier New
+    }
+</style>
+<script type="text/javascript" src="http://www.thomann.de/static/jquery-1.4.2.min.js"></script>
+
+<script>
+    
+    var history = [];
+    var aktPage = 0;
+    
+    function generateGenePool( l, genPoolSize ) {
+        var a = [];
+        for ( var i = 0; i < genPoolSize; i++ ) {
+            var tmp = '';
+            for( var y = 0; y < l; y++ ) {
+                tmp += String.fromCharCode( parseInt( 33 + Math.random() * ( 126 - 33 - 1) ) );
+            }
+            a.push( { f:1, s: tmp } );
+        }
+        return a;
+    }
+    
+    function main( pool, target ) {
+        var history = [];
+    
+        for( var k in pool ) {
+            pool[ k ].f = getFitness( pool[ k ].s, target );
+        }
+        
+        var c = 0;
+        while( c++ < 25000 ) {
+            pool.sort( function( a, b ) { return ( a.f - b.f ) } );
+            history.push( $.extend( true, [], pool ) );
+
+            var parents = chooseParents( pool );
+            var m = mutate( parents[ 0 ].s, parents[ 1 ].s );
+            var mF = getFitness( m, target );
+            if ( mF < pool[ pool.length-1 ].f ) {
+                pool[ pool.length-1 ].s = m;
+                pool[ pool.length-1 ].f = mF;
+                if ( mF == 0 ) {
+                    history.push( $.extend( true, [], pool ) );
+                    break;
+                }
+            }
+        }
+        
+        return history;
+    }
+    
+    function chooseParents( pool ) {
+        c1 = parseInt( Math.random() * Math.random() * (pool.length) );
+        do {
+            c2 = parseInt( Math.random() * Math.random() * (pool.length) );
+        } while( c1 == c2 );
+
+        return { 0: pool[ c1 ], 1: pool[ c2 ] };
+    }
+    
+    function mutate( p1, p2 ) {
+        var tmp = '';
+        for( var i = 0; i < p1.length; i++ ) {
+            if ( Math.random() < 0.5 ) {
+                tmp += p1.charAt( i );
+            } else {
+                tmp += p2.charAt( i );
+            }
+        }
+        
+        var a = tmp.split('');
+        var nr = parseInt( Math.random() * tmp.length );
+        a[ nr ] = String.fromCharCode( tmp.charCodeAt( nr ) + ( Math.random() < 0.5 ? -1 : 1 ) );
+        return a.join( '' );
+    }
+    
+    function getFitness( source, target ) {
+        var f = 0;
+        for( var i = 0; i < target.length; i++ ) {
+            f += Math.pow( source.charCodeAt( i ) - target.charCodeAt( i ), 2 );
+        }
+        
+        return f;
+    }
+    
+    function showHistory( h ) {
+        var aktPage = 0;
+    
+        $('#number').html( '<h1>' + h.length + ' generationen' );
+        $('#nr').val( 0 );
+        
+        showHistoryPage( h[0], 0 );
+    }
+    
+    function showHistoryPage( p, nr ) {
+        nr = parseInt( nr );
+    
+        $('#nr').val( nr+1 );
+    
+        $('#page').html( '' );
+        var tmp = '<h2>' + (nr+1) + '</h2>';
+        for( var k in p ) {
+            tmp += htmlEntities( p[ k ].s ) + '&nbsp;---&nbsp;' + p[ k ].f + '<br>';
+        }
+        $('#page').html( tmp );
+    }
+    
+    function htmlEntities(str) {
+        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace( ' ', '&nbsp;' );
+    }
+
+    $(document).ready( function() {
+        $('#calc').click( function() {
+            history = [];
+            aktPage = 0;
+        
+            var term = $('#term').val();
+            var pool = generateGenePool( term.length, 20 );
+            
+            history = main( pool, term );
+            
+            showHistory( history );
+            
+        } );
+        
+        $('#lt').click( function() {
+            if ( aktPage > 0 ) {
+                aktPage--;
+                showHistoryPage( history[ aktPage ], aktPage );
+            }
+        } );
+        
+        $('#gt').click( function() {
+            if ( aktPage < history.length-1 ) {
+                aktPage++;
+                showHistoryPage( history[ aktPage ], aktPage );
+            }
+        } );
+        
+        $('#anspringen').click( function() {
+            var nr = parseInt( $('#nr').val() ) - 1;
+            aktPage = nr;
+            showHistoryPage( history[ nr ], nr );
+        } );
+        
+    } );
+    
+</script>   
+
+<div id="ausgabe">
+    <input type="text" id="term"><input type="button" id="calc" value="calc"><br>
+
+    <input type="button" id="lt" value="&lt;---"><input type="button" id="gt" value="---&gt;">
+    <input type="text" id="nr"><input type="button" id="anspringen" value="anspringen">
+    <div id="number"></div>
+    <div id="page"></div>
+</div>
+
+
+
+
+
+
+
