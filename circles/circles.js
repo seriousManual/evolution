@@ -23,7 +23,7 @@ $(document).ready( function() {
             scenarioSize: 4,
             circleObject: circle,
             maxRuns: 10000,
-            logHistory: false
+            logHistory: true
         };
 
         var ga = GA.getAlgorithm( baseData );
