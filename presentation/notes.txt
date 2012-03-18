@@ -1,0 +1,25 @@
+
+Genetische Algorithmen (circles, infinite monkey theorem, TSP)
+Emergent Behaviour (ants)
+
+Kombinatorische Optimierungsprobleme, Komplexitätsklasse NP (nichtdeterministisch polynomielle Zeit)
+Sie werden vor allem für Probleme eingesetzt, für die eine geschlossene Lösung nicht oder nicht effizient berechnet werden kann
+
+
+einfaches beispiel schrittweise nachvollziehbar machen
+	den am weitesten rechtesten untesten punkt finden
+
+dooflösung (brute force) gegenüber stellen (benchmark)
+code refactorn
+feste probleme live betrachten (reproduzierbar)
+	dabei aufzeigen dass bei gleichbleibender problemstellung nciht immer die gleiche lösung gefunden wird
+
+
+
+fork me on github
+
+http://www.fh-meschede.de/public/willms/ea/
+
+Anwendung:
+Optimierung von Leiterbahnen auf Mainboard
+TSP

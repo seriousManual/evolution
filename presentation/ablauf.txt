@@ -1,0 +1,31 @@
+DARWIN-Folie
+
+persönliche Vorstellung, Thema
+	hauptaugenmerk: genetische algorithmen
+
+Erläuterung GA
+	Natürliches Vorbild (DNA Bild)
+
+Schritte:
+	Mutation
+	Rekombination
+		Partnerwahl
+	Selektion
+
+Bildliche Darstellung (den am weitesten rechtesten untesten punkt finden)
+
+Eigenschaften:
+	Gefundene Lösung ist nicht immer optimal (Beispiel)
+	Gefundene Lösungen variieren (Beispiel)
+	
+
+Weiterführend:
+	Abbruchkriterien
+
+	Optimierungsmöglichkeiten (Circles)
+
+	Aufzeigen 
+
+	Vergleichen von Bruteforce, GA und optGA (Circles)
+
+	Andere GA Algorithmen
