@@ -1,7 +1,10 @@
 DARWIN-Folie
 
 persönliche Vorstellung, Thema
-	hauptaugenmerk: genetische algorithmen
+	[hauptaugenmerk: genetische algorithmen]
+	[keine hochwissenschaftliche betrachtung mit komplexitätsabschätzungen und polynomialen hochrechnungen]
+	[praktische anwendung von einem interessanten gebiet]
+	[wie schauts aus mit quellcode?]
 
 Erläuterung GA
 	Natürliches Vorbild (DNA Bild)
@@ -11,15 +14,20 @@ Bildliche Darstellung (den am weitesten rechtesten untesten punkt finden)
 Schritte:
 	Mutation
 	Rekombination
-		Partnerwahl
 	Selektion
 
-Vorstellung des Circleproblems
+Vorstellung des Circleproblems (biggest filling)
+    Ziel + Problem
+    Triviallösung (iFrame)
+    Anwendung eines GA
+        Problemformulierung
+        Mutation
+        Rekombination
+        Selektion
 
-Abbruchkriterien (Konvergenz)
+    Laufen lassen
 
-Optimierungsmöglichkeiten (Circles)
-    Mutation
+
 
 Eigenschaften:
 	Gefundene Lösung ist nicht immer optimal (Beispiel)
@@ -31,11 +39,41 @@ Eigenschaften:
 	        3. hier weitere mögliche strategie einfügen :P
 	
 
+Abbruchkriterien (Konvergenz)
+
+Optimierungsmöglichkeiten (Circles)
+    Mutation
 
 Vergleichen von Bruteforce, GA und optGA (Circles)
 
 
 
-(Andere GA Algorithmen)
+Math
+    Ziel + Problem
+    Triviallösung???
+    Anwendung
+        Problemformulierung [Achtung jetzt wirds ein bisschen technisch...]
+        Mutation
+        Rekombination
+        Selektion
+
+Circles2 (biggest surrounding!)
+    Ziel + Problem
+    Triviallösung???
+    Anwendung
+        Problemformulierung
+        Mutation
+        Rekombination
+        Selektion
+
+TSP
+    Ziel + Problem
+    Triviallösung???
+    Anwendung
+        Problemformulierung
+        Mutation
+        Rekombination
+        Selektion
+
 
 Fragen

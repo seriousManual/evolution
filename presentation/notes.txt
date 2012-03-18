@@ -25,3 +25,7 @@ http://www.fh-meschede.de/public/willms/ea/
 Anwendung:
 Optimierung von Leiterbahnen auf Mainboard
 TSP
+
+
+
+optimierung der kategorisierung von waren
