@@ -2,17 +2,19 @@
 Genetische Algorithmen (circles, infinite monkey theorem, TSP)
 Emergent Behaviour (ants)
 
-Kombinatorische Optimierungsprobleme, Komplexitätsklasse NP (nichtdeterministisch polynomielle Zeit)
-Sie werden vor allem für Probleme eingesetzt, für die eine geschlossene Lösung nicht oder nicht effizient berechnet werden kann
+Kombinatorische Optimierungsprobleme, Komplexitï¿½tsklasse NP (nichtdeterministisch polynomielle Zeit)
+Sie werden vor allem fï¿½r Probleme eingesetzt, fï¿½r die eine geschlossene Lï¿½sung nicht oder nicht effizient berechnet werden kann
+
 
 
 einfaches beispiel schrittweise nachvollziehbar machen
 	den am weitesten rechtesten untesten punkt finden
 
-dooflösung (brute force) gegenüber stellen (benchmark)
+
+dooflï¿½sung (brute force) gegenï¿½ber stellen (benchmark)
 code refactorn
 feste probleme live betrachten (reproduzierbar)
-	dabei aufzeigen dass bei gleichbleibender problemstellung nciht immer die gleiche lösung gefunden wird
+	dabei aufzeigen dass bei gleichbleibender problemstellung nciht immer die gleiche lï¿½sung gefunden wird
 
 
 
