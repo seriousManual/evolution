@@ -1,10 +1,12 @@
 DARWIN-Folie
 
-persönliche Vorstellung, Thema
+persÃ¶nliche Vorstellung, Thema
 	hauptaugenmerk: genetische algorithmen
 
-Erläuterung GA
-	Natürliches Vorbild (DNA Bild)
+ErlÃ¤uterung GA
+	NatÃ¼rliches Vorbild (DNA Bild)
+
+Bildliche Darstellung (den am weitesten rechtesten untesten punkt finden)
 
 Schritte:
 	Mutation
@@ -12,20 +14,28 @@ Schritte:
 		Partnerwahl
 	Selektion
 
-Bildliche Darstellung (den am weitesten rechtesten untesten punkt finden)
+Vorstellung des Circleproblems
+
+Abbruchkriterien (Konvergenz)
+
+OptimierungsmÃ¶glichkeiten (Circles)
+    Mutation
 
 Eigenschaften:
-	Gefundene Lösung ist nicht immer optimal (Beispiel)
-	Gefundene Lösungen variieren (Beispiel)
+	Gefundene LÃ¶sung ist nicht immer optimal (Beispiel)
+	Gefundene LÃ¶sungen variieren (Beispiel)
+	Design der Fitnessfunktion bestimmt das Verhalten des Algorithmus
+	    Circles:
+	        1. Wenn sich Kreise Ã¼berschneiden den kleinsten als besten bewerten
+	        2. hier mÃ¶gliche strategie einfÃ¼gen :P
+	        3. hier weitere mÃ¶gliche strategie einfÃ¼gen :P
 	
 
-Weiterführend:
-	Abbruchkriterien
 
-	Optimierungsmöglichkeiten (Circles)
+Vergleichen von Bruteforce, GA und optGA (Circles)
 
-	Aufzeigen 
 
-	Vergleichen von Bruteforce, GA und optGA (Circles)
 
-	Andere GA Algorithmen
+(Andere GA Algorithmen)
+
+Fragen

@@ -16,7 +16,7 @@ code refactorn
 feste probleme live betrachten (reproduzierbar)
 	dabei aufzeigen dass bei gleichbleibender problemstellung nciht immer die gleiche l�sung gefunden wird
 
-
+konvergenz
 
 fork me on github
 
