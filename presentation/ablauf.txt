@@ -13,15 +13,20 @@ DARWIN-Folie
 persönliche Vorstellung, Thema
     [wie schauts aus mit quellcode?]
     [Kategorie Evolutionäre Algorithmen]
-        [Unterteilungen]
+        [Unterteilungen in verschiedene Gebiete]
+        
 	[Hauptaugenmerk: genetische algorithmen]
-
 
 
 Erläuterung GA
 	Natürliches Vorbild (DNA Bild)
 
-Bildliche Darstellung (den am weitesten rechtesten untesten punkt finden)
+Wie funktioniert die ganze Geschichte eigentlich?
+    [Bildliche Darstellung (den am weitesten rechtesten untesten punkt finden)]
+    [Mechanismus anhand dieser Zielsetzung erklären]
+
+Wie funktioniert die ganze Geschichte eigentlich? (revisited)
+    [Programmablauf]
 
 Schritte:
 	Mutation
