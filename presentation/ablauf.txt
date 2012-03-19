@@ -1,3 +1,7 @@
+Chuck-Folie
+
+Titelfolie
+
 DARWIN-Folie
 
 persönliche Vorstellung, Thema
@@ -40,6 +44,8 @@ Eigenschaften:
 	
 
 Abbruchkriterien (Konvergenz)
+    Problem aufzeigen dass Konvergenz nicht leicht festzustellen ist
+    Effektive Konvergenzerkennung verkürzt die Laufzeit des Algorithmus
 
 Optimierungsmöglichkeiten (Circles)
     Mutation
@@ -75,5 +81,6 @@ TSP
         Rekombination
         Selektion
 
-
 Fragen
+
+Ants
