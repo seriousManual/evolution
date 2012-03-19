@@ -3,12 +3,20 @@ Chuck-Folie
 Titelfolie
 
 DARWIN-Folie
+    [Abriss über Evolution, 2 Sätze, zusammenfassend Evolution als Einstieg aufzeigen]
+    [Evolution im Rechner, w00t? Zusammenhang von Evolutionskram mit Computertechnik]
 
-persönliche Vorstellung, Thema
-	[hauptaugenmerk: genetische algorithmen]
 	[keine hochwissenschaftliche betrachtung mit komplexitätsabschätzungen und polynomialen hochrechnungen]
 	[praktische anwendung von einem interessanten gebiet]
-	[wie schauts aus mit quellcode?]
+
+
+persönliche Vorstellung, Thema
+    [wie schauts aus mit quellcode?]
+    [Kategorie Evolutionäre Algorithmen]
+        [Unterteilungen]
+	[Hauptaugenmerk: genetische algorithmen]
+
+
 
 Erläuterung GA
 	Natürliches Vorbild (DNA Bild)
@@ -83,4 +91,4 @@ TSP
 
 Fragen
 
-Ants
+Ants (streng genommen kein evo...)
