@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>circles</title>
+        <script type="text/javascript" src="lib/lib.js"></script>
+        <script type="text/javascript" src="lib/jquery.js"></script>
+        <script type="text/javascript" src="lib/jquery.plugins.js"></script>
+
+        <script type="text/javascript" src="br4/br4.js"></script>
+        <script type="text/javascript" src="br4/br4.objects.js"></script>
+
+        <script type="text/javascript" src="../../GA.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready( function() {
+                var myGA = null;
+
+                myGA = create();
+
+                $('#calc').click( function() {
+                    if ( !myGA ) {
+                        myGA = create();
+                    }
+                    myGA.run();
+                } );
+
+                $('#reset').click( function() {
+                    $('#circles').html('');
+
+                    myGA = create();
+                } );
+
+                function create() {
+
+                    var baseData = {
+                        canvasSize: 460,
+                        genPoolSize: 30,
+                        scenarioSize: 4,
+                        maxRuns: 10000,
+                        logHistory: false
+                    };
+
+                    var ga = GA.getAlgorithm( baseData );
+
+                    ga.stepDelay = 500;
+
+                    ga.generateGenePool = function() {
+                        var tmp = [];
+
+                        for( var i = 0; i < this.baseData.genPoolSize; i++ ) {
+                            tmp.push( { x:parseInt( Math.random() * this.baseData.canvasSize, 10 ), y: parseInt( Math.random() * this.baseData.canvasSize, 10 ), getS: function() { return this; }, setS: function( s ) { this.x = s.x; this.y = s.y; } } );
+                        }
+
+                        return tmp;
+                    }
+
+                    ga.chooseParents = function( pool ) {
+                        c1 = parseInt( Math.random() * (pool.length), 10 );
+                        do {
+                            c2 = parseInt( Math.random() * (pool.length), 10 );
+                        } while( c1 == c2 );
+
+                        return { 0: pool[ c1 ], 1: pool[ c2 ] };
+                    }
+
+                    ga.mutate = function( p1, p2 ) {
+                        var x = { x:0, y:0 };
+                        if ( Math.random() < 0.5 ) {
+                            x.x = p1.x;
+                        } else {
+                            x.x = p2.x;
+                        }
+
+                        if ( Math.random() < 0.5 ) {
+                            x.y = p1.y;
+                        } else {
+                            x.y = p2.y;
+                        }
+
+                        if ( Math.random() < 0.3 ) {
+                            x.x = x.x + ( Math.random() < 0.5 ? -1 : 1 ) * parseInt( Math.random() * 4, 10 );
+                        }
+
+                        if ( Math.random() < 0.3 ) {
+                            x.y = x.y + ( Math.random() < 0.5 ? -1 : 1 ) * parseInt( Math.random() * 4, 10 );
+                        }
+
+                        return x;
+                    };
+
+                    ga.getFitness = function( p ) {
+                        return p.x + p.y;
+                    };
+
+                    var fancyCounter = 0;
+                    ga.termCriterium = function() {
+                        fancyCounter++;
+
+                        if ( fancyCounter < 100 ) {
+                            return false;
+                        }
+                        return true;
+                    };
+
+                    ga.mutateCalllback = function( pool, fitter ) {
+                        for( var k in pool ) {
+                            var e = pool[ k ];
+                            var circle = baseData.poolCircles[ k ];
+                            circle.x( e.x ).y( e.y );
+                        }
+                    };
+
+                    var can = br4.createC( 'circles', { width: baseData.canvasSize, height: baseData.canvasSize, lineColor:'#000', backgroundColor: '#000' } )
+
+                    baseData.poolCircles = [];
+                    for( var i = 0; i < baseData.genPoolSize; i++ ) {
+                        baseData.poolCircles.push( can.createO( br4.o.gCircle, { x: 0, y: 0, radius: 10, lineWidth: 2, lineColor: '#f00', backgroundColor:'#f00', middleMode: true, z: 0 } ) );
+                    }
+
+                    return ga;
+                }
+
+            } );
+        </script>
+    </head>
+    <body>
+        <input type="button" id="calc" value="calc"><input type="button" id="reset" value="reset"><br>
+
+        <div id="circles"></div>
+
+    </body>
+</html>

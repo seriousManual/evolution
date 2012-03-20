@@ -14,14 +14,15 @@
         logHistory: true,
         maxRuns: 15000,
 
-        termCriterium:null,
-        fitnessCompare: function( f1, f2 ) { return f1 > f2; },
-        generateGenePool: null,
-        chooseParents: null,
-        mutate: null,
-        getFitness: null,
-        showHistoryPage:null,
-        mutateCalllback:function(){},
+        termCriterium:      null,
+        fitnessCompare:     function( f1, f2 ) { return f1 > f2; },
+        generateGenePool:   null,
+        chooseParents:      null,
+        mutate:             null,
+        getFitness:         null,
+        showHistoryPage:    null,
+        mutateCalllback:    function(){},
+        stepDelay:          1,
 
         result: function() {
             return this.pool[ 0 ];
@@ -53,7 +54,8 @@
             this.history.push( tmpPool );
         },
 
-        run: function() {
+        run: function( callback ) {
+            callback = callback || function() {};
             this.history = [];
             this.maxRuns = this.baseData.maxRuns || this.maxRuns;
             if ( this.baseData.logHistory !== undefined ) {
@@ -71,32 +73,48 @@
             this.poolSort( this.pool );
             this.logHistoryStep();
 
-            var c = 0;
-            while( c++ < this.maxRuns ) { //just to be sure ;) inifinite loops do suck
-                this.fLog.push( this.result().f );
-                this.poolSort( this.pool );
+            var c    = 0;
+            var self = this;
 
-                if ( this.termCriterium() ) {
-                    break;
+            var step = function() {
+                var keepRunning = true;
+
+                if ( c++ > self.maxRuns ) {
+                    keepRunning = false;
                 }
 
-                var parents = this.chooseParents( this.pool );
+                self.fLog.push( self.result().f );
+                self.poolSort( self.pool );
 
-                var m = this.mutate( parents[ 0 ], parents[ 1 ] );
-                var mF = this.getFitness( m );
-                var lastPoolEntry = this.pool[ this.pool.length-1 ];
+                if ( self.termCriterium() ) {
+                    keepRunning = false;
+                }
+
+                var parents = self.chooseParents( self.pool );
+
+                var m = self.mutate( parents[ 0 ], parents[ 1 ] );
+                var mF = self.getFitness( m );
+                var lastPoolEntry = self.pool[ self.pool.length-1 ];
                 var fitter = false;
 
-                if ( this.fitnessCompare( mF, lastPoolEntry.f ) ) {
+                if ( self.fitnessCompare( mF, lastPoolEntry.f ) ) {
                     lastPoolEntry.setS( m );
                     lastPoolEntry.f = mF;
                     fitter = true;
                 }
 
-                this.logHistoryStep( parents[0], parents[1], fitter ? lastPoolEntry : null );
+                self.logHistoryStep( parents[0], parents[1], fitter ? lastPoolEntry : null );
 
-                this.mutateCalllback( this.pool, fitter );
-            }
+                self.mutateCalllback( self.pool, fitter );
+
+                if ( keepRunning ) {
+                    window.setTimeout( step, self.stepDelay );
+                } else {
+                    callback();
+                }
+            };
+
+            step();
         },
 
         printHistory: function( id ) {

@@ -79,7 +79,47 @@
 
             <article>
                 <h3>Wie funktioniert die ganze Geschichte eigentlich?<br>(revisited)</h3>
-                <iframe src="bretze.html"></iframe>
+                <iframe src="diagonal.html"></iframe>
+            </article>
+
+            <article class="">
+                <h3>Wie funktioniert die ganze Geschichte eigentlich?<br>(rerevisited)</h3>
+
+                <p>Mutations- + Rekombinationsfunktion:</p>
+
+                <section>
+                    <pre>
+ga.mutate = function( p1, p2 ) {
+    var x = { x:0, y:0 };
+
+    //rekombination::
+    if ( r() < 0.5 )  x.x = p1.x;     else    x.x = p2.x;
+    if ( r() < 0.5 )  x.y = p1.y;     else    x.y = p2.y;
+
+    //mutation:
+    if ( r() < 0.3 )
+        x.x = x.x + ( r() < 0.5 ? -1 : 1 ) * r() * 4;
+    if ( r() < 0.3 )
+        x.y = x.y + ( r() < 0.5 ? -1 : 1 ) * r() * 4;
+
+    return x;
+};
+                    </pre>
+                </section>
+            </article>
+
+            <article class="">
+                <h3>Wie funktioniert die ganze Geschichte eigentlich?<br>(rererevisited)</h3>
+
+                <p>Fitnessfunktion:</p>
+
+                <section>
+                    <pre>
+    ga.getFitness = function( p ) {
+        return p.x + p.y;
+    };
+                    </pre>
+                </section>
             </article>
 
             <article>
