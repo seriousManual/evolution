@@ -34,7 +34,10 @@ Wie funktioniert die ganze Geschichte eigentlich? (revisited)
     [Programmablauf]
 
 Wie funktioniert die ganze Geschichte eigentlich? (rerevisited)
-    [Quellcode]
+    [Mutationsfunktion]
+
+Wie funktioniert die ganze Geschichte eigentlich? (rerevisited)
+    [Fitnessfunktion]
 
 Vorstellung des Circleproblems (biggest filling)
     Ziel + Problem

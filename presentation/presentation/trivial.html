@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>circles</title>
+        <script type="text/javascript" src="lib/lib.js"></script>
+        <script type="text/javascript" src="lib/jquery.js"></script>
+        <script type="text/javascript" src="lib/jquery.plugins.js"></script>
+
+        <script type="text/javascript" src="br4/br4.js"></script>
+        <script type="text/javascript" src="br4/br4.objects.js"></script>
+
+        <script type="text/javascript">
+
+            var canvasSize  = 400;
+
+            var can         = null;
+            var scenario    = [ { x:50, y:137, r: 80 }, { x:300, y:320, r: 180 } ];
+
+            var current     = { x:0, y:0, r: 0 };
+            var bestCircle  = { x:current.x, y:current.y, r:current.r };
+            var cCurrent    = null;
+            var cBest       = null;
+
+            $(document).ready( function() {
+                $( '#calc' ).click( function() {
+                    sampling();
+                } );
+
+                can = br4.createC( 'circles', { width: canvasSize, height: canvasSize, lineColor: '#000', backgroundColor: '#000' } )
+
+                for( var k in scenario ) {
+                    var circle = scenario[ k ];
+                    can.createO( br4.o.gCircle, { x: circle.x, y: circle.y, radius: circle.r, lineWidth: 2, lineColor: '#fff', middleMode: true, z: 0 } )
+                }
+
+                cCurrent    = can.createO( br4.o.gCircle, { x: current.x, y: current.y, radius: current.r, lineWidth: 2, lineColor: '#f00', middleMode: true, z: 100 } );
+                cBest       = can.createO( br4.o.gCircle, { x: current.x, y: current.y, radius: current.r, backgroundColor: '#ff0', middleMode: true, z: 0 } );
+            } );
+
+            function sampling() {
+                if ( check( current ) ) {
+                    if ( bestCircle.r < current.r ) {
+                        bestCircle.x = current.x;
+                        bestCircle.y = current.y;
+                        bestCircle.r = current.r;
+
+                        cBest.x( bestCircle.x ).y( bestCircle.y ).radius( bestCircle.r );
+                    }
+                    current.r++;
+                } else {
+                    current.x++;
+                    if ( current.x > canvasSize ) {
+                        current.y++;
+                        current.x = 0;
+                    }
+                    current.r = 1;
+                }
+
+                cCurrent.x( current.x ).y( current.y ).radius( current.r );
+
+                window.setTimeout( sampling, 1 );
+            }
+
+            var d = function( x1, x2, y1, y2 ) { return Math.sqrt( Math.pow( x1 - x2, 2 ) + Math.pow( y1 - y2, 2 ) ) };
+
+            function check( o ) {
+                if ( o.r <= 0 ) {
+                    return false;
+                }
+
+                if ( o.x - o.r < 0 ) {
+                    return false;
+                }
+                if ( o.x + o.r > canvasSize ) {
+                    return false;
+                }
+                if ( o.y - o.r < 0 ) {
+                    return false;
+                }
+                if ( o.y + o.r > canvasSize ) {
+                    return false;
+                }
+
+                for( var k in scenario ) {
+                    var sC = scenario[ k ];
+                    if ( d( o.x, sC.x, o.y, sC.y ) < sC.r + o.r ) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+        </script>
+
+    </head>
+    <body>
+        <input type="button" id="calc" value="calc"><br>
+
+        <div id="circles"></div>
+
+    </body>
+</html>
