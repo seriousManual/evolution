@@ -21,17 +21,17 @@ persönliche Vorstellung, Thema
 Erläuterung GA
 	Natürliches Vorbild (DNA Bild)
 
+Schritte:
+	Mutation
+	Rekombination
+	Selektion
+
 Wie funktioniert die ganze Geschichte eigentlich?
     [Bildliche Darstellung (den am weitesten rechtesten untesten punkt finden)]
     [Mechanismus anhand dieser Zielsetzung erklären]
 
 Wie funktioniert die ganze Geschichte eigentlich? (revisited)
     [Programmablauf]
-
-Schritte:
-	Mutation
-	Rekombination
-	Selektion
 
 Vorstellung des Circleproblems (biggest filling)
     Ziel + Problem
@@ -51,7 +51,7 @@ Eigenschaften:
 	Gefundene Lösungen variieren (Beispiel)
 	Design der Fitnessfunktion bestimmt das Verhalten des Algorithmus
 	    Circles:
-	        1. Wenn sich Kreise überschneiden den kleinsten als besten bewerten
+	        1. Wenn sich Kreise überschneiden den kleinsten als besten bewerten (weil wenn überschneidet kleinere kreise besser bewertet werden)
 	        2. hier mögliche strategie einfügen :P
 	        3. hier weitere mögliche strategie einfügen :P
 	
@@ -62,6 +62,7 @@ Abbruchkriterien (Konvergenz)
 
 Optimierungsmöglichkeiten (Circles)
     Mutation
+    Fitnessfunktion
 
 Vergleichen von Bruteforce, GA und optGA (Circles)
 
