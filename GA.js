@@ -23,6 +23,7 @@
         showHistoryPage:    null,
         mutateCalllback:    function(){},
         stepDelay:          1,
+        flagDesintegrate:   false,
 
         result: function() {
             return this.pool[ 0 ];
@@ -83,6 +84,10 @@
                     keepRunning = false;
                 }
 
+                if ( self.flagDesintegrate ) {
+                    keepRunning = false;
+                }
+
                 self.fLog.push( self.result().f );
                 self.poolSort( self.pool );
 
@@ -115,6 +120,10 @@
             };
 
             step();
+        },
+
+        desintegrate: function() {
+            this.flagDesintegrate = true;
         },
 
         printHistory: function( id ) {

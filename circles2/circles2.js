@@ -1,19 +1,38 @@
-$(document).ready( function() {
-    var myGA = null;
+var circle2Creator = function ( placeHolder, config ) {
 
-    $('#calc').click( function() {
-        if ( !myGA ) {
-            myGA = create();
+    if ( !placeHolder ) {
+        throw new Error( 'no placeHolder' );
+    }
+
+    var myGA    = null;
+    config      = config || {};
+
+    return {
+        run: function() {
+            if ( !myGA ) {
+                myGA = create();
+            }
+
+            if ( config.scenario ) {
+                myGA.baseData.scenario = config.scenario;
+            } else {
+                myGA.baseData.scenario = createScenario( myGA.baseData.canvasSize, myGA.baseData.scenarioSize );
+            }
+
+            printScenario( myGA.baseData );
+
+            console.time( 'run' );
+            myGA.run( function() {
+                if ( config.printHistory ) {
+                    myGA.printHistory( "pages" );
+                    printResult( myGA.result(), myGA.baseData );
+                }
+
+                console.timeEnd( 'run' );
+            } );
         }
-
-        myGA.baseData.scenario = createScenario( myGA.baseData.canvasSize, myGA.baseData.scenarioSize );
-        console.time( 'run' );
-        myGA.run();
-        console.timeEnd( 'run' );
-
-        myGA.printHistory( "pages" );
-        printResult( myGA.result(), myGA.baseData );
-    } );
+        
+    };
 
     function create() {
 
@@ -21,7 +40,7 @@ $(document).ready( function() {
             canvasSize: 400,
             genPoolSize: 30,
             scenarioSize: 4,
-            circleObject: circle,
+            circleObject: Circle,
             pointObject: point,
             maxRuns: 10000,
             logHistory: true
@@ -34,7 +53,7 @@ $(document).ready( function() {
 
             for( var i = 0; i < this.baseData.genPoolSize; i++ ) {
                 var size = Math.random() * this.baseData.canvasSize * 0.4;
-                tmp.push( new circle( parseInt( Math.random() * this.baseData.canvasSize, 10 ), parseInt( Math.random() * this.baseData.canvasSize, 10 ), parseInt( size, 10 ) ) );
+                tmp.push( new Circle( parseInt( Math.random() * this.baseData.canvasSize, 10 ), parseInt( Math.random() * this.baseData.canvasSize, 10 ), parseInt( size, 10 ) ) );
             }
 
             return tmp;
@@ -134,9 +153,7 @@ $(document).ready( function() {
                 circle.parseGenome( row.getS() );
 
                 var drawCircle = this.baseData.poolCircles[ k ];
-                drawCircle.x( circle.x );
-                drawCircle.y( circle.y );
-                drawCircle.radius( circle.r );
+                drawCircle.x( circle.x ).y( circle.y ).radius( circle.r );
 
                 var bgColor = '#fff';
                 if ( row.isParent ) {
@@ -167,7 +184,9 @@ $(document).ready( function() {
             $container.append( $table );
         };
 
-        var can = br4.createC( 'circles', { width: baseData.canvasSize, height: baseData.canvasSize, backgroundColor: '#000' } )
+        ga.mutateCalllback = printGenome;
+
+        var can = br4.createC( placeHolder, { width: baseData.canvasSize, height: baseData.canvasSize, lineColor:'#000', backgroundColor: '#000' } )
 
         baseData.scenarioPoints = [];
         baseData.poolCircles = [];
@@ -189,13 +208,24 @@ $(document).ready( function() {
         drawCircle.radius( result.r );
     }
 
+    function printGenome( pool ) {
+
+        for  ( var k in pool ) {
+            var circle = new this.baseData.circleObject();
+            circle.parseGenome( pool[ k ].getS() );
+
+            var drawCircle = this.baseData.poolCircles[ k ];
+            drawCircle.x( circle.x ).y( circle.y ).radius( circle.r );
+        }
+
+    }
+
     function printScenario( baseData ) {
         for( var k in baseData.scenario ) {
             var point = baseData.scenario[ k ];
             var drawCircle = baseData.scenarioPoints[ k ];
 
-            drawCircle.x( point.x );
-            drawCircle.y( point.y );
+            drawCircle.x( point.x ).y( point.y ).radius( point.r)
         }
     }
 
@@ -218,7 +248,7 @@ $(document).ready( function() {
         }
     }
 
-    function circle( x, y, r ) {
+    function Circle( x, y, r ) {
         var stdLength = 10;
 
         this.x = x;
@@ -242,15 +272,15 @@ $(document).ready( function() {
             this.x = parseInt( x, 2 );
             this.y = parseInt( y, 2 );
             this.r = parseInt( r, 2 );
-        }
+        };
 
         this.getS = this.getGenome = function() {
             return lpad( this.x.toString( 2 ), stdLength, '0' ) + lpad( this.y.toString( 2 ), stdLength, '0' ) + lpad( this.r.toString( 2 ), stdLength, '0' );
-        }
+        };
 
         this.area = function(){
             return Math.PI * Math.pow( this.r, 2 );
-        }
+        };
 
         var lpad = function( str, length, c ) {
             for( var i = str.length; i < length; i++ ) {
@@ -262,4 +292,4 @@ $(document).ready( function() {
 
     }
 
-} );
+};

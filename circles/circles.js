@@ -1,43 +1,81 @@
-$(document).ready( function() {
-    var myGA = null;
+var circleCreator = function ( placeHolder, config ) {
 
-    $('#calc').click( function() {
+    if ( !placeHolder ) {
+        throw new Error( 'no placeHolder' );
+    }
+
+    var myGA    = null;
+    config      = config || {};
+
+    init();
+
+    function init() {
         if ( !myGA ) {
-            myGA = create();
+            myGA = create( config );
         }
 
-        myGA.baseData.scenario = createScenario( myGA.baseData.canvasSize, myGA.baseData.scenarioSize );
-        console.time( 'run' );
-        myGA.run();
-        console.timeEnd( 'run' );
+        if ( config.scenario ) {
+            myGA.baseData.scenario = config.scenario;
+        } else {
+            myGA.baseData.scenario = createScenario( myGA.baseData.canvasSize, myGA.baseData.scenarioSize );
+        }
 
-        myGA.printHistory( "pages" );
-        printResult( myGA.result(), myGA.baseData );
-    } );
+        printScenario( myGA.baseData );
+    }
 
-    function create() {
+    return {
+        run: function( callback ) {
+            callback = callback || function() {};
+
+            console.time( 'run' );
+            myGA.run( function() {
+                callback();
+
+                if ( config.printHistory ) {
+                    myGA.printHistory( "pages" );
+                    printResult( myGA.result(), myGA.baseData );
+                }
+
+                console.timeEnd( 'run' );
+            } );
+        },
+
+        reset: function() {
+            myGA.desintegrate();
+            myGA = null;
+
+            $( '#' + placeHolder ).html( '' );
+
+            init();
+        }
+
+    };
+
+    function create( config ) {
 
         var baseData = {
             canvasSize: 400,
             genPoolSize: 30,
             scenarioSize: 4,
-            circleObject: circle,
-            maxRuns: 10000,
-            logHistory: true
+            circleObject: Circle,
+            maxRuns: config.logHistory || 10000,
+            logHistory: config.logHistory || false
         };
 
         var ga = GA.getAlgorithm( baseData );
+
+        ga.stepDelay = config.stepDelay || 100;
 
         ga.generateGenePool = function() {
             var tmp = [];
 
             for( var i = 0; i < this.baseData.genPoolSize; i++ ) {
                 var size = 0.1 * this.baseData.canvasSize + Math.random() * this.baseData.canvasSize * 0.1;
-                tmp.push( new circle( parseInt( Math.random() * this.baseData.canvasSize, 10 ), parseInt( Math.random() * this.baseData.canvasSize, 10 ), parseInt( size, 10 ) ) );
+                tmp.push( new Circle( parseInt( Math.random() * this.baseData.canvasSize, 10 ), parseInt( Math.random() * this.baseData.canvasSize, 10 ), parseInt( size, 10 ) ) );
             }
 
             return tmp;
-        }
+        };
 
         ga.chooseParents = function( pool ) {
             c1 = parseInt( Math.random() * (pool.length), 10 );
@@ -46,7 +84,7 @@ $(document).ready( function() {
             } while( c1 == c2 );
 
             return { 0: pool[ c1 ], 1: pool[ c2 ] };
-        }
+        };
 
         ga.mutate = function( p1, p2 ) {
             var tmp = new this.baseData.circleObject();
@@ -185,7 +223,9 @@ $(document).ready( function() {
             $container.append( $table );
         };
 
-        var can = br4.createC( 'circles', { width: baseData.canvasSize, height: baseData.canvasSize, backgroundColor: '#000' } )
+        ga.mutateCalllback = printGenome;
+
+        var can = br4.createC( 'circles', { width: baseData.canvasSize, height: baseData.canvasSize, lineColor:'#000',  backgroundColor: '#000' } )
 
         baseData.scenarioCircles = [];
         baseData.poolCircles = [];
@@ -207,6 +247,18 @@ $(document).ready( function() {
         drawCircle.radius( result.r );
     }
 
+    function printGenome( pool ) {
+
+        for  ( var k in pool ) {
+            var circle = new this.baseData.circleObject();
+            circle.parseGenome( pool[ k ].getS() );
+
+            var drawCircle = this.baseData.poolCircles[ k ];
+            drawCircle.x( circle.x ).y( circle.y ).radius( circle.r );
+        }
+
+    }
+
     function printScenario( baseData ) {
         for( var k in baseData.scenario ) {
             var circle = baseData.scenario[ k ];
@@ -223,13 +275,13 @@ $(document).ready( function() {
 
         for( var i = 0; i < number; i++ ) {
             var mySize = Math.random() * 0.2 * size;
-            tmp.push( new circle( parseInt( Math.random() * size, 10 ), parseInt( Math.random() * size, 10 ), parseInt( mySize, 10 ) ) );
+            tmp.push( new Circle( parseInt( Math.random() * size, 10 ), parseInt( Math.random() * size, 10 ), parseInt( mySize, 10 ) ) );
         }
 
         return tmp;
     }
 
-    function circle( x, y, r ) {
+    function Circle( x, y, r ) {
         var stdLength = 10;
 
         this.x = x;
@@ -253,15 +305,15 @@ $(document).ready( function() {
             this.x = parseInt( x, 2 );
             this.y = parseInt( y, 2 );
             this.r = parseInt( r, 2 );
-        }
+        };
 
         this.getS = this.getGenome = function() {
             return lpad( this.x.toString( 2 ), stdLength, '0' ) + lpad( this.y.toString( 2 ), stdLength, '0' ) + lpad( this.r.toString( 2 ), stdLength, '0' );
-        }
+        };
 
         this.area = function(){
             return Math.PI * Math.pow( this.r, 2 );
-        }
+        };
 
         var lpad = function( str, length, c ) {
             for( var i = str.length; i < length; i++ ) {
@@ -273,4 +325,4 @@ $(document).ready( function() {
 
     }
 
-} );
+};
