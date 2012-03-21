@@ -7,10 +7,10 @@ $(document).ready( function() {
             myGA = create();
         }
         myGA.baseData.target = parseInt( $( '#term' ).val() );
-        myGA.run();
+        myGA.run( function() {
+            myGA.printHistory( "pages" );
+        } );
 
-        myGA.printHistory( "pages" );
-        
     } );
 
     function create() {
