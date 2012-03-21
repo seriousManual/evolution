@@ -37,9 +37,23 @@
                 border: 1px solid #000;
             }
 
-            iframe {
-                border: 0 !important;
+            .iframeDiv {
+                width:430px;
+                margin: 0 auto;
             }
+
+            iframe {
+                width:430px;
+                border: 0 !important;
+                margin: 0 auto;
+            }
+
+            h2 {
+                color:#fff !important;
+                text-shadow: -2px -2px 15px #000, 3px 3px 0px #000;
+                font-size:90px !important;
+            }
+
 
         </style>
     </head>
@@ -96,7 +110,9 @@
 
             <article>
                 <h3>Wie funktioniert die ganze Geschichte eigentlich?<br>(revisited)</h3>
-                <iframe src="diagonal.html"></iframe>
+                <div class="iframeDiv">
+                    <iframe src="diagonal.html"></iframe>
+                </div>
             </article>
 
             <article class="">
@@ -140,6 +156,7 @@ ga.mutate = function( p1, p2 ) {
             </article>
 
             <article class="fill">
+                <h2>CIRCLES</h2>
                 <img src="img/circles.jpg">
             </article>
 
@@ -160,55 +177,107 @@ ga.mutate = function( p1, p2 ) {
             <article>
                 <h3>Circles</h3>
                 <p>Triviallösung</p>
-                <div class="build">
-                    <iframe src="trivial.html" style="width:450px;height:450px;margin: 0 auto;"></iframe>
+                <div class="build iframeDiv">
+                    <iframe src="trivial.html"></iframe>
                 </div>
-
             </article>
 
             <article>
-                <h3>Circles (biggest filling)</h3>
+                <h3>Circles</h3>
                 <p>Gentischer Algorithmus</p>
                 <p>Problemformulierung</p>
+                <p>Fitnessfunktion</p>
                 <p>Mutation</p>
                 <p>Rekombination</p>
                 <p>Selektion</p>
             </article>
 
             <article>
-                <h3>Circles (biggest filling)</h3>
-                <p>Laufen lassen (iframe)</p>
+                <h3>Circles</h3>
+                <div class="build">
+                    <p>So läufts:</p>
+                    <div class="iframeDiv">
+                        <iframe src="../../circles/scene1.html"></iframe>
+                    </div>
+                </div>
+            </article>
+
+            <article class="fill">
+                <h2>Eigenschaften</h2>
             </article>
 
             <article>
                 <h3>Eigenschaften</h3>
-                <ul class="build">
-                    <li>Gefundene Lösung ist nicht immer optimal</li>
-                    <li>Insert your favorit Iframe here (Circle Beispiel)</li>
-                </ul>
+                <div class="build">
+                    <p>Die gefundene Lösung ist nicht immer optimal</p>
+                    <div class="iframeDiv">
+                        <iframe src="../../circles/suboptimal.html"></iframe>
+                    </div>
+                </div>
             </article>
 
             <article>
                 <h3>Eigenschaften</h3>
-                <ul class="build">
-                    <li>Gefundene Lösungen variieren</li>
-                    <li>Insert your favorit Iframe here (Circle Beispiel)</li>
-                </ul>
+                <div class="build">
+                    <p>Gefundene Lösungen sind nicht deterministisch</p>
+                    <div class="iframeDiv">
+                        <iframe src="../../circles/vary.html"></iframe>
+                    </div>
+                </div>
             </article>
 
             <article>
                 <h3>Eigenschaften</h3>
-                <ul class="build">
-                    <li>Design der Fitnessfunktionen bestimmen das Verhalten (und die Performance) des Algorithmus</li>
-                    <li>
-                        <ul class="build">
-                            <li>Wenn sich Kreise überschneiden den kleinsten als besten bewerten</li>
-                            <li>penis2</li>
-                            <li>penis1</li>
-                            <li>penis1</li>
-                        </ul>
-                    </li>
-                </ul>
+                <div class="build">
+                    <p>Extremsituationen</p>
+                    <div class="iframeDiv">
+                        <iframe src="../../circles/fail.html"></iframe>
+                    </div>
+                </div>
+            </article>
+
+            <article>
+                <h3>Eigenschaften</h3>
+                <div class="build">
+                    <p>Extremsituiationen</p>
+                    <div class="iframeDiv">
+                        <iframe src="../../circles/fail2.html"></iframe>
+                    </div>
+                </div>
+            </article>
+
+            <article class="fill">
+                <h2>Einflussfaktoren</h2>
+            </article>
+
+            <article>
+                <h3>Einflussfaktoren</h3>
+                <div class="build">
+                    <p>Genepoolgröße</p>
+                    <div class="iframeDiv">
+                        <iframe src="../../circles/scene1_lowPool.html"></iframe>
+                    </div>
+                </div>
+            </article>
+
+            <article>
+                <h3>Einflussfaktoren</h3>
+                <div class="build">
+                    <p>Genepoolgröße</p>
+                    <div class="iframeDiv">
+                        <iframe src="../../circles/scene1_highPool.html"></iframe>
+                    </div>
+                </div>
+            </article>
+
+            <article>
+                <h3>Einflussfaktoren</h3>
+                <div class="build">
+                    <p>Design der Fitnessfunktionen bestimmen das Verhalten (und die Performance) des Algorithmus</p>
+                    <div class="iframeDiv">
+                        <iframe src="../../circles/suboptimal.html"></iframe>
+                    </div>
+                </div>
             </article>
 
             <article class="fill">
@@ -217,10 +286,39 @@ ga.mutate = function( p1, p2 ) {
 
             <article>
                 <h3>Konvergenz</h3>
-                <p>Problem aufzeigen dass Konvergenz nicht leicht feststellbar ist</p>
-                <p>Effektive Konvergenzerkennung verkürzt die Laufzeit des Algorithmus</p>
+                <ul class="build">
+                    <li>Abbruchkriterium</li>
+                    <li>Konvergenzerkennung ist essentiell für einen effizienten Algorithmus</li>
+                </ul>
             </article>
 
+            <article>
+                <h3>Konvergenz</h3>
+
+                <div class="build">
+                    <p>Einfache Konvergenzerkennung (Circles):</p>
+
+                    <section>
+                        <pre>
+    ga.termCriterium = function() {
+        var cnt = this.pool.length * 0.8;
+        var tmp = this.pool[0].f;
+        for( var i = 0; i < cnt; i++ ) {
+            if ( tmp !== this.pool[i].f ) return false;
+        }
+        return true;
+    };
+                        </pre>
+                    </section>
+                    <h3>Bessere Lösungen:</h3>
+                    <ul class="build">
+                    <li>Veränderung der Fitness gegenüber dem Durchschnitt</li>
+                    <li>Veränderung der Fitness über die letzten x Durchläufe</li>
+                    </ul>
+                </div>
+            </article>
+
+<!--
             <article>
                 <h3>Optimierungsmöglichkeiten (Circles)</h3>
                 <p>Mutation</p>
@@ -233,7 +331,7 @@ ga.mutate = function( p1, p2 ) {
                     <li>Insert Iframe dingsi here</li>
                 </ul>
             </article>
-
+-->
             <article class="fill">
                 <img src="img/math.jpg">
             </article>
@@ -274,6 +372,7 @@ ga.mutate = function( p1, p2 ) {
             </article>
 
             <article class="fill">
+                <h2>Circles revisited</h2>
                 <img src="img/circles.jpg">
             </article>
 

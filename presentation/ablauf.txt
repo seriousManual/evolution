@@ -44,6 +44,7 @@ Vorstellung des Circleproblems (biggest filling)
     Triviallösung (iFrame)
     Anwendung eines GA
         Problemformulierung
+        Fitnessfunktion
         Mutation
         Rekombination
         Selektion
@@ -58,19 +59,19 @@ Eigenschaften:
 	Extremsituationen führen dazu dass keine Lösung gefunden werden kann (fail.html + fail2.html)
 
 Einflussfaktoren
-    GenePoolgröße - scene1.html + scene1_lowPool.html + scene1.highPool.html
+    GenePoolgröße -
+        Low Pool scene1_lowPool.html
+        High Pool scene1_highPool.html
 
 	Design der Fitnessfunktion bestimmt das Verhalten des Algorithmus
-	    Circles:
-	        1. Wenn sich Kreise überschneiden den kleinsten als besten bewerten (weil wenn überschneidet kleinere kreise besser bewertet werden)
-	        2. hier mögliche strategie einfügen :P
-	        3. hier weitere mögliche strategie einfügen :P
+        Wenn sich Kreise überschneiden den kleinsten als besten bewerten (weil wenn überschneidet kleinere kreise besser bewertet werden)
 
 Fast (scene1_fast.html)
 
 Abbruchkriterien (Konvergenz)
     Problem aufzeigen dass Konvergenz nicht leicht festzustellen ist
     Effektive Konvergenzerkennung verkürzt die Laufzeit des Algorithmus
+    Problem bei kleiner Poolgröße
 
 Optimierungsmöglichkeiten (Circles)
     Mutation
@@ -84,6 +85,7 @@ Math
     Ziel + Problem
     Triviallösung???
     Anwendung
+        Fitnessfunktion
         Problemformulierung [Achtung jetzt wirds ein bisschen technisch...]
         Mutation
         Rekombination
@@ -93,6 +95,7 @@ Circles2 (biggest surrounding!)
     Ziel + Problem
     Triviallösung???
     Anwendung
+        Fitnessfunktion
         Problemformulierung
         Mutation
         Rekombination
@@ -102,6 +105,7 @@ TSP
     Ziel + Problem
     Triviallösung???
     Anwendung
+        Fitnessfunktion
         Problemformulierung
         Mutation
         Rekombination
