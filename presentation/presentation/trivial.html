@@ -38,7 +38,8 @@
             } );
 
             function sampling() {
-                if ( check( current ) ) {
+                var result = check( current );
+                if ( result === true ) {
                     if ( bestCircle.r < current.r ) {
                         bestCircle.x = current.x;
                         bestCircle.y = current.y;
@@ -48,17 +49,32 @@
                     }
                     current.r++;
                 } else {
-                    current.x++;
-                    if ( current.x > canvasSize ) {
-                        current.y++;
-                        current.x = 0;
+
+                    switch( result ) {
+                        case 't':
+                            current.y++;
+                            break;
+                        case 'b':
+                            current.y--;
+                            break;
+                        case 'l':
+                            current.x++;
+                            break;
+                        case 'r':
+                            current.x = 0;
+                            current.y++;
+                            break;
+                        default:
+                            current.x++;
+                            break;
                     }
+
                     current.r = bestCircle.r;
                 }
 
                 cCurrent.x( current.x ).y( current.y ).radius( current.r );
 
-                window.setTimeout( sampling, 1 );
+                window.setTimeout( sampling, 10 );
             }
 
             var d = function( x1, x2, y1, y2 ) { return Math.sqrt( Math.pow( x1 - x2, 2 ) + Math.pow( y1 - y2, 2 ) ) };
@@ -69,15 +85,19 @@
                 }
 
                 if ( o.x - o.r < 0 ) {
+                    return 'l';
                     return false;
                 }
                 if ( o.x + o.r > canvasSize ) {
+                    return 'r';
                     return false;
                 }
                 if ( o.y - o.r < 0 ) {
+                    return 't';
                     return false;
                 }
                 if ( o.y + o.r > canvasSize ) {
+                    return 'b';
                     return false;
                 }
 
