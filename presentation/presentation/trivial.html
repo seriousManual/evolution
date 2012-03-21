@@ -16,7 +16,7 @@
             var can         = null;
             var scenario    = [ { x:50, y:137, r: 80 }, { x:300, y:320, r: 180 } ];
 
-            var current     = { x:0, y:0, r: 0 };
+            var current     = { x:0, y:0, r: 1 };
             var bestCircle  = { x:current.x, y:current.y, r:current.r };
             var cCurrent    = null;
             var cBest       = null;
@@ -53,7 +53,7 @@
                         current.y++;
                         current.x = 0;
                     }
-                    current.r = 1;
+                    current.r = bestCircle.r;
                 }
 
                 cCurrent.x( current.x ).y( current.y ).radius( current.r );

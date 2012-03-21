@@ -24,6 +24,22 @@
                 top:0;
                 bottom:0;
             }
+
+            .circlesDesc {
+                width:400px;
+                position:relative;
+                margin: 0 auto;
+            }
+            .circlesDesc img {
+                position:absolute;
+                top:0;
+                bottom:0;
+                border: 1px solid #000;
+            }
+
+            iframe {
+                border: 0 !important;
+            }
         </style>
     </head>
 
@@ -126,12 +142,27 @@ ga.mutate = function( p1, p2 ) {
                 <img src="img/circles.jpg">
             </article>
 
+            <article class="smaller">
+                <h3>Circles</h3>
+                <p><b>Beschreibung und Problemstellung</b></p>
+                <ul class="build">
+                    <li><b>Gegeben:</b> Kreise auf einem Spielfeld</li>
+                    <li><b>Gesucht:</b> Ein Kreis der weder den Spielfeldrand noch einen anderen Kreis überlappt</li>
+                    <li>Maximaler Flächeninhalt</li>
+                </ul>
+                <div class="circlesDesc build">
+                    <img src="img/circles1.png">
+                    <img src="img/circles2.png">
+                </div>
+            </article>
+
             <article>
                 <h3>Circles</h3>
-                <div class="builds">
-                    <p>Ziel + Problematik</p>
-                    <iframe src="trivial.htm"></iframe>
+                <p>Triviallösung</p>
+                <div class="build">
+                    <iframe src="trivial.html"></iframe>
                 </div>
+
             </article>
 
             <article>
