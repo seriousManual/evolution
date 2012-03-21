@@ -48,19 +48,25 @@ Vorstellung des Circleproblems (biggest filling)
         Rekombination
         Selektion
 
-    Laufen lassen
+    Laufen lassen (scene1.html)
 
 
 
 Eigenschaften:
-	Gefundene Lösung ist nicht immer optimal (Beispiel)
-	Gefundene Lösungen variieren (Beispiel)
+	Gefundene Lösung ist nicht immer optimal (suboptimal.html)
+	Gefundene Lösungen variieren (vary.html) "Results my vary"
+	Extremsituationen führen dazu dass keine Lösung gefunden werden kann (fail.html + fail2.html)
+
+Einflussfaktoren
+    GenePoolgröße - scene1.html + scene1_lowPool.html + scene1.highPool.html
+
 	Design der Fitnessfunktion bestimmt das Verhalten des Algorithmus
 	    Circles:
 	        1. Wenn sich Kreise überschneiden den kleinsten als besten bewerten (weil wenn überschneidet kleinere kreise besser bewertet werden)
 	        2. hier mögliche strategie einfügen :P
 	        3. hier weitere mögliche strategie einfügen :P
-	
+
+Fast (scene1_fast.html)
 
 Abbruchkriterien (Konvergenz)
     Problem aufzeigen dass Konvergenz nicht leicht festzustellen ist

@@ -5,8 +5,8 @@ proggn:
             - circles so machen dass man eine problemstellung laden kann
             - circles so machen dass man zum *gleichen* ausgangspunkt zurück springen kann
 
-- circles problemstellung formulieren die nicht immer optimale ergebnisse liefert
-- circles problemstellung formulieren damit verschiedene lösungen gefunden werden können (ein kreis in der mitte mit gleichem abstand)
+            - circles problemstellung formulieren die nicht immer optimale ergebnisse liefert
+            - circles problemstellung formulieren damit verschiedene lösungen gefunden werden können (ein kreis in der mitte mit gleichem abstand)
 
 design der fitnessfunktion, beispiele? (zwei weitere beispiele liefern + implementieren!)
 

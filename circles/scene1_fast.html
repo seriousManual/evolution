@@ -20,12 +20,12 @@
                         { x:30, y:160, r:150 },
                         { x:300, y:40, r:40 }
                     ],
-                    stepDelay: 30,
+                    stepDelay: 0,
                     mutateCallback: true
                 };
 
                 var circleMagic = circleCreator( 'circles', config );
-
+ 
                 $('#calc').click( function() {
                     circleMagic.run();
                 } );

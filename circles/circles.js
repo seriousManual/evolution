@@ -15,6 +15,7 @@ var circleCreator = function ( placeHolder, config ) {
         }
 
         if ( config.scenario ) {
+            myGA.baseData.scenarioSize = config.scenario.length;
             myGA.baseData.scenario = config.scenario;
         } else {
             myGA.baseData.scenario = createScenario( myGA.baseData.canvasSize, myGA.baseData.scenarioSize );
@@ -35,6 +36,7 @@ var circleCreator = function ( placeHolder, config ) {
                     myGA.printHistory( "pages" );
                     printResult( myGA.result(), myGA.baseData );
                 }
+                printResult( myGA.result(), myGA.baseData );
 
                 console.timeEnd( 'run' );
             } );
@@ -55,16 +57,16 @@ var circleCreator = function ( placeHolder, config ) {
 
         var baseData = {
             canvasSize: 400,
-            genPoolSize: 30,
-            scenarioSize: 4,
-            circleObject: Circle,
-            maxRuns: config.logHistory || 10000,
-            logHistory: config.logHistory || false
+            genPoolSize:        config.poolSize     ? config.poolSize : 30,
+            scenarioSize:       config.scenario     ? config.scenario.length : 4,
+            circleObject:       Circle,
+            maxRuns:            config.logHistory   || 10000,
+            logHistory:         config.logHistory   || false
         };
 
         var ga = GA.getAlgorithm( baseData );
 
-        ga.stepDelay = config.stepDelay || 100;
+        ga.stepDelay = config.stepDelay != undefined ? config.stepDelay : 100;
 
         ga.generateGenePool = function() {
             var tmp = [];
@@ -223,7 +225,9 @@ var circleCreator = function ( placeHolder, config ) {
             $container.append( $table );
         };
 
-        ga.mutateCalllback = printGenome;
+        if ( config.mutateCallback ) {
+            ga.mutateCalllback = printGenome;
+        }
 
         var can = br4.createC( 'circles', { width: baseData.canvasSize, height: baseData.canvasSize, lineColor:'#000',  backgroundColor: '#000' } )
 
