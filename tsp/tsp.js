@@ -37,7 +37,8 @@ $(document).ready( function() {
             genPoolSize: 40,
             scenarioSize: 13,
             wayObject: way,
-            maxRuns: 15000
+            maxRuns: 15000,
+            logHistory: false
         };
 
         var ga = GA.getAlgorithm( baseData );
