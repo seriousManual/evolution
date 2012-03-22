@@ -111,7 +111,7 @@
                 self.logHistoryStep( parents[0], parents[1], fitter ? lastPoolEntry : null );
 
                 self.mutateCalllback( self.pool, fitter );
-
+console.log( self.stepDelay );
                 if ( keepRunning ) {
                     window.setTimeout( step, self.stepDelay );
                 } else {

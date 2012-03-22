@@ -372,10 +372,48 @@ var circleCreator = function ( placeHolder, config ) {
             outside = true;
         }
 
-        return parseInt( ( outside || overlapping ? -1 : 1 ) * area, 10 );
+        return outside || overlapping ? 1/area : area ;
     }
 
-    function fitnessV3() {
+    function fitnessV3( str ) {
+
+        var tmp = new this.baseData.circleObject();
+        tmp.parseGenome( str );
+
+        var d = function( x1, x2, y1, y2 ) { return Math.sqrt( Math.pow( x1 - x2, 2 ) + Math.pow( y1 - y2, 2 ) ) };
+
+        var overlapping     = 0;
+        var outside         = 0;
+        for( var k in this.baseData.scenario ) {
+            var sC = this.baseData.scenario[ k ];
+            if ( d( tmp.x, sC.x, tmp.y, sC.y ) < sC.r + tmp.r ) {
+                overlapping = 1;
+            }
+        }
+
+        if ( tmp.x - tmp.r < 0 ) {
+            outside += 10;
+        }
+        if ( tmp.x + tmp.r > this.baseData.canvasSize ) {
+            outside += 10;
+        }
+        if ( tmp.y - tmp.r < 0 ) {
+            outside += 10;
+        }
+        if ( tmp.y + tmp.r > this.baseData.canvasSize ) {
+            outside += 10;
+        }
+
+        if ( tmp.y < 0 || tmp.x < 0 || tmp.x > this.baseData.canvasSize || tmp.y > this.baseData.canvasSize ) {
+            outside += 10;
+        }
+
+        var area = tmp.area();
+        if ( area <= 0 ) {
+            outside += 100;
+        }
+
+        return overlapping || outside ? -1 * ( outside + overlapping ) : area*area;
 
     }
 

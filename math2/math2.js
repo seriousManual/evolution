@@ -103,6 +103,8 @@ $(document).ready( function() {
 
         var ga = GA.getAlgorithm( baseData );
 
+        ga.stepDelay = 100;
+
         ga.generateGenePool = function() {
             var genePool = [];
             for( var i = 0; i < this.baseData.poolSize; i++ ) {
@@ -179,6 +181,14 @@ $(document).ready( function() {
         ga.termCriterium = function( x ) {
             return this.history[ this.history.length-1 ][0].f === Infinity;
         }
+
+        var number = 0;
+        ga.mutateCalllback = function( pool ) {
+
+            number++;
+            ga.showHistoryPage( pool, number, $('#pages') );
+
+        };
 
         ga.showHistoryPage = function( page, number, $container ) {
             var rows = '';

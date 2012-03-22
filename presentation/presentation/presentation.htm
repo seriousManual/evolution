@@ -12,6 +12,10 @@
                 background: #fff url('img/evolution_chuck.jpg') no-repeat center center;
             }
 
+            .chapterPage {
+                background-size:100% 100%
+            }
+
             .desc {
                 position:relative;
                 width:630px;
@@ -50,7 +54,28 @@
 
             .iframeDivThree {
                 width:820px;
+                height:330px;
                 margin: 0 auto;
+            }
+
+            .iframeDivThree iframe {
+                height: 330px;
+                width:820px;
+            }
+
+            .iframeDivMath {
+                width:820px;
+                height:600px;
+                margin: 0 auto;
+            }
+
+            .iframeDivMath iframe {
+                height: 600px;
+                width:820px;
+            }
+
+            #threeId pre {
+                margin: 0px 0px 4px 0px;
             }
 
             iframe {
@@ -109,6 +134,7 @@
             <article>
                 <h3>Schritte</h3>
                 <ul>
+                    <li>Fitness</li>
                     <li>Mutation</li>
                     <li>Rekombination</li>
                     <li>Selektion</li>
@@ -173,9 +199,8 @@ ga.mutate = function( p1, p2 ) {
                 </section>
             </article>
 
-            <article class="fill">
+            <article class="chapterPage" style="background-image:url(img/circles.jpg);">
                 <h2>CIRCLES</h2>
-                <img src="img/circles.jpg">
             </article>
 
             <article class="smaller">
@@ -310,18 +335,35 @@ ga.mutate = function( p1, p2 ) {
                 </div>
             </article>
 
-            <article>
+            <article class="smaller">
                 <h3>Einflussfaktoren</h3>
-                <div class="build">
+                <div id="threeId" class="build">
                     <p>Design der Fitnessfunktionen bestimmen das Verhalten (und die Performance) des Algorithmus</p>
                     <div class="iframeDivThree">
                         <iframe src="../../circles/scene1_three.html"></iframe>
                     </div>
+                    <section>
+                        <pre>
+    return outside || overlapping ? -1 : 1 *
+                       ( outside * 4 ) *
+                       ( overlapping * 2 ) *
+                       area;
+                        </pre>
+                    </section>
+                    <section>
+                        <pre>
+    return overlapping || outside ? 1/area : area ;
+                        </pre>
+                    </section>
+                    <section>
+                        <pre>
+    return overlapping || outside ? -1 * ( outside + overlapping ) : area*area;
+                        </pre>
+                    </section>
                 </div>
             </article>
 
-            <article class="fill">
-                <img src="img/converge.jpg">
+            <article class="chapterPage" style="background-image:url(img/converge.jpg);">
             </article>
 
             <article>
@@ -372,27 +414,89 @@ ga.mutate = function( p1, p2 ) {
                 </ul>
             </article>
 -->
-            <article class="fill">
-                <img src="img/math.jpg">
+            <article class="chapterPage" style="background-image:url(img/math.jpg);">
             </article>
 
             <article>
                 <h3>Math</h3>
                 <div class="build">
-                <p>Finde zu einer beliebigen Zahl einen beliebigen Term der diese Zahl darstellt:</p>
-                <p class="mathTerm">20 + 20 + 4/2 = 42</p>
-                <p class="mathTerm">24*39 + 42 + 179*2 + 1 = 1337</p>
-                <p>Triviallösung?</p>
+                    <p>Finde zu einer beliebigen Zahl einen beliebigen Term der diese Zahl darstellt:</p>
+                    <p class="mathTerm">20 + 20 + 4/2 = 42</p>
+                    <p class="mathTerm">120/30 + 2 = 42</p>
+                    <p class="mathTerm">70 - 30 + 8 - 6 = 42</p>
+                    <p>Triviallösung?</p>
                 </div>
             </article>
 
             <article>
                 <h3>Math</h3>
-                <p>GA for the rescue!11einself</p>
-                <p>Problemformulierung</p>
-                <p>Mutation</p>
-                <p>Rekombination</p>
-                <p>Selektion</p>
+                <div class="build">
+                    <h3>Problemformulierung</h3>
+                    <div>
+                        <table>
+                            <tr><td>0000</td><td>0</td></tr>
+                            <tr><td>0001</td><td>1</td></tr>
+                            <tr><td>0010</td><td>2</td></tr>
+                            <tr><td colspan="2">...</td></tr>
+                            <tr><td>1010</td><td>+</td></tr>
+                            <tr><td>1011</td><td>-</td></tr>
+                            <tr><td>1100</td><td>*</td></tr>
+                            <tr><td>1101</td><td>/</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </article>
+
+            <article class="smaller">
+                <h3>Math</h3>
+
+                <div class="build1">
+                    <h3>Problemformulierung</h3>
+                    <table class="genomeTable">
+                        <tr><th>genome</th><th>fitness</th><th>interpreted</th><th>parsed</th><th>value</th></tr>
+                        <tr><td>0001...001</td><td>0.1</td><td>1+*+//31</td><td>1+31</td><td>32</td></tr>
+                        <tr><td>1011...000</td><td>0.08333333333333333</td><td>-*8+9+374</td><td>8+9+37</td><td>54
+                        <tr><td>1011...000</td><td>0.08333333333333333</td><td>-*8+9+37</td><td>8+9+37</td><td>54
+                        <tr><td>1001...011</td><td>0.08333333333333333</td><td>967-66746-</td><td>96-66</td><td>30
+                    </table>
+                    <br>
+
+                    <h3>Eltern</h3>
+                    <span class="blue">101111001111100010101001101000110111000000000000</span><br>
+                    <span class="green">100101100111101101100110011111101110010001101011</span><br>
+                    <h3>Rekombination</h3>
+                    <span class="blue">101111001111100010101001</span><span class="green">011111101110010001101011</span>
+
+                    <h3>Mutation</h3>
+                    <span class="blue">101111001<span class="red">0</span>11100010101001</span><span class="green">0<span class="red">0</span>11111011100100011<span class="red">1</span>1011</span>
+                </div>
+            </article>
+
+            <article class="smaller">
+                <h3>Math</h3>
+                <h3>Fitness</h3>
+                <section>
+                    <pre>
+    var v = eval( p );
+    var difference = Math.abs( this.baseData.target - v );
+
+    //no operators found!
+    if ( !operators ) {
+        difference *= -1;
+    }
+
+    var f = 1 / difference;
+
+    return f;
+                    </pre>
+                </section>
+            </article>
+
+            <article>
+                <h3>Math</h3>
+                <div class="iframeDivMath">
+                    <iframe src="../../math2/math2.html"></iframe>
+                </div>
             </article>
 
             <article class="nobackground">
@@ -415,9 +519,8 @@ ga.mutate = function( p1, p2 ) {
                 <p>Selektion</p>
             </article>
 
-            <article class="fill">
+            <article class="chapterPage" style="background-image:url(img/circles.jpg);">
                 <h2>Circles revisited</h2>
-                <img src="img/circles.jpg">
             </article>
 
             <article>
