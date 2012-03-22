@@ -54,6 +54,7 @@ Vorstellung des Circleproblems (biggest filling)
 
 
 Eigenschaften:
+    Der Lösungsweg ist niemals gleich (scene1_4times.html)
 	Gefundene Lösung ist nicht immer optimal (suboptimal.html)
 	Gefundene Lösungen variieren (vary.html) "Results my vary"
 	Extremsituationen führen dazu dass keine Lösung gefunden werden kann (fail.html + fail2.html)

@@ -14,25 +14,37 @@
 
         <script type="text/javascript">
             $( document ).ready( function() {
-                var config = {
-                    scenario: [
-                        { x:400, y:400, r:80 },
-                        { x:30, y:160, r:150 },
-                        { x:300, y:40, r:40 }
-                    ],
-                    stepDelay: 30,
-                    fitness: 'v1',
+                var sceneario = [
+                                    { x:400, y:400, r:80 },
+                                    { x:30, y:160, r:150 },
+                                    { x:300, y:40, r:40 }
+                                ];
+
+                var config1 = {
+                    scenario:       sceneario,
+                    stepDelay:      30,
+                    fitness:        'v1',
                     mutateCallback: true
                 };
 
-                var circleMagic = circleCreator( 'circles', config );
+                var config2 = {
+                    scenario:       sceneario,
+                    stepDelay:      30,
+                    fitness:        'v2',
+                    mutateCallback: true
+                };
+
+                var circleMagic1 = circleCreator( 'circles',  config1 );
+                var circleMagic2 = circleCreator( 'circles2', config2 );
 
                 $('#calc').click( function() {
-                    circleMagic.run();
+                    circleMagic1.run();
+                    circleMagic2.run();
                 } );
 
                 $('#reset').click( function() {
-                    circleMagic.reset();
+                    circleMagic1.reset();
+                    circleMagic2.reset();
                 } );
 
             } );
@@ -44,8 +56,8 @@
 
         <table>
             <tr>
-                <td id="pages" valign="top"></td>
                 <td id="circles" valign="top"></td>
+                <td id="circles2" valign="top"></td>
             </tr>
         </table>
     </body>

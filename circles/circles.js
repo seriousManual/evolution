@@ -7,7 +7,7 @@ var circleCreator = function ( placeHolder, config ) {
     var myGA    = null;
     config      = config || {};
 
-    init();
+    init( placeHolder );
 
     function init() {
         if ( !myGA ) {
@@ -34,7 +34,6 @@ var circleCreator = function ( placeHolder, config ) {
 
                 if ( config.printHistory ) {
                     myGA.printHistory( "pages" );
-                    printResult( myGA.result(), myGA.baseData );
                 }
                 printResult( myGA.result(), myGA.baseData );
 
@@ -124,45 +123,15 @@ var circleCreator = function ( placeHolder, config ) {
             return tmp.getS();
         };
 
-        ga.getFitness = function( str ) {
-            var tmp = new this.baseData.circleObject();
-            tmp.parseGenome( str );
-
-            var d = function( x1, x2, y1, y2 ) { return Math.sqrt( Math.pow( x1 - x2, 2 ) + Math.pow( y1 - y2, 2 ) ) };
-
-            var overlapping = 0;
-            var outside = 0;
-            for( var k in this.baseData.scenario ) {
-                var sC = this.baseData.scenario[ k ];
-                if ( d( tmp.x, sC.x, tmp.y, sC.y ) < sC.r + tmp.r ) {
-                    overlapping++;
-                }
-            }
-
-            if ( tmp.x - tmp.r < 0 ) {
-                outside++;
-            }
-            if ( tmp.x + tmp.r > this.baseData.canvasSize ) {
-                outside++;
-            }
-            if ( tmp.y - tmp.r < 0 ) {
-                outside++;
-            }
-            if ( tmp.y + tmp.r > this.baseData.canvasSize ) {
-                outside++;
-            }
-
-            if ( tmp.y < 0 || tmp.x < 0 || tmp.x > this.baseData.canvasSize || tmp.y > this.baseData.canvasSize ) {
-                outside += 10;
-            }
-
-            var area = tmp.area();
-            if ( area <= 0 ) {
-                outside += 100;
-            }
-
-            return parseInt( ( outside > 0 || overlapping > 0 ? -1 : 1 ) * ( outside == 0 ? 1 : outside * 4 ) * ( overlapping == 0 ? 1 : overlapping * 2 ) * tmp.area(), 10 );
-        };
+        if ( config.fitness === 'v1' ) {
+            ga.getFitness = fitnessV1;
+        } else if ( config.fitness === 'v2' ) {
+            ga.getFitness = fitnessV2;
+        } else if ( config.fitness === 'v3' ) {
+            ga.getFitness = fitnessV3;
+        } else {
+            ga.getFitness = fitnessV1;
+        }
 
         ga.termCriterium = function() {
             var cnt = this.pool.length * 0.8;
@@ -229,7 +198,7 @@ var circleCreator = function ( placeHolder, config ) {
             ga.mutateCalllback = printGenome;
         }
 
-        var can = br4.createC( 'circles', { width: baseData.canvasSize, height: baseData.canvasSize, lineColor:'#000',  backgroundColor: '#000' } )
+        var can = br4.createC( placeHolder, { width: baseData.canvasSize, height: baseData.canvasSize, lineColor:'#000',  backgroundColor: '#000' } )
 
         baseData.scenarioCircles = [];
         baseData.poolCircles = [];
@@ -326,6 +295,90 @@ var circleCreator = function ( placeHolder, config ) {
 
             return str;
         }
+
+    }
+
+    function fitnessV1( str ) {
+        var tmp = new this.baseData.circleObject();
+        tmp.parseGenome( str );
+
+        var d = function( x1, x2, y1, y2 ) { return Math.sqrt( Math.pow( x1 - x2, 2 ) + Math.pow( y1 - y2, 2 ) ) };
+
+        var overlapping = 0;
+        var outside = 0;
+        for( var k in this.baseData.scenario ) {
+            var sC = this.baseData.scenario[ k ];
+            if ( d( tmp.x, sC.x, tmp.y, sC.y ) < sC.r + tmp.r ) {
+                overlapping++;
+            }
+        }
+
+        if ( tmp.x - tmp.r < 0 ) {
+            outside++;
+        }
+        if ( tmp.x + tmp.r > this.baseData.canvasSize ) {
+            outside++;
+        }
+        if ( tmp.y - tmp.r < 0 ) {
+            outside++;
+        }
+        if ( tmp.y + tmp.r > this.baseData.canvasSize ) {
+            outside++;
+        }
+
+        if ( tmp.y < 0 || tmp.x < 0 || tmp.x > this.baseData.canvasSize || tmp.y > this.baseData.canvasSize ) {
+            outside += 10;
+        }
+
+        var area = tmp.area();
+        if ( area <= 0 ) {
+            outside += 100;
+        }
+
+        return parseInt( ( outside > 0 || overlapping > 0 ? -1 : 1 ) * ( outside == 0 ? 1 : outside * 4 ) * ( overlapping == 0 ? 1 : overlapping * 2 ) * tmp.area(), 10 );
+    }
+
+    function fitnessV2( str ) {
+        var tmp = new this.baseData.circleObject();
+        tmp.parseGenome( str );
+
+        var d = function( x1, x2, y1, y2 ) { return Math.sqrt( Math.pow( x1 - x2, 2 ) + Math.pow( y1 - y2, 2 ) ) };
+
+        var overlapping     = false;
+        var outside         = false;
+        for( var k in this.baseData.scenario ) {
+            var sC = this.baseData.scenario[ k ];
+            if ( d( tmp.x, sC.x, tmp.y, sC.y ) < sC.r + tmp.r ) {
+                overlapping = true;
+            }
+        }
+
+        if ( tmp.x - tmp.r < 0 ) {
+            outside = true;
+        }
+        if ( tmp.x + tmp.r > this.baseData.canvasSize ) {
+            outside = true;
+        }
+        if ( tmp.y - tmp.r < 0 ) {
+            outside = true;
+        }
+        if ( tmp.y + tmp.r > this.baseData.canvasSize ) {
+            outside = true;
+        }
+
+        if ( tmp.y < 0 || tmp.x < 0 || tmp.x > this.baseData.canvasSize || tmp.y > this.baseData.canvasSize ) {
+            outside = true;
+        }
+
+        var area = tmp.area();
+        if ( area <= 0 ) {
+            outside = true;
+        }
+
+        return parseInt( ( outside || overlapping ? -1 : 1 ) * area, 10 );
+    }
+
+    function fitnessV3() {
 
     }
 
