@@ -28,16 +28,14 @@ var circleCreator = function ( placeHolder, config ) {
         run: function( callback ) {
             callback = callback || function() {};
 
-            console.time( 'run' );
             myGA.run( function() {
                 callback();
 
                 if ( config.printHistory ) {
                     myGA.printHistory( "pages" );
                 }
-                printResult( myGA.result(), myGA.baseData );
 
-                console.timeEnd( 'run' );
+                printResult( myGA.result(), myGA.baseData );
             } );
         },
 
@@ -214,10 +212,9 @@ var circleCreator = function ( placeHolder, config ) {
 
     function printResult( result, baseData ) {
         printScenario( baseData );
+
         var drawCircle = baseData.poolCircles[ 0 ];
-        drawCircle.x( result.x );
-        drawCircle.y( result.y );
-        drawCircle.radius( result.r );
+        drawCircle.x( result.x ).y( result.y ).radius( result.r ).backgroundColor( '#ff0' ).z( 10000 );
     }
 
     function printGenome( pool ) {

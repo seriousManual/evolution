@@ -15,15 +15,16 @@
         <script type="text/javascript">
             $( document ).ready( function() {
                 var sceneario = [
-                                    { x:400, y:400, r:80 },
-                                    { x:30, y:160, r:150 },
-                                    { x:300, y:40, r:40 }
+                                    { x:266, y:266, r:54 },
+                                    { x:20,  y:106,  r:100 },
+                                    { x:200, y:26,  r:26 }
                                 ];
 
                 var config1 = {
                     scenario:       sceneario,
                     stepDelay:      30,
                     fitness:        'v1',
+                    canvasSize:     266,
                     mutateCallback: true
                 };
 
@@ -31,20 +32,32 @@
                     scenario:       sceneario,
                     stepDelay:      30,
                     fitness:        'v2',
+                    canvasSize:     266,
+                    mutateCallback: true
+                };
+
+                var config3 = {
+                    scenario:       sceneario,
+                    stepDelay:      30,
+                    fitness:        'v3',
+                    canvasSize:     266,
                     mutateCallback: true
                 };
 
                 var circleMagic1 = circleCreator( 'circles',  config1 );
                 var circleMagic2 = circleCreator( 'circles2', config2 );
+                var circleMagic3 = circleCreator( 'circles3', config2 );
 
                 $('#calc').click( function() {
                     circleMagic1.run();
                     circleMagic2.run();
+                    circleMagic3.run();
                 } );
 
                 $('#reset').click( function() {
                     circleMagic1.reset();
                     circleMagic2.reset();
+                    circleMagic3.reset();
                 } );
 
             } );
@@ -58,6 +71,7 @@
             <tr>
                 <td id="circles" valign="top"></td>
                 <td id="circles2" valign="top"></td>
+                <td id="circles3" valign="top"></td>
             </tr>
         </table>
     </body>
