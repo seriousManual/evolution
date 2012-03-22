@@ -235,18 +235,70 @@ ga.mutate = function( p1, p2 ) {
 
             <article>
                 <h3>Circles</h3>
-                <p>Gentischer Algorithmus</p>
-                <p>Problemformulierung</p>
-                <p>Fitnessfunktion</p>
-                <p>Mutation</p>
-                <p>Rekombination</p>
-                <p>Selektion</p>
+                <div class="build">
+                    <h3>Problemformulierung</h3>
+                    <p>Genpool mit beliebiger Zahl beliebiger Samplekreise füllen<br><br></p>
+
+                    <h3>Rekombination</h3>
+                    <h3>Eltern</h3>
+                    <span class="green">{ x: 100, y: 10, radius: 7 }<br></span>
+                    <span class="blue">{ x: 331, y: 77, radius: 50 }<br><br></span>
+
+                    <h3>Kind</h3>
+                    <span>{ x: <span class="green">100</span>, y: <span class="blue">77</span>, radius: <span class="blue">50</span> }<br><br></span>
+
+                    <h3>Mutation</h3>
+                    <span>{ x: <span class="red">103</span>, y: <span class="blue">77</span>, radius: <span class="red">51</span> }</span>
+                </div>
             </article>
 
             <article>
                 <h3>Circles</h3>
                 <div class="build">
-                    <p>So läufts:</p>
+                    <h3>Fitness</h3>
+
+                    <p>Bewerten wie gut ein Kreis die Kriterien erfüllt:</p>
+                    <ul class="build">
+                        <li>Liegt er (teilweise) außerhalb des Spielfelds? <span class="red">(Penalty)</span></li>
+                        <li>Überlagert er andere Kreise? <span class="red">(Penalty)</span></li>
+                        <li>Wie groß ist er? <span class="green">(Je größer desto besser)</span></li>
+                    </ul>
+                </div>
+            </article>
+
+            <article>
+                <h3>Circles</h3>
+                <div class="build">
+                    <h3>Fitness</h3>
+
+                    <section>
+                        <pre>
+    overlapping  = Anzahl ueberlappende Kreise
+
+    outside      = Anzahl der Schnittpunkte mit Spielfeldrand
+
+    area         = Flaecheninhalt des Kreises
+
+    fitness      = area
+
+    wenn outside > 0 oder overlapping > 0
+        fitness = fitness * -1;
+
+    wenn overlapping > 0
+        fitness = fitness + 2 * overlapping
+
+    wenn outside > 0
+        fitness = fitness + 4 * outside
+
+                        </pre>
+                    </section>
+                </div>
+            </article>
+
+            <article>
+                <h3>Circles</h3>
+                <div class="build">
+                    <h3>So läufts:</h3>
                     <div class="iframeDiv">
                         <iframe src="../../circles/scene1.html"></iframe>
                     </div>
@@ -465,16 +517,16 @@ ga.mutate = function( p1, p2 ) {
                         <tr><th>genome</th><th>fitness</th><th>interpreted</th><th>parsed</th><th>value</th></tr>
                         <tr><td>0001...001</td><td>0.1</td><td>1+*+//31</td><td>1+31</td><td>32</td></tr>
                         <tr><td>1011...000</td><td>0.08333333333333333</td><td>-*8+9+374</td><td>8+9+37</td><td>54</td></tr>
-                        <tr><td>1011...000</td><td>0.08333333333333333</td><td>-*8+9+37</td><td>8+9+37</td><td>54</td></tr>
                         <tr><td>1001...011</td><td>0.08333333333333333</td><td>967-66746-</td><td>96-66</td><td>30</td></tr>
                     </table>
                     <br>
 
-                    <h3>Eltern</h3>
-                    <span class="blue">101111001111100010101001101000110111000000000000</span><br>
-                    <span class="green">100101100111101101100110011111101110010001101011</span><br>
                     <h3>Rekombination</h3>
-                    <span class="blue">101111001111100010101001</span><span class="green">011111101110010001101011</span>
+                    <h3>Eltern</h3>
+                    <span class="blue">101111001111100010101001101000110111000000000000<br></span>
+                    <span class="green">100101100111101101100110011111101110010001101011<br><br></span>
+                    <h3>Kind</h3>
+                    <span><span class="blue">101111001111100010101001</span><span class="green">011111101110010001101011<br><br></span></span>
 
                     <h3>Mutation</h3>
                     <span><span class="blue">101111001<span class="red">0</span>11100010101001</span><span class="green">0<span class="red">0</span>11111011100100011<span class="red">1</span>1011</span></span>
@@ -529,11 +581,12 @@ ga.mutate = function( p1, p2 ) {
                     <p>Möglicher Weg:<br></p>
                     <span class="mathTerm">1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5<br><br></span>
 
+                    <h3>Rekombination</h3>
                     <h3>Eltern</h3>
                     <span class="mathTerm green">5 -&gt; 3 -&gt; 1 -&gt; 4 -&gt; 2<br></span>
                     <span class="mathTerm blue">2 -&gt; 4 -&gt; 5 -&gt; 3 -&gt; 1<br><br></span>
 
-                    <h3>Rekombination</h3>
+                    <h3>Kind</h3>
                     <span class="mathTerm"><span class="green">5</span> -&gt; <span class="blue">4</span> -&gt; <span class="green">1</span> -&gt; <span class="blue">3</span> -&gt; <span class="green">2</span><br><br></span>
 
                     <h3>Mutation (0-x Mal)</h3>
