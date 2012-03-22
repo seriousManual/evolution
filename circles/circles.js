@@ -55,8 +55,8 @@ var circleCreator = function ( placeHolder, config ) {
     function create( config ) {
 
         var baseData = {
-            canvasSize: 400,
-            genPoolSize:        config.poolSize     ? config.poolSize : 30,
+            canvasSize:         config.canvasSize   ? config.canvasSize      : 400,
+            genPoolSize:        config.poolSize     ? config.poolSize        : 30,
             scenarioSize:       config.scenario     ? config.scenario.length : 4,
             circleObject:       Circle,
             maxRuns:            config.logHistory   || 10000,

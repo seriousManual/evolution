@@ -15,22 +15,16 @@
         <script type="text/javascript">
             $( document ).ready( function() {
                 var sceneario = [
-                                    { x:400, y:400, r:80 },
-                                    { x:30, y:160, r:150 },
-                                    { x:300, y:40, r:40 }
+                                    { x:200,    y:200, r:40 },
+                                    { x:15,     y:80,  r:75 },
+                                    { x:150,    y:20,  r:20 }
                                 ];
 
                 var config1 = {
+                    canvasSize:     200,
                     scenario:       sceneario,
                     stepDelay:      30,
                     fitness:        'v1',
-                    mutateCallback: true
-                };
-
-                var config2 = {
-                    scenario:       sceneario,
-                    stepDelay:      30,
-                    fitness:        'v2',
                     mutateCallback: true
                 };
 
@@ -49,8 +43,8 @@
                 $('#reset').click( function() {
                     circleMagic1.reset();
                     circleMagic2.reset();
-                    circleMagic3.run();
-                    circleMagic4.run();
+                    circleMagic3.reset();
+                    circleMagic4.reset();
                 } );
 
             } );
