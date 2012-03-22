@@ -61,25 +61,28 @@ $(document).ready( function() {
             var state = 's1';
             var tmp = '';
 
+            var numbers     = ['1','2','3','4','5','6','7','8','9'];
+            var operators   = ['+','-','*','/'];
+
             //finite state machine for the win
             for( var i = 0; i < g.length; i++ ) {
                 var c = g.charAt( i );
 
                 if ( state == 's1' ) {
-                    if ( $.inArray( c, ['1','2','3','4','5','6','7','8','9'] ) >= 0 ) {
+                    if ( $.inArray( c, numbers ) >= 0 ) {
                         state = 's2';
                         tmp += c;
                     }
                 } else if ( state == 's2' ) {
-                    if ( $.inArray( c, ['0', '1','2','3','4','5','6','7','8','9'] ) >= 0 ) {
+                    if ( $.inArray( c, numbers ) >= 0 ) {
                         state = 's3';
                         tmp += c;
-                    } else if ( $.inArray( c, ['+','-','*','/'] ) >= 0 ) {
+                    } else if ( $.inArray( c, operators ) >= 0 ) {
                         state = 's1';
                         tmp += c;
                     }
                 } else if ( state == 's3' ) {
-                    if ( $.inArray( c, ['+','-','*','/'] ) >= 0 ) {
+                    if ( $.inArray( c, operators ) >= 0 ) {
                         state = 's1';
                         tmp += c;
                     }
@@ -90,11 +93,11 @@ $(document).ready( function() {
             }
 
             return tmp;
-        }
+        };
 
         baseData.htmlEntities = function(str) {
             return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace( ' ', '&nbsp;' );
-        }
+        };
 
 
 
@@ -103,7 +106,7 @@ $(document).ready( function() {
 
         var ga = GA.getAlgorithm( baseData );
 
-        ga.stepDelay = 100;
+        ga.stepDelay = 50;
 
         ga.generateGenePool = function() {
             var genePool = [];
@@ -176,11 +179,11 @@ $(document).ready( function() {
             var f = 1 / difference;
 
             return f;
-        }
+        };
 
         ga.termCriterium = function( x ) {
             return this.history[ this.history.length-1 ][0].f === Infinity;
-        }
+        };
 
         var number = 0;
         ga.mutateCalllback = function( pool ) {

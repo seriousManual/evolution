@@ -6,11 +6,28 @@ $(document).ready( function() {
             myGA = create();
         }
 
-        myGA.baseData.scenario = createScenario( myGA.baseData.canvasSize, myGA.baseData.scenarioSize );
-        myGA.run();
+        //myGA.baseData.scenario = createScenario( myGA.baseData.canvasSize, myGA.baseData.scenarioSize );
 
-        //console.log( myGA.result() );
-        myGA.printHistory( "pages" );
+        myGA.baseData.scenario = [
+            new city( 244, 390 ),
+            new city( 147, 391 ),
+            new city( 286, 108 ),
+            new city( 95, 154 ),
+            new city( 257, 170 ),
+            new city( 347, 157 ),
+            new city( 158, 197 ),
+            new city( 69, 62 ),
+            new city( 16, 12 ),
+            new city( 313, 34 ),
+            new city( 221, 23 ),
+            new city( 173, 277 ),
+            new city( 263, 267 )
+        ];
+
+        myGA.run( function() {
+            myGA.printHistory( "pages" );
+        } );
+
     } );
 
     function create() {
@@ -18,7 +35,7 @@ $(document).ready( function() {
         var baseData = {
             canvasSize: 400,
             genPoolSize: 40,
-            scenarioSize: 15,
+            scenarioSize: 13,
             wayObject: way,
             maxRuns: 15000
         };
@@ -41,7 +58,7 @@ $(document).ready( function() {
             }
 
             return tmp;
-        }
+        };
 
         ga.chooseParents = function( pool ) {
             var c1 = parseInt( Math.random() * Math.random() * (pool.length), 10 );
@@ -51,7 +68,7 @@ $(document).ready( function() {
             } while( c1 == c2 );
 
             return { 0: pool[ c1 ], 1: pool[ c2 ] };
-        }
+        };
 
         ga.poolSort = function ( pool ) {
             pool.sort( function( a, b ) { return ( a.f - b.f ) } );
@@ -137,7 +154,17 @@ $(document).ready( function() {
             return true;
         };
 
+        var number = 0;
+        ga.mutateCalllback = function( pool ) {
+
+            number++;
+            ga.showHistoryPage( pool, number, $('#pages') );
+
+        }
+
         ga.showHistoryPage = function( page, number, $container ) {
+            $container.html( '' );
+
             printScenario( this.baseData );
 
             var $table = $('<table cellspacing="0" cellpadding="3" border="1"></table>');
@@ -174,7 +201,7 @@ $(document).ready( function() {
             $( '<h2>' + (number) + '</h2>' ).appendTo( $container );
 
             $container.append( $table );
-        }
+        };
 
         var can = br4.createC( "tsp", { width: baseData.canvasSize, height: baseData.canvasSize, backgroundColor: '#000' } )
 
