@@ -52,7 +52,7 @@
                         }
 
                         return tmp;
-                    }
+                    };
 
                     ga.chooseParents = function( pool ) {
                         c1 = parseInt( Math.random() * (pool.length), 10 );
@@ -61,7 +61,7 @@
                         } while( c1 == c2 );
 
                         return { 0: pool[ c1 ], 1: pool[ c2 ] };
-                    }
+                    };
 
                     ga.mutate = function( p1, p2 ) {
                         var x = { x:0, y:0 };
@@ -96,10 +96,7 @@
                     ga.termCriterium = function() {
                         fancyCounter++;
 
-                        if ( fancyCounter < 100 ) {
-                            return false;
-                        }
-                        return true;
+                        return fancyCounter >= 100;
                     };
 
                     ga.mutateCalllback = function( pool, fitter ) {
