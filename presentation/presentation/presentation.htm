@@ -259,8 +259,9 @@ ga.mutate = function( p1, p2 ) {
                     <li><b>Gegeben:</b> Kreise auf einem Spielfeld</li>
                     <li><b>Gesucht:</b>
                         <ul class="build">
-                            <li>Ein Kreis der weder den Spielfeldrand noch einen anderen Kreis überlappt</li>
-                            <li>mit maximalem Flächeninhalt</li>
+                            <li>Ein Kreis der weder den Spielfeldrand</li>
+                            <li>noch irgendeinen anderen Kreis überlappt,</li>
+                            <li>sowie dessen Flächeninhalt maximal ist.</li>
                         </ul>
                     </li>
                 </ul>
@@ -284,24 +285,7 @@ ga.mutate = function( p1, p2 ) {
                     <h3>Problemformulierung</h3>
                     <p>Genpool mit beliebiger Zahl beliebiger Samplekreise füllen<br><br></p>
 
-                    <h3>Rekombination</h3>
-                    <h3>Eltern</h3>
-                    <span class="green">{ x: 100, y: 10, radius: 7 }<br></span>
-                    <span class="blue">{ x: 331, y: 77, radius: 50 }<br><br></span>
-
-                    <h3>Kind</h3>
-                    <span>{ x: <span class="green">100</span>, y: <span class="blue">77</span>, radius: <span class="blue">50</span> }<br><br></span>
-
-                    <h3>Mutation</h3>
-                    <span>{ x: <span class="red">103</span>, y: <span class="blue">77</span>, radius: <span class="red">49</span> }</span>
-                </div>
-            </article>
-
-            <article>
-                <h3>Circles</h3>
-                <div class="build">
                     <h3>Fitness</h3>
-
                     <p>Bewerten wie gut ein Kreis die Kriterien erfüllt:</p>
                     <ul class="build">
                         <li>Liegt er (teilweise) außerhalb des Spielfelds? <span class="red">(Penalty)</span></li>
@@ -337,6 +321,23 @@ ga.mutate = function( p1, p2 ) {
 
                         </pre>
                     </section>
+                </div>
+            </article>
+
+            <article>
+                <h3>Circles</h3>
+                <div class="build">
+                    <h3>Rekombination<br><br></h3>
+
+                    <h3>Eltern</h3>
+                    <span class="green">{ x: 100, y: 10, radius: 7 }<br></span>
+                    <span class="blue">{ x: 331, y: 77, radius: 50 }<br><br></span>
+
+                    <h3>Kind</h3>
+                    <span>{ x: <span class="green">100</span>, y: <span class="blue">77</span>, radius: <span class="blue">50</span> }<br><br></span>
+
+                    <h3>Mutation</h3>
+                    <span>{ x: <span class="red">103</span>, y: <span class="blue">77</span>, radius: <span class="red">49</span> }</span>
                 </div>
             </article>
 
