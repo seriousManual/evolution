@@ -22,7 +22,7 @@
         getFitness:         null,
         showHistoryPage:    null,
         mutateCalllback:    function(){},
-        stepDelay:          1,
+        stepDelay:          0,
         flagDesintegrate:   false,
 
         result: function() {
@@ -77,14 +77,33 @@
             var c    = 0;
             var self = this;
 
-            var step = function() {
+            //setTimeout is stupidly slow (even with 0ms), but recursing indefenitly will crash the callstack sometime, so we push in some asynchrounos bleepers (also to allow dom updates)
+            var nextBloop = function() {};
+
+            if(self.stepDelay === 0) {
+                nextBloop = function() {
+                    if(c % 500 === 0) {
+                        window.setTimeout(step, 0);
+                    } else {
+                        step();
+                    }
+                }
+            } else {
+                nextBloop = function() {
+                    window.setTimeout(step, self.stepDelay);
+                }
+            }
+
+            function step() {
                 var keepRunning = true;
 
                 if ( c++ > self.maxRuns ) {
+                    console.log('maxruns reached');
                     keepRunning = false;
                 }
 
                 if ( self.flagDesintegrate ) {
+                    console.log('desintegrating');
                     keepRunning = false;
                 }
 
@@ -113,7 +132,7 @@
                 self.mutateCalllback( self.pool, fitter );
 
                 if ( keepRunning ) {
-                    window.setTimeout( step, self.stepDelay );
+                    nextBloop();
                 } else {
                     callback();
                 }

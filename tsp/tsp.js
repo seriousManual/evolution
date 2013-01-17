@@ -6,8 +6,9 @@ $(document).ready( function() {
             myGA = create();
         }
 
-        //myGA.baseData.scenario = createScenario( myGA.baseData.canvasSize, myGA.baseData.scenarioSize );
+        myGA.baseData.scenario = createScenario( myGA.baseData.canvasSize, myGA.baseData.scenarioSize );
 
+        /*
         myGA.baseData.scenario = [
             new city( 244, 390 ),
             new city( 147, 391 ),
@@ -15,14 +16,32 @@ $(document).ready( function() {
             new city( 95, 154 ),
             new city( 257, 170 ),
             new city( 347, 157 ),
-            new city( 158, 197 ),
-            new city( 69, 62 ),
-            new city( 16, 12 ),
-            new city( 313, 34 ),
-            new city( 221, 23 ),
-            new city( 173, 277 ),
-            new city( 263, 267 )
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
+            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10))
         ];
+        */
 
         myGA.run( function() {
             myGA.printHistory( "pages" );
@@ -35,13 +54,15 @@ $(document).ready( function() {
         var baseData = {
             canvasSize: 400,
             genPoolSize: 40,
-            scenarioSize: 13,
+            scenarioSize: 20,
             wayObject: way,
-            maxRuns: 15000,
+            maxRuns: 100000,
             logHistory: false
         };
 
         var ga = GA.getAlgorithm( baseData );
+
+        ga.stepDelay = 0;
 
         ga.generateGenePool = function() {
             var tmp = [];
@@ -152,16 +173,20 @@ $(document).ready( function() {
                     return false;
                 }
             }
+            console.log( 'termination' );
             return true;
         };
 
         var number = 0;
+        var redraw = 0;
         ga.mutateCalllback = function( pool ) {
-
+            if(redraw === 100) {
+                redraw = 0;
+                ga.showHistoryPage( pool, number, $('#pages') );
+            }
+            redraw++;
             number++;
-            ga.showHistoryPage( pool, number, $('#pages') );
-
-        }
+        };
 
         ga.showHistoryPage = function( page, number, $container ) {
             $container.html( '' );

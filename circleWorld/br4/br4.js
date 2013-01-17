@@ -108,7 +108,7 @@
         
             //gibt es einen unterbaum?
             if ( myTree.hasSubtree() ) {
-                //checken in welchen teil des subtrees wir inserten mï¿½ssen (evtl in mehrere! )
+                //checken in welchen teil des subtrees wir inserten müssen (evtl in mehrere! )
                 var ret = findPartialSubtree( o, myTree );
                 for ( var k in ret ) {
                     insertLeaf( o, ret[ k ], depth+1 );
@@ -117,7 +117,7 @@
             } else {
                 //checken wie viele datas in dem leaf liegen
                 if ( myTree.numberChilds() >= 4 ) {
-                    // zu viele data. mï¿½ssen subtree anlegen, vorhandene in den neuen subtree schmeiï¿½en
+                    // zu viele data. müssen subtree anlegen, vorhandene in den neuen subtree schmeißen
                     myTree.subTree = createSubtree( myTree.x, myTree.y, myTree.width, myTree.height );
 
                     var tmp = myTree.data
@@ -129,7 +129,7 @@
                     insertLeaf( o, myTree, depth+1 );
                     
                 } else {
-                    //es ist genï¿½gend platz fï¿½r alle da!
+                    //es ist genügend platz für alle da!
                     myTree.data.push( o );
                 }
             }
@@ -600,7 +600,7 @@
         
         this.reSortZ = function() {
             objects.sort( function(a,b) {
-                return a.z() - b.z();
+                return ( a.z() > b.z() ? 1 : a.z() < b.z() ? -1 : 0 );
             } );
         }
         
