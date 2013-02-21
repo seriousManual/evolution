@@ -14,18 +14,7 @@
 
     <script type="text/javascript">
         $( document ).ready( function() {
-            var config = {
-                scenario: [
-                    { x:400, y:400, r:80 },
-                    { x:30, y:160, r:150 },
-                    { x:300, y:40, r:40 }
-                ],
-                stepDelay: 30,
-                fitness: 'v1',
-                mutateCallback: true
-            };
-
-            var circleMagic = circleCreator( 'circles', config );
+            var circleMagic = circleCreator( 'circles' );
 
             $('#calc').click( function() {
                 circleMagic.run();
@@ -35,12 +24,34 @@
                 circleMagic.reset();
             } );
 
+            $('#blue, #red, #green, #white').click(function() {
+                var col = $(this).attr('id');
+
+                var colMap = {
+                    white: [255, 255, 255],
+                    red: [255, 0, 0],
+                    blue: [0, 0, 255],
+                    green: [0, 255, 0]
+                };
+
+                if(colMap[col]) {
+                    circleMagic.baseData.goal.col = colMap[col];
+
+                    circleMagic.redefineBaseData(circleMagic.baseData);
+                }
+
+
+
+                console.log(circleMagic.baseData.goal.col)
+            });
+
         } );
     </script>
 
 </head>
 <body>
 <input type="button" id="calc" value="calc"><input type="button" id="reset" value="reset"><br>
+<!--<input type="button" id="blue" value="blue"><input type="button" id="red" value="red"><input type="button" id="green" value="green"><input type="button" id="white" value="white">-->
 
 <table>
     <tr>

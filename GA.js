@@ -25,6 +25,16 @@
         stepDelay:          0,
         flagDesintegrate:   false,
 
+        redefineBaseData: function(baseData) {
+            this.baseData = baseData;
+
+            for( var k in this.pool ) {
+                var tmp = this.pool[ k ];
+                tmp.f = this.getFitness( tmp.getS() );
+                this.pool[ k ] = tmp;
+            }
+        },
+
         result: function() {
             return this.pool[ 0 ];
         },

@@ -8,41 +8,6 @@ $(document).ready( function() {
 
         myGA.baseData.scenario = createScenario( myGA.baseData.canvasSize, myGA.baseData.scenarioSize );
 
-        /*
-        myGA.baseData.scenario = [
-            new city( 244, 390 ),
-            new city( 147, 391 ),
-            new city( 286, 108 ),
-            new city( 95, 154 ),
-            new city( 257, 170 ),
-            new city( 347, 157 ),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10)),
-            new city( parseInt(Math.random()*400, 10), parseInt(Math.random()*400, 10))
-        ];
-        */
-
         myGA.run( function() {
             myGA.printHistory( "pages" );
         } );
@@ -54,7 +19,7 @@ $(document).ready( function() {
         var baseData = {
             canvasSize: 400,
             genPoolSize: 40,
-            scenarioSize: 20,
+            scenarioSize: 13,
             wayObject: way,
             maxRuns: 100000,
             logHistory: false
@@ -62,7 +27,7 @@ $(document).ready( function() {
 
         var ga = GA.getAlgorithm( baseData );
 
-        ga.stepDelay = 0;
+        ga.stepDelay = 1;
 
         ga.generateGenePool = function() {
             var tmp = [];
@@ -286,13 +251,13 @@ $(document).ready( function() {
         for( var i = 0; i < number; i++ ) {
             var x = parseInt( size * Math.random(), 10 );
             var y = parseInt( size * Math.random(), 10 );
-            tmp.push( new city( x, y ) );
+            tmp.push( new City( x, y ) );
         }
 
         return tmp;
     }
 
-    function city( x, y ) {
+    function City( x, y ) {
         this.x = x;
         this.y = y;
 
@@ -306,11 +271,11 @@ $(document).ready( function() {
 
         this.getS = function() {
             return this.genome;
-        }
+        };
 
         this.setS = function( s ) {
             this.genome = s;
-        }
+        };
     }
 
 } );

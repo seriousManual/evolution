@@ -5,7 +5,7 @@ var circleCreator = function ( placeHolder, config ) {
     }
 
     var myGA    = null;
-    config      = config || {};
+    config      = config || { mutateCallback: true };
 
     init( placeHolder );
 
@@ -39,15 +39,20 @@ var circleCreator = function ( placeHolder, config ) {
             $( '#' + placeHolder ).html( '' );
 
             init();
-        }
+        },
 
+        redefineBaseData: function(baseData) {
+            myGA.redefineBaseData(baseData);
+        },
+
+        baseData: myGA.baseData
     };
 
     function create( config ) {
 
         var baseData = {
-            canvasSize:         config.canvasSize   ? config.canvasSize      : 800,
-            genPoolSize:        config.poolSize     ? config.poolSize        : 80,
+            canvasSize:         config.canvasSize   ? config.canvasSize      : 550,
+            genPoolSize:        config.poolSize     ? config.poolSize        : 30,
             circleObject:       Circle,
             maxRuns:            config.logHistory   || 10000,
             logHistory:         false,
@@ -56,7 +61,7 @@ var circleCreator = function ( placeHolder, config ) {
 
         var ga = GA.getAlgorithm( baseData );
 
-        ga.stepDelay = 500;
+        ga.stepDelay = 1000;
 
         ga.generateGenePool = function() {
             var tmp = [];
@@ -82,8 +87,9 @@ var circleCreator = function ( placeHolder, config ) {
         function mutateCol(n1, n2) {
             var tmp = Math.random() < 0.5 ? n1 : n2;
 
-            if(Math.random() > 0.8) {
-                tmp += (Math.random() < 0.5 ? -1 : 1) * parseInt(Math.random() * 10, 10);
+            if(Math.random() > 0.7) {
+                var mut = parseInt(Math.random() * Math.random() * Math.random() * 255, 10);
+                tmp += (Math.random() < 0.5 ? -1 : 1) * mut;
             }
             return Math.min(Math.max(tmp, 0), 255);
         }

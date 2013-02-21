@@ -1,0 +1,20 @@
+proggn:
+            - weitesten rechtesten untesten punkt finden
+            - brute force circles
+            - circles so machen dass man die schritte während dem ablauf sehen kann
+            - circles so machen dass man eine problemstellung laden kann
+            - circles so machen dass man zum *gleichen* ausgangspunkt zurück springen kann
+
+            - circles problemstellung formulieren die nicht immer optimale ergebnisse liefert
+            - circles problemstellung formulieren damit verschiedene lösungen gefunden werden können (ein kreis in der mitte mit gleichem abstand)
+
+design der fitnessfunktion, beispiele? (zwei weitere beispiele liefern + implementieren!)
+
+- Optimierung der Cirlces nach Mutation         (evtl gleichzeitig laufen lassen mit der vorherigen version?)
+- Optimierung der Cirlces nach Fitnessfunktion  (evtl gleichzeitig laufen lassen mit der vorherigen version?)
+
+- Bruteforce, GA und optGA gleichzeitig laufen lassen
+
+- Math aufbessern damit mans besser lesen kann
+- Circles2 (biggest surrounding) aufbessern
+- TSP aufbessern
