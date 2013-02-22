@@ -6,7 +6,23 @@ $(document).ready( function() {
             myGA = create();
         }
 
-        myGA.baseData.scenario = createScenario( myGA.baseData.canvasSize, myGA.baseData.scenarioSize );
+        //myGA.baseData.scenario = createScenario( myGA.baseData.canvasSize, myGA.baseData.scenarioSize );
+
+        myGA.baseData.scenario = [
+            new City( 244, 390 ),
+            new City( 147, 391 ),
+            new City( 286, 108 ),
+            new City( 95, 154 ),
+            new City( 257, 170 ),
+            new City( 347, 157 ),
+            new City( 158, 197 ),
+            new City( 69, 62 ),
+            new City( 16, 12 ),
+            new City( 313, 34 ),
+            new City( 221, 23 ),
+            new City( 173, 277 ),
+            new City( 263, 267 )
+        ];
 
         myGA.run( function() {
             myGA.printHistory( "pages" );
