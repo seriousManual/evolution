@@ -41,6 +41,7 @@
             cBest = can.createO(br4.o.gCircle, { x: current.x, y: current.y, radius: current.r, backgroundColor: '#ff0', middleMode: true, z: 0 });
         });
 
+        var runs = 0;
         function sampling () {
             var result = check(current);
             if (result === true) {
@@ -78,7 +79,7 @@
 
             cCurrent.x(current.x).y(current.y).radius(current.r);
 
-            window.setTimeout(sampling, 10);
+            setTimeout(sampling, 1);
         }
 
         var d = function (x1, x2, y1, y2) {
