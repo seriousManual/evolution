@@ -43,7 +43,7 @@ $(document).ready(function () {
 
         var ga = GA.getAlgorithm(baseData);
 
-        ga.stepDelay = 1;
+        ga.stepDelay = 0;
 
         ga.generateGenePool = function () {
             var tmp = [];
