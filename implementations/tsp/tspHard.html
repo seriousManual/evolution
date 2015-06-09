@@ -25,26 +25,31 @@
                 var myGA = tspCreator({
                     canvasSize: 400,
                     genPoolSize: 40,
-                    scenarioSize: 13,
+                    scenarioSize: 18,
                     wayObject: way,
                     maxRuns: 100000,
                     logHistory: false
                 });
 
                 myGA.baseData.scenario = [
-                    new City( 244, 390 ),
-                    new City( 147, 391 ),
-                    new City( 286, 108 ),
-                    new City( 95, 154 ),
-                    new City( 257, 170 ),
-                    new City( 347, 157 ),
-                    new City( 158, 197 ),
-                    new City( 69, 62 ),
-                    new City( 16, 12 ),
-                    new City( 313, 34 ),
-                    new City( 221, 23 ),
-                    new City( 173, 277 ),
-                    new City( 263, 267 )
+                    new City(244, 390),
+                    new City(200, 100),
+                    new City(350, 350),
+                    new City(100, 300),
+                    new City(147, 391),
+                    new City(286, 108),
+                    new City(95, 154),
+                    new City(257, 170),
+                    new City(347, 157),
+                    new City(158, 197),
+                    new City(69, 62),
+                    new City(16, 12),
+                    new City(313, 34),
+                    new City(221, 23),
+                    new City(173, 277),
+                    new City(20, 230),
+                    new City(370, 250),
+                    new City(263, 267)
                 ];
 
                 myGA.run(function () {
@@ -56,13 +61,13 @@
 
 </head>
 <body>
-<input type="button" id="calc" value="calc"><br>
+    <input type="button" id="calc" value="calc"><br>
 
-<table>
-    <tr>
-        <td id="pages" valign="top"></td>
-        <td id="tsp" valign="top"></td>
-    </tr>
-</table>
+    <table>
+        <tr>
+            <td id="pages" valign="top"></td>
+            <td id="tsp" valign="top"></td>
+        </tr>
+    </table>
 </body>
 </html>

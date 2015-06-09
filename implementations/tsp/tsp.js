@@ -1,49 +1,4 @@
-$(document).ready(function () {
-    var myGA = null;
-
-    $('#calc').click(function () {
-        if (!myGA) {
-            myGA = create();
-        }
-
-        //myGA.baseData.scenario = createScenario( myGA.baseData.canvasSize, myGA.baseData.scenarioSize );
-
-        myGA.baseData.scenario = [
-            new City(244, 390),
-            new City(200, 100),
-            new City(350, 350),
-            new City(100, 300),
-            new City(147, 391),
-            new City(286, 108),
-            new City(95, 154),
-            new City(257, 170),
-            new City(347, 157),
-            new City(158, 197),
-            new City(69, 62),
-            new City(16, 12),
-            new City(313, 34),
-            new City(221, 23),
-            new City(173, 277),
-            new City(263, 267)
-        ];
-
-        myGA.run(function () {
-            myGA.printHistory("pages");
-        });
-
-    });
-
-    function create () {
-
-        var baseData = {
-            canvasSize: 400,
-            genPoolSize: 40,
-            scenarioSize: 16,
-            wayObject: way,
-            maxRuns: 100000,
-            logHistory: false
-        };
-
+   function tspCreator (baseData) {
         var ga = GA.getAlgorithm(baseData);
 
         ga.stepDelay = 1;
@@ -270,18 +225,6 @@ $(document).ready(function () {
         }
     }
 
-    function createScenario (size, number) {
-        var tmp = [];
-
-        for (var i = 0; i < number; i++) {
-            var x = parseInt(size * Math.random(), 10);
-            var y = parseInt(size * Math.random(), 10);
-            tmp.push(new City(x, y));
-        }
-
-        return tmp;
-    }
-
     function City (x, y) {
         this.x = x;
         this.y = y;
@@ -302,5 +245,3 @@ $(document).ready(function () {
             this.genome = s;
         };
     }
-
-});
