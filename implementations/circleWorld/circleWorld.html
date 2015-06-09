@@ -2,29 +2,29 @@
 <html>
 <head>
     <title>circles</title>
-    <script type="text/javascript" src="lib/lib.js"></script>
-    <script type="text/javascript" src="lib/jquery.js"></script>
-    <script type="text/javascript" src="lib/jquery.plugins.js"></script>
+    <script type="text/javascript" src="../../lib/lib.js"></script>
+    <script type="text/javascript" src="../../lib/jquery.js"></script>
+    <script type="text/javascript" src="../../lib/jquery.plugins.js"></script>
 
-    <script type="text/javascript" src="br4/br4.js"></script>
-    <script type="text/javascript" src="br4/br4.objects.js"></script>
+    <script type="text/javascript" src="../../lib/br4.js"></script>
+    <script type="text/javascript" src="../../lib/br4.objects.js"></script>
 
-    <script type="text/javascript" src="../GA.js"></script>
+    <script type="text/javascript" src="../../GA.js"></script>
     <script type="text/javascript" src="circleWorld.js"></script>
 
     <script type="text/javascript">
-        $( document ).ready( function() {
-            var circleMagic = circleCreator( 'circles' );
+        $(document).ready(function () {
+            var circleMagic = circleCreator('circles');
 
-            $('#calc').click( function() {
+            $('#calc').click(function () {
                 circleMagic.run();
-            } );
+            });
 
-            $('#reset').click( function() {
+            $('#reset').click(function () {
                 circleMagic.reset();
-            } );
+            });
 
-            $('#blue, #red, #green, #white').click(function() {
+            $('#blue, #red, #green, #white').click(function () {
                 var col = $(this).attr('id');
 
                 var colMap = {
@@ -34,18 +34,16 @@
                     green: [0, 255, 0]
                 };
 
-                if(colMap[col]) {
+                if (colMap[col]) {
                     circleMagic.baseData.goal.col = colMap[col];
 
                     circleMagic.redefineBaseData(circleMagic.baseData);
                 }
 
-
-
                 console.log(circleMagic.baseData.goal.col)
             });
 
-        } );
+        });
     </script>
 
 </head>

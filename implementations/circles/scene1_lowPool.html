@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>circles</title>
+    <script type="text/javascript" src="../../lib/lib.js"></script>
+    <script type="text/javascript" src="../../lib/jquery.js"></script>
+    <script type="text/javascript" src="../../lib/jquery.plugins.js"></script>
+
+    <script type="text/javascript" src="../../lib/br4.js"></script>
+    <script type="text/javascript" src="../../lib/br4.objects.js"></script>
+
+    <script type="text/javascript" src="../../GA.js"></script>
+    <script type="text/javascript" src="circles.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var config = {
+                scenario: [
+                    { x: 400, y: 400, r: 80 },
+                    { x: 30, y: 160, r: 150 },
+                    { x: 300, y: 40, r: 40 }
+                ],
+                stepDelay: 30,
+                poolSize: 6,
+                mutateCallback: true
+            };
+
+            var circleMagic = circleCreator('circles', config);
+
+            $('#calc').click(function () {
+                circleMagic.run();
+            });
+
+            $('#reset').click(function () {
+                circleMagic.reset();
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+<input type="button" id="calc" value="calc"><input type="button" id="reset" value="reset"><br>
+
+<table>
+    <tr>
+        <td id="pages" valign="top"></td>
+        <td id="circles" valign="top"></td>
+    </tr>
+</table>
+</body>
+</html>
