@@ -4,38 +4,39 @@
 <head>
     <title></title>
     <script type="text/javascript">
-        
-        var a = [5,3,1,4,2];
-        var b = [2,4,5,3,1];
+
+        var a = [5, 3, 1, 4, 2];
+        var b = [2, 4, 5, 3, 1];
 
         var tmp = [];
         var log = {};
         var lookup = {};
-        for( var i = 0; i < a.length; i++ ) {
+
+        for (var i = 0; i < a.length; i++) {
             lookup[ a[ i ] ] = i;
         }
 
         var fContinue = true;
         var index = 0;
-        while( fContinue ) {
+        while (fContinue) {
             tmp[ index ] = a[ index ];
             log[ a[index] ] = true;
 
             index = lookup[ b[ index ] ];
-            if ( log[ a[index] ] !== undefined ) {
+            if (log[ a[index] ]) {
                 fContinue = false;
             }
         }
 
-        console.log( tmp );
+        console.log(tmp);
 
-        for( var i = 0; i < a.length; i++ ) {
-            if ( tmp[ i ] === undefined ) {
-                tmp[ i ] = b[ i ];
+        for (var y = 0; y < a.length; y++) {
+            if (!tmp[ y ]) {
+                tmp[ y ] = b[ y ];
             }
         }
 
-        console.log( tmp );
+        console.log(tmp);
     </script>
 
 </head>
