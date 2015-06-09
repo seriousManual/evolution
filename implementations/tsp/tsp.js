@@ -10,6 +10,9 @@ $(document).ready(function () {
 
         myGA.baseData.scenario = [
             new City(244, 390),
+            new City(200, 100),
+            new City(350, 350),
+            new City(100, 300),
             new City(147, 391),
             new City(286, 108),
             new City(95, 154),
@@ -35,7 +38,7 @@ $(document).ready(function () {
         var baseData = {
             canvasSize: 400,
             genPoolSize: 40,
-            scenarioSize: 13,
+            scenarioSize: 16,
             wayObject: way,
             maxRuns: 100000,
             logHistory: false
@@ -43,7 +46,7 @@ $(document).ready(function () {
 
         var ga = GA.getAlgorithm(baseData);
 
-        ga.stepDelay = 0;
+        ga.stepDelay = 1;
 
         ga.generateGenePool = function () {
             var tmp = [];
@@ -79,7 +82,7 @@ $(document).ready(function () {
             pool.sort(function (a, b) {
                 return ( a.f - b.f )
             });
-        }
+        };
 
         ga.mutate = function (p1, p2) {
             var a = p1.getS();
@@ -113,7 +116,7 @@ $(document).ready(function () {
             var nr1 = 0;
             var nr2 = 0;
             var nr = 1 + parseInt(Math.random() * 4, 10);
-            for (var a = 0; a < nr; a++) {
+            for (var i = 0; i < nr; i++) {
                 nr1 = parseInt(Math.random() * tmp.length, 10);
                 nr2 = parseInt(Math.random() * tmp.length, 10);
 
@@ -174,46 +177,11 @@ $(document).ready(function () {
         };
 
         ga.showHistoryPage = function (page, number, $container) {
-            $container.html('');
-
             printScenario(this.baseData);
-
-            var $table = $('<table cellspacing="0" cellpadding="3" border="1"></table>');
-            $('<tr><th>genome</th><th>fitness</th></tr>').appendTo($table);
-
             page.sort(function (a, b) {
                 return a.f - b.f;
             });
-
-            var myWay = page[ 0 ].getS();
-
-            for (var k in page) {
-                var row = page[ k ];
-
-                var bgColor = '#fff';
-                if (row.isParent) {
-                    bgColor = '#0f0';
-                } else if (row.isChild) {
-                    bgColor = '#f00';
-                }
-
-                var bd = this.baseData;
-                $('<tr style="background-color:' + bgColor + '"><td>' + row.getS().join('') + '</td><td>' + row.f + '</td></tr>')
-                    .mouseenter(
-                    (function () {
-                        var tmp = row.getS();
-                        return function () {
-                            printRow(bd, tmp);
-                        };
-                    })())
-                    .appendTo($table);
-            }
-
-            printRow(this.baseData, myWay);
-
-            $('<h2>' + (number) + '</h2>').appendTo($container);
-
-            $container.append($table);
+            printRow(this.baseData, page[ 0 ].getS());
         };
 
         var can = br4.createC("tsp", { width: baseData.canvasSize, height: baseData.canvasSize, backgroundColor: '#000' })
