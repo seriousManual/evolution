@@ -177,11 +177,46 @@ $(document).ready(function () {
         };
 
         ga.showHistoryPage = function (page, number, $container) {
+            $container.html('');
+
             printScenario(this.baseData);
+
+            var $table = $('<table cellspacing="0" cellpadding="3" border="1"></table>');
+            $('<tr><th>genome</th><th>fitness</th></tr>').appendTo($table);
+
             page.sort(function (a, b) {
                 return a.f - b.f;
             });
-            printRow(this.baseData, page[ 0 ].getS());
+
+            var myWay = page[ 0 ].getS();
+
+            for (var k in page) {
+                var row = page[ k ];
+
+                var bgColor = '#fff';
+                if (row.isParent) {
+                    bgColor = '#0f0';
+                } else if (row.isChild) {
+                    bgColor = '#f00';
+                }
+
+                var bd = this.baseData;
+                $('<tr style="background-color:' + bgColor + '"><td>' + row.getS().join('') + '</td><td>' + row.f + '</td></tr>')
+                    .mouseenter(
+                    (function () {
+                        var tmp = row.getS();
+                        return function () {
+                            printRow(bd, tmp);
+                        };
+                    })())
+                    .appendTo($table);
+            }
+
+            printRow(this.baseData, myWay);
+
+            $('<h2>' + (number) + '</h2>').appendTo($container);
+
+            $container.append($table);
         };
 
         var can = br4.createC("tsp", { width: baseData.canvasSize, height: baseData.canvasSize, backgroundColor: '#000' })
