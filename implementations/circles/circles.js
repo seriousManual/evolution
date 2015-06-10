@@ -9,7 +9,7 @@ var circleCreator = function (placeHolder, config) {
 
     init(placeHolder);
 
-    function init () {
+    function init() {
         if (!myGA) {
             myGA = create(config);
         }
@@ -51,7 +51,7 @@ var circleCreator = function (placeHolder, config) {
 
     };
 
-    function create (config) {
+    function create(config) {
 
         var baseData = {
             canvasSize: config.canvasSize ? config.canvasSize : 400,
@@ -84,7 +84,7 @@ var circleCreator = function (placeHolder, config) {
                 c2 = parseInt(Math.random() * (pool.length), 10);
             } while (c1 == c2);
 
-            return { 0: pool[ c1 ], 1: pool[ c2 ] };
+            return {0: pool[c1], 1: pool[c2]};
         };
 
         ga.mutate = function (p1, p2) {
@@ -115,7 +115,7 @@ var circleCreator = function (placeHolder, config) {
                 tmp.y -= weightedMutate(maxMutate);
             }
 
-            function weightedMutate (nr) {
+            function weightedMutate(nr) {
                 return parseInt(( 1 - Math.random() * Math.random() ) * nr, 10);
             }
 
@@ -161,7 +161,7 @@ var circleCreator = function (placeHolder, config) {
 
                 circle.parseGenome(row.getS());
 
-                var drawCircle = this.baseData.poolCircles[ k ];
+                var drawCircle = this.baseData.poolCircles[k];
                 drawCircle.x(circle.x);
                 drawCircle.y(circle.y);
                 drawCircle.radius(circle.r);
@@ -199,43 +199,64 @@ var circleCreator = function (placeHolder, config) {
             ga.mutateCalllback = printGenome;
         }
 
-        var can = br4.createC(placeHolder, { width: baseData.canvasSize, height: baseData.canvasSize, lineColor: '#000', backgroundColor: '#000' });
+        var can = br4.createC(placeHolder, {
+            width: baseData.canvasSize,
+            height: baseData.canvasSize,
+            lineColor: '#000',
+            backgroundColor: '#000'
+        });
 
         baseData.scenarioCircles = [];
         baseData.poolCircles = [];
         for (var i = 0; i < baseData.scenarioSize; i++) {
-            baseData.scenarioCircles.push(can.createO(br4.o.gCircle, { x: 0, y: 0, radius: 1, lineWidth: 2, lineColor: '#fff', middleMode: true, z: 0 }));
+            baseData.scenarioCircles.push(can.createO(br4.o.gCircle, {
+                x: 0,
+                y: 0,
+                radius: 1,
+                lineWidth: 2,
+                lineColor: '#fff',
+                middleMode: true,
+                z: 0
+            }));
         }
         for (var i = 0; i < baseData.genPoolSize; i++) {
-            baseData.poolCircles.push(can.createO(br4.o.gCircle, { x: 0, y: 0, radius: 1, lineWidth: 2, lineColor: '#f00', middleMode: true, z: 0 }));
+            baseData.poolCircles.push(can.createO(br4.o.gCircle, {
+                x: 0,
+                y: 0,
+                radius: 1,
+                lineWidth: 2,
+                lineColor: '#f00',
+                middleMode: true,
+                z: 0
+            }));
         }
 
         return ga;
     }
 
-    function printResult (result, baseData) {
+    function printResult(result, baseData) {
         printScenario(baseData);
 
-        var drawCircle = baseData.poolCircles[ 0 ];
+        var drawCircle = baseData.poolCircles[0];
         drawCircle.x(result.x).y(result.y).radius(result.r).backgroundColor('#ff0').z(10000);
     }
 
-    function printGenome (pool) {
+    function printGenome(pool) {
 
         for (var k in pool) {
             var circle = new this.baseData.circleObject();
-            circle.parseGenome(pool[ k ].getS());
+            circle.parseGenome(pool[k].getS());
 
-            var drawCircle = this.baseData.poolCircles[ k ];
+            var drawCircle = this.baseData.poolCircles[k];
             drawCircle.x(circle.x).y(circle.y).radius(circle.r);
         }
 
     }
 
-    function printScenario (baseData) {
+    function printScenario(baseData) {
         for (var k in baseData.scenario) {
-            var circle = baseData.scenario[ k ];
-            var drawCircle = baseData.scenarioCircles[ k ];
+            var circle = baseData.scenario[k];
+            var drawCircle = baseData.scenarioCircles[k];
 
             drawCircle.x(circle.x);
             drawCircle.y(circle.y);
@@ -243,7 +264,7 @@ var circleCreator = function (placeHolder, config) {
         }
     }
 
-    function createScenario (size, number) {
+    function createScenario(size, number) {
         var tmp = [];
 
         for (var i = 0; i < number; i++) {
@@ -254,7 +275,7 @@ var circleCreator = function (placeHolder, config) {
         return tmp;
     }
 
-    function Circle (x, y, r) {
+    function Circle(x, y, r) {
         var stdLength = 10;
 
         this.x = x;
@@ -267,11 +288,11 @@ var circleCreator = function (placeHolder, config) {
             var r = '';
             for (var i = 0; i < g.length; i++) {
                 if (i / stdLength < 1) {
-                    x += g[ i ];
+                    x += g[i];
                 } else if (i / stdLength < 2) {
-                    y += g[ i ];
+                    y += g[i];
                 } else if (i / stdLength < 3) {
-                    r += g[ i ];
+                    r += g[i];
                 }
             }
 
@@ -298,7 +319,7 @@ var circleCreator = function (placeHolder, config) {
 
     }
 
-    function fitnessV1 (str) {
+    function fitnessV1(str) {
         var tmp = new this.baseData.circleObject();
         tmp.parseGenome(str);
 
@@ -309,7 +330,7 @@ var circleCreator = function (placeHolder, config) {
         var overlapping = 0;
         var outside = 0;
         for (var k in this.baseData.scenario) {
-            var sC = this.baseData.scenario[ k ];
+            var sC = this.baseData.scenario[k];
             if (d(tmp.x, sC.x, tmp.y, sC.y) < sC.r + tmp.r) {
                 overlapping++;
             }
@@ -340,7 +361,7 @@ var circleCreator = function (placeHolder, config) {
         return parseInt(( outside > 0 || overlapping > 0 ? -1 : 1 ) * ( outside == 0 ? 1 : outside * 4 ) * ( overlapping == 0 ? 1 : overlapping * 2 ) * tmp.area(), 10);
     }
 
-    function fitnessV2 (str) {
+    function fitnessV2(str) {
         var tmp = new this.baseData.circleObject();
         tmp.parseGenome(str);
 
@@ -351,7 +372,7 @@ var circleCreator = function (placeHolder, config) {
         var overlapping = false;
         var outside = false;
         for (var k in this.baseData.scenario) {
-            var sC = this.baseData.scenario[ k ];
+            var sC = this.baseData.scenario[k];
             if (d(tmp.x, sC.x, tmp.y, sC.y) < sC.r + tmp.r) {
                 overlapping = true;
             }
@@ -382,7 +403,7 @@ var circleCreator = function (placeHolder, config) {
         return outside || overlapping ? 1 / area : area;
     }
 
-    function fitnessV3 (str) {
+    function fitnessV3(str) {
 
         var tmp = new this.baseData.circleObject();
         tmp.parseGenome(str);
@@ -394,7 +415,7 @@ var circleCreator = function (placeHolder, config) {
         var overlapping = 0;
         var outside = 0;
         for (var k in this.baseData.scenario) {
-            var sC = this.baseData.scenario[ k ];
+            var sC = this.baseData.scenario[k];
             if (d(tmp.x, sC.x, tmp.y, sC.y) < sC.r + tmp.r) {
                 overlapping = 1;
             }

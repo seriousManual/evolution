@@ -14,13 +14,13 @@
 
     <style type="text/css">
         td {
-            font-family:Courier new,sans-serif;
-            font-size:11px;
+            font-family: Courier new, sans-serif;
+            font-size: 11px;
         }
     </style>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#calc').click(function () {
                 var myGA = tspCreator({
                     canvasSize: 400,
@@ -32,19 +32,19 @@
                 });
 
                 myGA.baseData.scenario = [
-                    new City( 244, 390 ),
-                    new City( 147, 391 ),
-                    new City( 286, 108 ),
-                    new City( 95, 154 ),
-                    new City( 257, 170 ),
-                    new City( 347, 157 ),
-                    new City( 158, 197 ),
-                    new City( 69, 62 ),
-                    new City( 16, 12 ),
-                    new City( 313, 34 ),
-                    new City( 221, 23 ),
-                    new City( 173, 277 ),
-                    new City( 263, 267 )
+                    new City(244, 390),
+                    new City(147, 391),
+                    new City(286, 108),
+                    new City(95, 154),
+                    new City(257, 170),
+                    new City(347, 157),
+                    new City(158, 197),
+                    new City(69, 62),
+                    new City(16, 12),
+                    new City(313, 34),
+                    new City(221, 23),
+                    new City(173, 277),
+                    new City(263, 267)
                 ];
 
                 myGA.run(function () {

@@ -5,11 +5,11 @@ var circleCreator = function (placeHolder, config) {
     }
 
     var myGA = null;
-    config = config || { mutateCallback: true };
+    config = config || {mutateCallback: true};
 
     init(placeHolder);
 
-    function init () {
+    function init() {
         if (!myGA) {
             myGA = create(config);
         }
@@ -29,9 +29,7 @@ var circleCreator = function (placeHolder, config) {
             });
         },
 
-        pause: {
-
-        },
+        pause: {},
 
         reset: function () {
             myGA.desintegrate();
@@ -49,7 +47,7 @@ var circleCreator = function (placeHolder, config) {
         baseData: myGA.baseData
     };
 
-    function create (config) {
+    function create(config) {
 
         var baseData = {
             canvasSize: config.canvasSize ? config.canvasSize : 550,
@@ -57,7 +55,7 @@ var circleCreator = function (placeHolder, config) {
             circleObject: Circle,
             maxRuns: config.logHistory || 10000,
             logHistory: false,
-            goal: { col: [255, 0, 0], rad: 50 }
+            goal: {col: [255, 0, 0], rad: 50}
         };
 
         var ga = GA.getAlgorithm(baseData);
@@ -82,10 +80,10 @@ var circleCreator = function (placeHolder, config) {
                 c2 = parseInt((Math.random() * Math.random()) * pool.length, 10);
             } while (c1 == c2);
 
-            return { 0: pool[ c1 ], 1: pool[ c2 ] };
+            return {0: pool[c1], 1: pool[c2]};
         };
 
-        function mutateCol (n1, n2) {
+        function mutateCol(n1, n2) {
             var tmp = Math.random() < 0.5 ? n1 : n2;
 
             if (Math.random() > 0.7) {
@@ -95,7 +93,7 @@ var circleCreator = function (placeHolder, config) {
             return Math.min(Math.max(tmp, 0), 255);
         }
 
-        function mutateRad (n1, n2) {
+        function mutateRad(n1, n2) {
             var tmp = Math.random() < 0.5 ? n1 : n2;
 
             if (Math.random() > 0.3) {
@@ -144,8 +142,8 @@ var circleCreator = function (placeHolder, config) {
             ga.mutateCalllback = printGenome;
         }
 
-        function printGenome (pool) {
-            function nubsi (c) {
+        function printGenome(pool) {
+            function nubsi(c) {
                 return (c < 16 ? '0' : '') + c.toString(16);
             }
 
@@ -164,7 +162,12 @@ var circleCreator = function (placeHolder, config) {
             }
         }
 
-        var can = br4.createC(placeHolder, { width: baseData.canvasSize, height: baseData.canvasSize, lineColor: '#000', backgroundColor: '#000' });
+        var can = br4.createC(placeHolder, {
+            width: baseData.canvasSize,
+            height: baseData.canvasSize,
+            lineColor: '#000',
+            backgroundColor: '#000'
+        });
 
         var step = baseData.goal.rad + 30;
         var currX = step;
@@ -176,7 +179,16 @@ var circleCreator = function (placeHolder, config) {
             var drawText = can.createO(br4.o.gText, {z: 1000, text: '', backgroundColor: '#ffffff', middleMode: true});
             baseData.poolTexts.push(drawText);
 
-            var drawCircle = can.createO(br4.o.gCircle, { z: i, x: 0, y: 0, radius: 1, lineWidth: 0, lineColor: '#f00', backgroundColor: '#f00', middleMode: true, z: 0 });
+            var drawCircle = can.createO(br4.o.gCircle, {
+                z: i,
+                x: 0,
+                y: 0,
+                radius: 1,
+                lineWidth: 0,
+                lineColor: '#f00',
+                backgroundColor: '#f00',
+                middleMode: true
+            });
             baseData.poolCircles.push(drawCircle);
 
             drawText.x(currX).y(currY);
@@ -193,7 +205,7 @@ var circleCreator = function (placeHolder, config) {
         return ga;
     }
 
-    function Circle (col, rad) {
+    function Circle(col, rad) {
         this.col = col || [0, 0, 0];
         this.rad = rad || 1;
 
