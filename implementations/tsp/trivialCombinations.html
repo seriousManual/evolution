@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    var iterator = combinations([1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13]);
+
+    var handle = setInterval(function() {
+        var next = iterator.next();
+        if (next.done) {
+            clearInterval(handle);
+        } else {
+            document.writeln(next.value + '<br>');
+        }
+    }, 1000);
+
+    function* combinations(input) {
+        if (input.length == 1) {
+            yield input;
+            return;
+        }
+
+        var result = [];
+        for(var i = 0; i < input.length; i++) {
+            var subResult = [];
+            var tail = input.concat([]);
+            var head = input[i];
+            tail.splice(i, 1);
+
+            for (var combination of combinations(tail)) {
+                yield [head].concat(combination);
+            }
+        }
+    }
+</script>
