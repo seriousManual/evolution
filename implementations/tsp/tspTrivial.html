@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TSP</title>
+    <script type="text/javascript" src="../../lib/lib.js"></script>
+    <script type="text/javascript" src="../../lib/jquery.js"></script>
+    <script type="text/javascript" src="../../lib/jquery.plugins.js"></script>
+
+    <script type="text/javascript" src="../../lib/br4.js"></script>
+    <script type="text/javascript" src="../../lib/br4.objects.js"></script>
+
+    <script type="text/javascript" src="combinations.js"></script>
+
+    <script type="text/javascript">
+        function City(x, y) {
+            this.x = x;
+            this.y = y;
+
+            this.distance = function (city) {
+                return Math.sqrt(Math.pow(city.x - this.x, 2) + Math.pow(city.y - this.y, 2));
+            }
+        }
+
+        var cities = [
+            new City(147, 391),
+            new City(257, 170),
+            new City(347, 157),
+            new City(158, 197),
+            new City(69, 62),
+            new City(16, 12),
+            new City(95, 154),
+            new City(244, 390),
+            new City(313, 34),
+            new City(221, 23),
+            new City(286, 108),
+            new City(173, 277),
+            new City(263, 267)
+        ];
+
+        cities = shuffle(cities);
+
+        var points = [];
+        var ways = [];
+        var goldenWays = [];
+
+        $(document).ready(function () {
+            var can = br4.createC("trivial", {width: 400, height: 400, backgroundColor: '#000'});
+
+            cities.forEach(function(city) {
+                can.createO(br4.o.gCircle, {
+                    x: city.x,
+                    y: city.y,
+                    radius: 8,
+                    backgroundColor: '#fff',
+                    middleMode: true,
+                    z: 10
+                });
+
+                ways.push(can.createO(br4.o.gLine, {x: 0, y: 0, x2: 0, y2: 0, lineWidth: 1, lineColor: '#f00', z: 5}));
+                goldenWays.push(can.createO(br4.o.gLine, {x: 0, y: 0, x2: 0, y2: 0, lineWidth: 8, lineColor: '#666', z: 1}));
+            });
+
+            $('#calc').click(function() {
+                var lengthShortestWay = Infinity;
+                var shortestWay = null;
+
+                var combinations = createCombinations(cities);
+
+                var length;
+                var i = 0;
+
+                var handle = setInterval(function() {
+                    var next = combinations.next();
+
+                    if (next.done) {
+                        clearInterval(handle);
+                        return;
+                    }
+
+                    var combination = next.value;
+
+                    length = calculateLength(combination);
+
+                    if (length < lengthShortestWay) {
+                        lengthShortestWay = length;
+                        shortestWay = combination;
+                    }
+
+                    printWays(shortestWay, goldenWays);
+                    printWays(combination, ways);
+                }, 0);
+            });
+        });
+
+        function calculateLength(combination) {
+            var previousCity = combination[combination.length - 1];
+            return combination.reduce(function(sum, city) {
+                sum += previousCity.distance(city);
+                previousCity = city;
+
+                return sum;
+            }, 0);
+        }
+
+        function printWays(shortestWay, ways) {
+            var previousCity = shortestWay[shortestWay.length - 1];
+
+            var i = 0;
+            shortestWay.forEach(function(city) {
+                var way = ways[i];
+
+                way.x(previousCity.x).y(previousCity.y).x2(city.x).y2(city.y);
+
+                previousCity = city;
+                i++;
+            });
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            while (0 !== currentIndex) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+
+</head>
+<body>
+<input type="button" id="calc" value="calc"><br>
+
+<div id="trivial">
+
+</div>
+</body>
+</html>

@@ -1,5 +1,7 @@
+<script src="combinations.js" type="text/javascript"></script>
+
 <script type="text/javascript">
-    var iterator = combinations([1, 2, 3, 4, 5]);
+    var iterator = createCombinations([1, 2, 3, 4, 5]);
 
     var handle = setInterval(function() {
         var next = iterator.next();
@@ -9,23 +11,4 @@
             document.writeln(next.value + '<br>');
         }
     }, 100);
-
-    function* combinations(input) {
-        if (input.length == 1) {
-            yield input;
-            return;
-        }
-
-        var result = [];
-        for(var i = 0; i < input.length; i++) {
-            var subResult = [];
-            var tail = input.concat([]);
-            var head = input[i];
-            tail.splice(i, 1);
-
-            for (var combination of combinations(tail)) {
-                yield [head].concat(combination);
-            }
-        }
-    }
 </script>
