@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    var iterator = combinations([1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13]);
+    var iterator = combinations([1, 2, 3, 4, 5]);
 
     var handle = setInterval(function() {
         var next = iterator.next();
@@ -8,7 +8,7 @@
         } else {
             document.writeln(next.value + '<br>');
         }
-    }, 1000);
+    }, 100);
 
     function* combinations(input) {
         if (input.length == 1) {
