@@ -68,15 +68,27 @@
 
                 var length;
                 var i = 0;
+                var interval = 0;
 
-                var handle = setInterval(function() {
-                    var next = combinations.next();
+                if (interval == 0) {
+                    fastTrack();
+                } else {
+                    setInterval(run, interval);
+                }
 
-                    if (next.done) {
-                        clearInterval(handle);
-                        return;
+                function fastTrack() {
+                    while (i < 10) {
+                        run();
+                        i++;
                     }
 
+                    i = 0;
+                    setInterval(fastTrack, 0);
+                }
+
+                function run() {
+                    i++;
+                    var next = combinations.next();
                     var combination = next.value;
 
                     length = calculateLength(combination);
@@ -88,7 +100,7 @@
 
                     printWays(shortestWay, goldenWays);
                     printWays(combination, ways);
-                }, 0);
+                }
             });
         });
 
