@@ -10,17 +10,9 @@
     <script type="text/javascript" src="../../lib/br4.objects.js"></script>
 
     <script type="text/javascript" src="combinations.js"></script>
+    <script type="text/javascript" src="Sampler.js"></script>
 
     <script type="text/javascript">
-        function City(x, y) {
-            this.x = x;
-            this.y = y;
-
-            this.distance = function (city) {
-                return Math.sqrt(Math.pow(city.x - this.x, 2) + Math.pow(city.y - this.y, 2));
-            }
-        }
-
         var cities = [
             new City(147, 391),
             new City(257, 170),
@@ -31,19 +23,30 @@
             new City(95, 154),
             new City(244, 390),
             new City(313, 34),
-            new City(221, 23),
-            new City(286, 108),
-            new City(173, 277),
-            new City(263, 267)
+//            new City(221, 23),
+//            new City(286, 108),
+//            new City(173, 277),
+//            new City(263, 267)
         ];
 
         cities = shuffle(cities);
+        var sampler = new Sampler();
+
+        var numberPossibleCombinations = factorial(cities.length - 1);
+        var numberAlreadyDone = 0;
 
         var points = [];
         var ways = [];
         var goldenWays = [];
 
         $(document).ready(function () {
+            var $checksPerSecond = $('#checksPerSecond');
+            var $percentDone = $('#percentDone');
+            sampler.onUpdate(function(samplesPerSecond) {
+                $checksPerSecond.text(round(samplesPerSecond));
+                $percentDone.text(round((numberAlreadyDone / numberPossibleCombinations) * 100));
+            });
+
             var can = br4.createC("trivial", {width: 400, height: 400, backgroundColor: '#000'});
 
             cities.forEach(function(city) {
@@ -70,7 +73,7 @@
                 var i = 0;
                 var interval = 0;
 
-                if (interval == 0) {
+                if (interval == null) {
                     fastTrack();
                 } else {
                     setInterval(run, interval);
@@ -88,6 +91,8 @@
 
                 function run() {
                     i++;
+                    sampler.sample();
+                    numberAlreadyDone++;
                     var next = combinations.next();
                     var combination = next.value;
 
@@ -142,12 +147,36 @@
 
             return array;
         }
+
+        function City(x, y) {
+            this.x = x;
+            this.y = y;
+
+            this.distance = function (city) {
+                return Math.sqrt(Math.pow(city.x - this.x, 2) + Math.pow(city.y - this.y, 2));
+            }
+        }
+
+        function factorial(n) {
+            if (n == 0 || n == 1) {
+                return 1;
+            }
+
+            return n * factorial(n - 1);
+        }
+
+        function round(n) {
+            return Math.round(n * 1000000) / 1000000;
+        }
     </script>
 
 </head>
 <body>
 <input type="button" id="calc" value="calc"><br>
 
+<div id="checksPerSecond"></div>
+<div id="percentDone"></div>
+<div id="timeUntilDone"></div>
 <div id="trivial">
 
 </div>

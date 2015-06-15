@@ -4,6 +4,7 @@ function Sampler() {
     this._count = 0;
     this._lastExecution = Date.now();
     this._expSmooth = new ExpSmooth(0.9);
+    this._onUpdate = function() {}
 
     setInterval(function() {
         that._measure();
@@ -31,6 +32,11 @@ Sampler.prototype._measure = function() {
 
     this._lastExecution = now;
     this._count = 0;
+    this._onUpdate(this.getRate());
+};
+
+Sampler.prototype.onUpdate = function(handler) {
+    this._onUpdate = handler;
 };
 
 function ExpSmooth(rate) {

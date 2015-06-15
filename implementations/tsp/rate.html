@@ -8,9 +8,9 @@
         setTimeout(sample, 90 + Math.random() * 20);
     }
 
-    setInterval(function() {
-        console.log(sampler.getRate());
-    }, 300);
-
     sample();
+
+    sampler.onUpdate(function(rate) {
+        console.log('braten', rate);
+    });
 </script>
