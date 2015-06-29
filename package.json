@@ -1,0 +1,23 @@
+{
+  "name": "evolution",
+  "version": "1.0.0",
+  "description": "evolutionary algorithms",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zaphod1984/evolution.git"
+  },
+  "keywords": [
+    "evolutionary",
+    "algorithms"
+  ],
+  "author": "Manuel Ernst <seriousstuff@gmx.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zaphod1984/evolution/issues"
+  },
+  "homepage": "https://github.com/zaphod1984/evolution"
+}
