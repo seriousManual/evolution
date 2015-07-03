@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var concat = require('gulp-concat');
 var rimraf = require('rimraf');
 var browserify = require('gulp-browserify');
 var sequence = require('run-sequence');
@@ -20,6 +21,12 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest(TARGET_DIR));
 });
 
+gulp.task('libscripts', function () {
+    return gulp.src(SOURCE_DIR + '/vendor/**/*.js')
+        .pipe(concat('external.js'))
+        .pipe(gulp.dest(TARGET_DIR));
+});
+
 ////////////////////////////////////////////////////// manage //////////////////////////////////////////////////
 
 gulp.task('dev', function (callback) {
@@ -35,5 +42,5 @@ gulp.task('build', function (callback) {
 });
 
 function build(callback) {
-    sequence('clean', 'scripts', callback);
+    sequence('clean', 'libscripts', 'scripts', callback);
 }
