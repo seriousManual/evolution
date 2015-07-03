@@ -1,1 +1,3 @@
-console.log('foo');
+module.exports = function() {
+    return 'booya';
+};

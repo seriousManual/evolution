@@ -22,10 +22,18 @@ gulp.task('scripts', function () {
 
 ////////////////////////////////////////////////////// manage //////////////////////////////////////////////////
 
-gulp.task('build', function (callback) {
-    sequence('clean', 'scripts', function () {
-        gulp.watch(SOURCE_DIR, ['scripts']);
+gulp.task('dev', function (callback) {
+    build(function() {
+        gulp.watch(SOURCE_DIR + '/**/*.js', ['scripts']);
 
         callback();
     });
 });
+
+gulp.task('build', function (callback) {
+    build(callback);
+});
+
+function build(callback) {
+    sequence('clean', 'scripts', callback);
+}

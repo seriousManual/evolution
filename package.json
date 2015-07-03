@@ -22,7 +22,6 @@
     "homepage": "https://github.com/zaphod1984/evolution",
     "devDependencies": {
         "gulp": "^3.8.6",
-        "gulp-bower": "0.0.6",
         "gulp-browserify": "^0.5.0",
         "gulp-util": "^3.0.0",
         "rimraf": "^2.2.8",
