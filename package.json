@@ -1,23 +1,31 @@
 {
-  "name": "evolution",
-  "version": "1.0.0",
-  "description": "evolutionary algorithms",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zaphod1984/evolution.git"
-  },
-  "keywords": [
-    "evolutionary",
-    "algorithms"
-  ],
-  "author": "Manuel Ernst <seriousstuff@gmx.de>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/zaphod1984/evolution/issues"
-  },
-  "homepage": "https://github.com/zaphod1984/evolution"
+    "name": "evolution",
+    "version": "1.0.0",
+    "description": "evolutionary algorithms",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/zaphod1984/evolution.git"
+    },
+    "keywords": [
+        "evolutionary",
+        "algorithms"
+    ],
+    "author": "Manuel Ernst <seriousstuff@gmx.de>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/zaphod1984/evolution/issues"
+    },
+    "homepage": "https://github.com/zaphod1984/evolution",
+    "devDependencies": {
+        "gulp": "^3.8.6",
+        "gulp-bower": "0.0.6",
+        "gulp-browserify": "^0.5.0",
+        "gulp-util": "^3.0.0",
+        "rimraf": "^2.2.8",
+        "run-sequence": "^1.0.1"
+    }
 }
