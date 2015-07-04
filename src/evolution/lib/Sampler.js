@@ -1,10 +1,12 @@
+var ExpSmooth = require('./ExpSmooth');
+
 function Sampler() {
     var that = this;
 
     this._count = 0;
     this._lastExecution = Date.now();
     this._expSmooth = new ExpSmooth(0.9);
-    this._onUpdate = function() {}
+    this._onUpdate = function() {};
 
     setInterval(function() {
         that._measure();
@@ -39,19 +41,4 @@ Sampler.prototype.onUpdate = function(handler) {
     this._onUpdate = handler;
 };
 
-function ExpSmooth(rate) {
-    this._rate = rate;
-    this._currentValue = null;
-}
-
-ExpSmooth.prototype.update = function(value) {
-    if (this._currentValue === null) {
-        this._currentValue = value;
-    } else {
-        this._currentValue = this._currentValue * (1 - this._rate) + value * this._rate;
-    }
-};
-
-ExpSmooth.prototype.getValue = function() {
-    return this._currentValue;
-};
+module.exports = Sampler;

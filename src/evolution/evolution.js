@@ -1,3 +1,4 @@
 window.EVO = {
-    combinations: require('./combinations')
+    tspCombinations: require('./tspCombinations'),
+    tspRecombination: require('./tspRecombination')
 };
