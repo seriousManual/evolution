@@ -1,9 +1,6 @@
 module.exports = function recombination(a, b) {
     var tmp = [];
 
-    console.log(a);
-    console.log(b);
-
     var log = {};
     var lookup = {};
     for (var i = 0; i < a.length; i++) {

@@ -10,10 +10,11 @@ module.exports = function (input1, input2) {
     shuffle(input2);
     console.timeEnd('shuffle2');
 
-
     console.time('timeMutation');
     var recombination = tspRecombination(input1, input2);
     console.timeEnd('timeMutation');
 
+    console.log(input1);
+    console.log(input2);
     console.log(recombination);
 };

@@ -8,7 +8,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/zaphod1984/evolution.git"
+        "url": "https://github.com/seriousManual/evolution.git"
     },
     "keywords": [
         "algorithms",
@@ -17,9 +17,9 @@
     "author": "Manuel Ernst <seriousstuff@gmx.de>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/zaphod1984/evolution/issues"
+        "url": "https://github.com/seriousManual/evolution/issues"
     },
-    "homepage": "https://github.com/zaphod1984/evolution",
+    "homepage": "https://github.com/seriousManual/evolution",
     "devDependencies": {
         "gulp": "^3.8.6",
         "gulp-browserify": "^0.5.0",
