@@ -16,14 +16,14 @@ gulp.task('clean', function (callback) {
 
 gulp.task('scripts', function () {
     return gulp
-        .src(SOURCE_DIR + '/evolution.js')
+        .src(SOURCE_DIR + '/evolution/evolution.js')
         .pipe(browserify()).on('error', gutil.log)
         .pipe(gulp.dest(TARGET_DIR));
 });
 
 gulp.task('libscripts', function () {
     return gulp.src(SOURCE_DIR + '/vendor/**/*.js')
-        .pipe(concat('external.js'))
+        .pipe(concat('vendor.js'))
         .pipe(gulp.dest(TARGET_DIR));
 });
 
@@ -31,7 +31,7 @@ gulp.task('libscripts', function () {
 
 gulp.task('dev', function (callback) {
     build(function() {
-        gulp.watch(SOURCE_DIR + '/**/*.js', ['scripts']);
+        gulp.watch(SOURCE_DIR + '/evolution/**/*.js', ['scripts']);
 
         callback();
     });

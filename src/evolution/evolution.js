@@ -1,3 +1,3 @@
-module.exports = function() {
-    return 'booya';
+window.EVO = {
+    combinations: require('./combinations')
 };
