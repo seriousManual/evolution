@@ -39,7 +39,7 @@ TspPrinter.prototype.createCourse = function (options) {
     this._cities.forEach(function(city) {
         course.addCity(city);
 
-        var line = new fabric.Line([0, 0, 50, 50], {
+        var line = new fabric.Line([0, 0, 0, 0], {
             strokeWidth: options.lineWidth,
             stroke: options.lineColor
         });
