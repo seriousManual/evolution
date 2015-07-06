@@ -23,7 +23,7 @@ TspPrinter.prototype.addCity = function(city) {
 
     var cityIndex = 3000;
     var cityObject = new fabric.Circle({
-        radius: 8, fill: 'white', left: city.getX(), top: city.getY()
+        radius: 8, fill: 'white', left: city.getX(), top: city.getY(), selectable: false
     });
 
     this._canvas.insertAt(cityObject, cityIndex + this._cityObjects.length, true);
