@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var order = require("gulp-order");
 var concat = require('gulp-concat');
 var rimraf = require('rimraf');
 var browserify = require('gulp-browserify');
@@ -23,6 +24,14 @@ gulp.task('scripts', function () {
 
 gulp.task('libscripts', function () {
     return gulp.src(SOURCE_DIR + '/vendor/**/*.js')
+        .pipe(order([
+            'lib.js',
+            'jquery.js',
+            'jquery.plugins.js',
+            'fabric.js'
+        ], {
+            base: SOURCE_DIR + '/vendor'
+        }))
         .pipe(concat('vendor.js'))
         .pipe(gulp.dest(TARGET_DIR));
 });

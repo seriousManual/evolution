@@ -1,0 +1,54 @@
+var TspPrinter = require('./lib/tsp/lib/Printer');
+var City = require('./lib/tsp/lib/City');
+
+var shuffle = require('./lib/shuffle');
+
+function tspPrinter(placeholderId) {
+    var printer = new TspPrinter(placeholderId);
+
+    var cities = [
+        new City(147, 391),
+        new City(257, 170),
+        new City(347, 157),
+        new City(158, 197),
+        new City(69, 62),
+        new City(16, 12),
+        new City(95, 154),
+        new City(244, 390),
+        new City(313, 34),
+//            new City(221, 23),
+//            new City(286, 108),
+//            new City(173, 277),
+//            new City(263, 267)
+    ];
+console.log(cities);
+    cities = shuffle(cities);
+
+    cities.forEach(function (city) {
+        printer.addCity(city);
+    });
+
+    var course1 = printer.createCourse({
+        lineWidth: 2, lineColor: 'rgb(255, 0, 0)', zIndex: 5
+    });
+    var course2 = printer.createCourse({
+        lineWidth: 8, lineColor: 'rgb(100, 100, 100)', zIndex: 1
+    });
+
+    console.log(course1);
+    console.log(course2);
+
+    var varz = [
+        [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        [1, 0, 2, 3, 5, 4, 6, 7, 8],
+        [0, 2, 1, 3, 5, 4, 6, 7, 8],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        [0, 1, 4, 3, 2, 5, 6, 7, 8]
+    ];
+
+    setInterval(function () {
+        course1.setOrder(varz[parseInt(varz.length * Math.random(), 10)]);
+    }, 1000);
+}
+
+module.exports = tspPrinter;
