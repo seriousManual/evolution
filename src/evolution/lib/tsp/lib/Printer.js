@@ -65,7 +65,7 @@ TspPrinter.prototype._updateCourse = function(course, courseObjects) {
         way
             .set('x1', previousCity.getX() + that._cityRadius)
             .set('y1', previousCity.getY() + that._cityRadius)
-            .set('x2', city.getY() + that._cityRadius)
+            .set('x2', city.getX() + that._cityRadius)
             .set('y2', city.getY() + that._cityRadius);
 
         previousCity = city;
