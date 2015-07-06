@@ -10,7 +10,7 @@ function TspPrinter(placeholderId) {
     this._courses = [];
 
     this._canvas = new fabric.Canvas(placeholderId, {
-        backgroundColor:'rg(0, 0, 0)',
+        backgroundColor:'rgb(0, 0, 0)',
         width: 420,
         height: 420
     });
@@ -19,11 +19,12 @@ function TspPrinter(placeholderId) {
 TspPrinter.prototype.addCity = function(city) {
     this._cities.push(city);
 
+    var cityIndex = 10000;
     var cityObject = new fabric.Circle({
         radius: 8, fill: 'white', left: city.getX(), top: city.getY()
     });
 
-    this._canvas.insertAt(cityObject, 10000, false);
+    this._canvas.insertAt(cityObject, cityIndex + this._cityObjects.length, true);
 
     this._cityObjects.push(cityObject);
 };
@@ -36,6 +37,7 @@ TspPrinter.prototype.createCourse = function (options) {
         that._updateCourse(course, courseObjects);
     });
 
+    var i = 1000 - (this._courses.length * 100);
     this._cities.forEach(function(city) {
         course.addCity(city);
 
@@ -44,7 +46,7 @@ TspPrinter.prototype.createCourse = function (options) {
             stroke: options.lineColor
         });
 
-        that._canvas.insertAt(line, 1000000000, false);
+        that._canvas.insertAt(line, i++, true);
         courseObjects.push(line);
     });
 

@@ -21,7 +21,7 @@ function tspPrinter(placeholderId) {
         new City(173, 277),
         new City(263, 267)
     ];
-console.log(cities);
+
     cities = shuffle(cities);
 
     cities.forEach(function (city) {
@@ -31,12 +31,9 @@ console.log(cities);
     var course1 = printer.createCourse({
         lineWidth: 2, lineColor: 'rgb(255, 0, 0)', zIndex: 5
     });
-//    var course2 = printer.createCourse({
-//        lineWidth: 8, lineColor: 'rgb(100, 100, 100)', zIndex: 1
-//    });
-
-    console.log(course1);
-//    console.log(course2);
+    var course2 = printer.createCourse({
+        lineWidth: 8, lineColor: 'rgb(40, 40, 40)', zIndex: 1
+    });
 
     var variation = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
