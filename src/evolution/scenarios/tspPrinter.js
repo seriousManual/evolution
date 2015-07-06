@@ -16,10 +16,10 @@ function tspPrinter(placeholderId) {
         new City(95, 154),
         new City(244, 390),
         new City(313, 34),
-//            new City(221, 23),
-//            new City(286, 108),
-//            new City(173, 277),
-//            new City(263, 267)
+        new City(221, 23),
+        new City(286, 108),
+        new City(173, 277),
+        new City(263, 267)
     ];
 console.log(cities);
     cities = shuffle(cities);
@@ -38,10 +38,11 @@ console.log(cities);
     console.log(course1);
 //    console.log(course2);
 
-    var variation = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    var variation = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
     setInterval(function () {
         course1.setOrder(shuffle(variation));
+        course2.setOrder(shuffle(variation));
     }, 1000);
 }
 
