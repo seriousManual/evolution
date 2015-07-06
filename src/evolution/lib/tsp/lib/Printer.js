@@ -14,17 +14,20 @@ function TspPrinter(placeholderId) {
         width: 420,
         height: 420
     });
+
+    console.log(this._canvas);
 }
 
 TspPrinter.prototype.addCity = function(city) {
     this._cities.push(city);
 
-    var cityIndex = 10000;
+    var cityIndex = 3000;
     var cityObject = new fabric.Circle({
         radius: 8, fill: 'white', left: city.getX(), top: city.getY()
     });
 
     this._canvas.insertAt(cityObject, cityIndex + this._cityObjects.length, true);
+    this._canvas.renderAll();
 
     this._cityObjects.push(cityObject);
 };
@@ -51,6 +54,7 @@ TspPrinter.prototype.createCourse = function (options) {
     });
 
     this._courses.push(course);
+    this._canvas.renderAll();
 
     return course;
 };
@@ -62,9 +66,7 @@ TspPrinter.prototype._updateCourse = function(course, courseObjects) {
 
     var i = 0;
     order.forEach(function(city) {
-        var way = courseObjects[i];
-
-        way
+        courseObjects[i]
             .set('x1', previousCity.getX() + that._cityRadius)
             .set('y1', previousCity.getY() + that._cityRadius)
             .set('x2', city.getX() + that._cityRadius)
