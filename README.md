@@ -13,5 +13,5 @@ to build the packages.
 
 for development:
 ```
-node .\node_modules\gulp\bin\gulp.js build
+node .\node_modules\gulp\bin\gulp.js dev
 ```
