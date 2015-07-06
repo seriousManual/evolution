@@ -1,5 +1,5 @@
 window.EVO = {
-    tspCombinations: require('./tspCombinations'),
-    tspRecombination: require('./tspRecombination'),
-    tspPrinter: require('./tspPrinter')
+    tspCombinations: require('./scenarios/tspCombinations'),
+    tspRecombination: require('./scenarios/tspRecombination'),
+    tspPrinter: require('./scenarios/tspPrinter')
 };
