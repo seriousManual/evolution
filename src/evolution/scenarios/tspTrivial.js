@@ -29,7 +29,7 @@ TspTrivial.prototype.start = function() {
     var that = this;
 
     var testCourse = this._printer.createCourse({
-        lineWidth: 2, lineColor: 'rgb(200, 200, 200)'
+        lineWidth: 2, lineColor: 'rgb(100, 100, 100)'
     });
 
     var goldenCourse = this._printer.createCourse({
