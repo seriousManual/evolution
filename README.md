@@ -1,17 +1,5 @@
 # Evolution
 
-install packages:
-```
-npm i
-```
-
-run
-```
-node .\node_modules\gulp\bin\gulp.js build
-```
-to build the packages.
-
-for development:
-```
-node .\node_modules\gulp\bin\gulp.js dev
-```
+install packages: `npm i`
+run `npm run build` to build the packages.
+for development: `npm run dev`
