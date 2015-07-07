@@ -1,0 +1,21 @@
+{
+  "name": "evolution",
+  "version": "1.0.0",
+  "homepage": "https://github.com/seriousStuff/evolution",
+  "authors": [
+    "Manuel Ernst <zaphod84@gmx.de>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "fabric": "^1.5.0"
+  }
+}

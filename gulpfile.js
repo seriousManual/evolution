@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var order = require("gulp-order");
+var bower = require('gulp-bower');
 var concat = require('gulp-concat');
 var rimraf = require('rimraf');
 var browserify = require('gulp-browserify');
@@ -22,16 +22,15 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest(TARGET_DIR));
 });
 
-gulp.task('libscripts', function () {
-    return gulp.src(SOURCE_DIR + '/vendor/**/*.js')
-        .pipe(order([
-            'lib.js',
-            'jquery.js',
-            'jquery.plugins.js',
-            'fabric.js'
-        ], {
-            base: SOURCE_DIR + '/vendor'
-        }))
+gulp.task('bower_components', function () {
+    return bower();
+});
+
+gulp.task('libscripts', ['bower_components'], function () {
+    return gulp.src([
+        'bower_components/jquery/dist/jquery.min.js',
+        'bower_components/fabric/dist/fabric.min.js'
+    ])
         .pipe(concat('vendor.js'))
         .pipe(gulp.dest(TARGET_DIR));
 });
@@ -51,5 +50,5 @@ gulp.task('build', function (callback) {
 });
 
 function build(callback) {
-    sequence('clean', 'libscripts', 'scripts', callback);
+    sequence('clean', ['libscripts', 'scripts'], callback);
 }
