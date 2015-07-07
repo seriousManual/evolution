@@ -30,6 +30,14 @@
 //                .addCity(263, 267);
 
             $('#calc').click(trivial.start.bind(trivial));
+
+            trivial.on('rate', function(rate) {
+                console.log('rate', rate);
+            });
+
+            trivial.on('newShortestWay', function(combination, length) {
+                console.log('new shortest way', combination, length);
+            });
         });
     </script>
 </head>

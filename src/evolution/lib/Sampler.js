@@ -1,17 +1,23 @@
+var util = require('util');
+var Emitter = require('events').EventEmitter;
+
 var ExpSmooth = require('./ExpSmooth');
 
-function Sampler() {
+function Sampler(interval) {
     var that = this;
+
+    Emitter.call(this);
 
     this._count = 0;
     this._lastExecution = Date.now();
-    this._expSmooth = new ExpSmooth(0.9);
-    this._onUpdate = function() {};
+    this._expSmooth = new ExpSmooth(0.7);
 
     setInterval(function() {
         that._measure();
-    }, 100);
+    }, interval || 1000);
 }
+
+util.inherits(Sampler, Emitter);
 
 Sampler.prototype.sample = function(value) {
     if (value) {
@@ -34,11 +40,8 @@ Sampler.prototype._measure = function() {
 
     this._lastExecution = now;
     this._count = 0;
-    this._onUpdate(this.getRate());
-};
 
-Sampler.prototype.onUpdate = function(handler) {
-    this._onUpdate = handler;
+    this.emit('rate', this.getRate());
 };
 
 module.exports = Sampler;
