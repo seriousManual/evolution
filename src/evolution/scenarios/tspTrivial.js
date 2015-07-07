@@ -13,7 +13,7 @@ function tspTrivial (canvasId) {
     return {
         start: function () {
             var testCourse = printer.createCourse({
-                lineWidth: 2, lineColor: 'rgb(100, 100, 100)'
+                lineWidth: 2, lineColor: 'rgb(200, 200, 200)'
             });
 
             var goldenCourse = printer.createCourse({

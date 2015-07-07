@@ -66,11 +66,14 @@ TspPrinter.prototype._updateCourse = function(course, courseObjects) {
 
     var i = 0;
     order.forEach(function(city) {
-        courseObjects[i]
-            .set('x1', previousCity.getX() + that._cityRadius)
-            .set('y1', previousCity.getY() + that._cityRadius)
-            .set('x2', city.getX() + that._cityRadius)
-            .set('y2', city.getY() + that._cityRadius);
+        var line = courseObjects[i];
+        var offset = that._cityRadius - line.get('strokeWidth') / 2;
+
+        line
+            .set('x1', previousCity.getX() + offset)
+            .set('y1', previousCity.getY() + offset)
+            .set('x2', city.getX() + offset)
+            .set('y2', city.getY() + offset);
 
         previousCity = city;
         i++;
