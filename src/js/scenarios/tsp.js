@@ -2,9 +2,10 @@ var City = require('../lib/tsp/lib/City');
 var Printer = require('../lib/tsp/lib/Printer');
 var TspAlgorithm = require('../lib/tsp/Tsp');
 
-function Tsp(canvasId) {
+function Tsp(canvasId, options) {
     this._printer = new Printer(canvasId);
-    this._algorithm = new TspAlgorithm();
+    this._algorithm = new TspAlgorithm(options);
+    this._options = options || {};
 }
 
 Tsp.prototype.addCity = function(x, y) {
@@ -20,9 +21,9 @@ Tsp.prototype.run = function() {
     this._algorithm.run();
 
     var course = this._printer.createCourse({ lineWidth: 2, lineColor: 'rgb(255, 0, 0)' });
+    var courseGolden = this._printer.createCourse({ lineWidth: 8, lineColor: 'rgb(50, 50, 50)' });
 
     this._algorithm.on('newOptimum', function(child) {
-        console.log('newOptimum', child.getFitness());
         course.setOrder(child.getCityOrder());
     });
 
@@ -33,8 +34,15 @@ Tsp.prototype.run = function() {
     this._algorithm.on('terminated', function() {{
         console.log('terminated');
     }});
+
+    if (!!this._options.childCheck) {
+        this._algorithm.on('childCheck', function(child) {
+            courseGolden.setOrder(child.getCityOrder());
+        });
+    }
+
 };
 
-module.exports = function(canvasId) {
-    return new Tsp(canvasId);
+module.exports = function(canvasId, options) {
+    return new Tsp(canvasId, options);
 };

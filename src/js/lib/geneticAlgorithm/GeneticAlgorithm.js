@@ -3,12 +3,14 @@ var Emitter = require('events').EventEmitter;
 
 var Sampler = require('../Sampler');
 
-function GeneticAlgorithm() {
+function GeneticAlgorithm(options) {
     var that = this;
+    options = options || {};
 
     Emitter.call(this);
 
-    this._maxRunTime = Infinity;
+    this._maxRunTime = options.maxRunTime || Infinity;
+    this._interval = options.interval || 1000;
     this._numberRuns = 0;
     this._sampler = new Sampler();
 
@@ -83,6 +85,8 @@ GeneticAlgorithm.prototype.run = function () {
         child.mutate();
         child.setFitness(that.calculateFitness(child));
 
+        that.emit('childCheck', child);
+
         if (population.fitsIn(child)) {
             population.replaceLastIndividuum(child);
         }
@@ -95,7 +99,7 @@ GeneticAlgorithm.prototype.run = function () {
             clearInterval(handle);
             that.emit('terminated', population);
         }
-    }, 1);
+    }, this._interval);
 };
 
 module.exports = GeneticAlgorithm;

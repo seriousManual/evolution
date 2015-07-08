@@ -6,10 +6,12 @@ var GeneticAlgorithm = require('../geneticAlgorithm/GeneticAlgorithm');
 var TspPopulation = require('./TspPopulation');
 var Way = require('./Way');
 
-function Tsp(sizePopulation) {
-    GeneticAlgorithm.call(this);
+function Tsp(options) {
+    options = options || {};
 
-    this._sizePopulation = sizePopulation || 35;
+    GeneticAlgorithm.call(this, options);
+
+    this._sizePopulation = options.sizePopulation || 35;
 
     this._cities = [];
     this._population = null;
