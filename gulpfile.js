@@ -17,7 +17,7 @@ gulp.task('clean', function (callback) {
 
 gulp.task('scripts', function () {
     return gulp
-        .src(SOURCE_DIR + '/js/evolution.js')
+        .src(SOURCE_DIR + '/js/app.js')
         .pipe(browserify()).on('error', gutil.log)
         .pipe(gulp.dest(TARGET_DIR));
 });
