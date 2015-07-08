@@ -34,7 +34,7 @@ Way.prototype.mutate = function() {
 
     var index1 = 0;
     var index2 = 0;
-    var numberSwaps = parseInt(Math.random() * 4, 10);
+    var numberSwaps = 1 + parseInt(Math.random() * 4, 10);
     for (var i = 0; i < numberSwaps; i++) {
         index1 = parseInt(Math.random() * order.length, 10);
         index2 = parseInt(Math.random() * order.length, 10);
