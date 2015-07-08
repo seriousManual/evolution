@@ -29,9 +29,22 @@ GeneticAlgorithm.prototype.termCriterium = function () {
     var cnt = poplation.getSize() * 0.8;
     var maxFitness = poplation.maxFitness();
 
+    //var a = individuums.reduce(function(carry, i) {
+    //    if (!carry[i.getFitness()]) carry[i.getFitness()] = 0;
+    //
+    //    carry[i.getFitness()]++;
+    //    return carry;
+    //}, {});
+    //
+    //Object.keys(a).forEach(function(key) {
+    //    console.log(key, a[key]);
+    //});
+    //
+    //console.log('---------');
+
     for (var i = 0; i < cnt; i++) {
-        var c = individuums[i];
-        if (c !== maxFitness) {
+        var individuum = individuums[i];
+        if (individuum.getFitness() !== maxFitness) {
             return false;
         }
     }
@@ -80,7 +93,7 @@ GeneticAlgorithm.prototype.run = function () {
 
         if (that.termCriterium()) {
             clearInterval(handle);
-            this.emit('terminated', population);
+            that.emit('terminated', population);
         }
     }, 1);
 };
