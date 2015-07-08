@@ -5,7 +5,7 @@ var Sampler = require('../lib/Sampler');
 var City = require('../lib/tsp/lib/City');
 var shuffle = require('../lib/shuffle');
 var Printer = require('../lib/tsp/lib/Printer');
-var createCombinations = require('../lib/tsp/combinations');
+var createCombinations = require('../lib/tsp/lib/combinations');
 
 
 function TspTrivial(canvasId) {

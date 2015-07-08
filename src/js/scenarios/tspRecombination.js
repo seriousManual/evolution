@@ -1,5 +1,5 @@
 var shuffle = require('./../lib/shuffle');
-var tspRecombination = require('./../lib/tsp/recombination');
+var tspRecombination = require('./../lib/tsp/lib/recombination');
 
 module.exports = function (input1, input2) {
     console.time('shuffle1');
