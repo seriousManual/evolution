@@ -17,7 +17,7 @@ gulp.task('clean', function (callback) {
 
 gulp.task('scripts', function () {
     return gulp
-        .src(SOURCE_DIR + '/evolution/evolution.js')
+        .src(SOURCE_DIR + '/js/evolution.js')
         .pipe(browserify()).on('error', gutil.log)
         .pipe(gulp.dest(TARGET_DIR));
 });
@@ -39,7 +39,7 @@ gulp.task('libscripts', ['bower_components'], function () {
 
 gulp.task('dev', function (callback) {
     build(function() {
-        gulp.watch(SOURCE_DIR + '/evolution/**/*.js', ['scripts']);
+        gulp.watch(SOURCE_DIR + '/js/**/*.js', ['scripts']);
 
         callback();
     });
