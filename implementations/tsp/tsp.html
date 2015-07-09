@@ -7,11 +7,11 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var tsp = EVO.tspWebworker('tspCanvas', {
+            var tsp = EVO.tsp('tspCanvas', {
                 sizePopulation: 35,
                 maxRunTime: Infinity,
-                interval: 'fast',
-                childCheck: false
+                interval: 1000,
+                childCheck: true
             });
 
             tsp
@@ -27,6 +27,7 @@
                 .addCity(313, 34)
                 .addCity(221, 23)
                 .addCity(173, 277)
+                .addCity(50, 350)
                 .addCity(263, 267);
 
             $('#calc').click(function () {
