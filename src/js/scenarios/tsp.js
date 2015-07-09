@@ -3,9 +3,15 @@ var Printer = require('../lib/tsp/lib/Printer');
 var TspAlgorithm = require('../lib/tsp/Tsp');
 
 function Tsp(canvasId, options) {
+    options = options || {};
+
+    if (options.interval === 'fast') {
+        options.interval = 1;
+    }
+
     this._printer = new Printer(canvasId, options);
     this._algorithm = new TspAlgorithm(options);
-    this._options = options || {};
+    this._options = options;
 }
 
 Tsp.prototype.addCity = function(x, y) {

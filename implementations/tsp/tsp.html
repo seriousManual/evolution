@@ -7,10 +7,10 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var tsp = EVO.tspWebworker('tspCanvas', {
+            var tsp = EVO.tsp('tspCanvas', {
                 sizePopulation: 100,
                 maxRunTime: Infinity,
-                interval: 'fast',
+                interval: 1,
                 childCheck: true
             });
 
@@ -37,7 +37,7 @@
 
 </head>
 <body>
-    <input type="button" id="calc" value="calc"><br>
     <canvas id="tspCanvas"></canvas>
+    <input type="button" id="calc" value="calc"><br>
 </body>
 </html>
