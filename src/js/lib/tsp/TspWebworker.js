@@ -12,13 +12,20 @@ module.exports = function(self) {
             algorithm = new TspAlgorithm(payload.options);
 
             payload.cities.forEach(function(city) {
-                algorithm.addCity(city);
+                algorithm.addCity(city.x, city.y);
             });
 
             algorithm.on('newOptimum', function(child) {
                 self.postMessage({
                     type: 'newOptimum',
-                    payload: child
+                    payload: child.getCityOrder()
+                });
+            });
+
+            algorithm.on('rate', function(rate) {
+                self.postMessage({
+                    type: 'rate',
+                    payload: rate
                 });
             });
 

@@ -106,6 +106,7 @@ GeneticAlgorithm.prototype.run = function () {
 
         if (that.termCriterium()) {
             clearInterval(handle);
+            that._sampler.stop();
             that.emit('terminated', population);
         }
     }, this._interval);

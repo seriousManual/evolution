@@ -12,12 +12,16 @@ function Sampler(interval) {
     this._lastExecution = Date.now();
     this._expSmooth = new ExpSmooth(0.7);
 
-    setInterval(function() {
+    this._intervalHandle = setInterval(function() {
         that._measure();
     }, interval || 1000);
 }
 
 util.inherits(Sampler, Emitter);
+
+Sampler.prototype.stop = function() {
+    clearInterval(this._intervalHandle);
+};
 
 Sampler.prototype.sample = function(value) {
     if (value) {

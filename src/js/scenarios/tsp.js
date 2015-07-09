@@ -12,7 +12,7 @@ Tsp.prototype.addCity = function(x, y) {
     var city = new City(x, y);
 
     this._printer.addCity(city);
-    this._algorithm.addCity(city);
+    this._algorithm.addCity(x, y);
 
     return this;
 };
