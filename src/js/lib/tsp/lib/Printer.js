@@ -13,8 +13,8 @@ function TspPrinter(canvasId, options) {
 
     this._canvas = new fabric.Canvas(canvasId, {
         backgroundColor:'rgb(0, 0, 0)',
-        width: options.width || 420,
-        height: options.height || 420
+        width: this._options.width || 420,
+        height: this._options.height || 420
     });
 }
 
