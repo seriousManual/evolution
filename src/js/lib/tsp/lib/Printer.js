@@ -2,7 +2,9 @@ var fabric = require('../../fabric');
 
 var Course = require('./Course');
 
-function TspPrinter(canvasId) {
+function TspPrinter(canvasId, options) {
+    this._options = options || {};
+
     this._cityRadius = 8;
     this._cities = [];
     this._cityObjects = [];
@@ -11,8 +13,8 @@ function TspPrinter(canvasId) {
 
     this._canvas = new fabric.Canvas(canvasId, {
         backgroundColor:'rgb(0, 0, 0)',
-        width: 420,
-        height: 420
+        width: options.width || 420,
+        height: options.height || 420
     });
 }
 

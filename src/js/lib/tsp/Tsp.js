@@ -3,7 +3,7 @@ var util = require('util');
 var shuffle = require('../shuffle');
 
 var GeneticAlgorithm = require('../geneticAlgorithm/GeneticAlgorithm');
-var TspPopulation = require('./TspPopulation');
+var Population = require('./Population');
 var Way = require('./Way');
 
 function Tsp(options) {
@@ -14,7 +14,6 @@ function Tsp(options) {
     this._sizePopulation = options.sizePopulation || 35;
 
     this._cities = [];
-    this._population = null;
 }
 
 util.inherits(Tsp, GeneticAlgorithm);
@@ -23,16 +22,8 @@ Tsp.prototype.addCity = function (city) {
     this._cities.push(city);
 };
 
-Tsp.prototype.getPopulation = function () {
-    if (this._population == null) {
-        this._population = this._createPopulation();
-    }
-
-    return this._population;
-};
-
 Tsp.prototype._createPopulation = function () {
-    var population = new TspPopulation();
+    var population = new Population();
 
     for (var i = 0; i < this._sizePopulation; i++) {
         var individuum = new Way();

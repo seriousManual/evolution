@@ -2,86 +2,42 @@
 <html>
 <head>
     <title>TSP</title>
-    <script type="text/javascript" src="../../lib/lib.js"></script>
-    <script type="text/javascript" src="../../lib/jquery.js"></script>
-    <script type="text/javascript" src="../../lib/jquery.plugins.js"></script>
-
-    <script type="text/javascript" src="../../lib/br4.js"></script>
-    <script type="text/javascript" src="../../lib/br4.objects.js"></script>
-
-    <script type="text/javascript" src="../../lib/GA.js"></script>
-    <script type="text/javascript" src="tsp.js"></script>
-
-    <style type="text/css">
-        td {
-            font-family: Courier new, sans-serif;
-            font-size: 11px;
-        }
-    </style>
+    <script src="../../build/vendor.js" type="text/javascript"></script>
+    <script src="../../build/app.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
+            var tsp = EVO.tsp('tspCanvas', {
+                sizePopulation: 35,
+                maxRunTime: Infinity,
+                interval: 1,
+                childCheck: true
+            });
+
+            tsp
+                .addCity(244, 390)
+                .addCity(147, 391)
+                .addCity(286, 108)
+                .addCity(95, 154)
+                .addCity(257, 170)
+                .addCity(347, 157)
+                .addCity(158, 197)
+                .addCity(69, 62)
+                .addCity(16, 12)
+                .addCity(313, 34)
+                .addCity(221, 23)
+                .addCity(173, 277)
+                .addCity(263, 267);
+
             $('#calc').click(function () {
-                var myGA = tspCreator({
-                    canvasSize: 400,
-                    genPoolSize: 40,
-                    scenarioSize: 13,
-                    wayObject: way,
-                    maxRuns: 100000,
-                    logHistory: false
-                });
-
-                var cities = [
-                    new City(244, 390),
-                    new City(147, 391),
-                    new City(286, 108),
-                    new City(95, 154),
-                    new City(257, 170),
-                    new City(347, 157),
-                    new City(158, 197),
-                    new City(69, 62),
-                    new City(16, 12),
-                    new City(313, 34),
-                    new City(221, 23),
-                    new City(173, 277),
-                    new City(263, 267)
-                ];
-
-                cities = shuffle(cities);
-
-                myGA.baseData.scenario = cities;
-
-                myGA.run(function () {
-                    myGA.printHistory("pages");
-                });
+                tsp.run();
             });
         });
-
-        function shuffle(array) {
-            var currentIndex = array.length, temporaryValue, randomIndex;
-
-            while (0 !== currentIndex) {
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex -= 1;
-
-                temporaryValue = array[currentIndex];
-                array[currentIndex] = array[randomIndex];
-                array[randomIndex] = temporaryValue;
-            }
-
-            return array;
-        }
     </script>
 
 </head>
 <body>
-<input type="button" id="calc" value="calc"><br>
-
-<table>
-    <tr>
-        <td id="pages" valign="top"></td>
-        <td id="tsp" valign="top"></td>
-    </tr>
-</table>
+    <input type="button" id="calc" value="calc"><br>
+    <canvas id="tspCanvas"></canvas>
 </body>
 </html>

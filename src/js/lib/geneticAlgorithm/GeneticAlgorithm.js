@@ -9,6 +9,7 @@ function GeneticAlgorithm(options) {
 
     Emitter.call(this);
 
+    this._population = null;
     this._maxRunTime = options.maxRunTime || Infinity;
     this._interval = options.interval || 1000;
     this._numberRuns = 0;
@@ -21,8 +22,16 @@ function GeneticAlgorithm(options) {
 
 util.inherits(GeneticAlgorithm, Emitter);
 
+GeneticAlgorithm.prototype._createPopulation = function () {
+    throw new Error('_createPopulation not implemented');
+};
+
 GeneticAlgorithm.prototype.getPopulation = function () {
-    throw new Error('getPopulation not implemented');
+    if (this._population == null) {
+        this._population = this._createPopulation();
+    }
+
+    return this._population;
 };
 
 GeneticAlgorithm.prototype.termCriterium = function () {

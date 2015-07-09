@@ -7,34 +7,22 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            var numberCities = 30;
+            var width = 800;
+            var height = 800;
+
             var tsp = EVO.tsp('tspCanvas', {
                 sizePopulation: 35,
                 maxRunTime: Infinity,
                 interval: 1,
                 childCheck: true,
-                width: 420,
-                height: 420
+                width: width,
+                height: height
             });
 
-            tsp
-                .addCity(244, 390)
-                .addCity(200, 100)
-                .addCity(350, 350)
-                .addCity(100, 300)
-                .addCity(147, 391)
-                .addCity(286, 108)
-                .addCity(95, 154)
-                .addCity(257, 170)
-                .addCity(347, 157)
-                .addCity(158, 197)
-                .addCity(69, 62)
-                .addCity(16, 12)
-                .addCity(313, 34)
-                .addCity(221, 23)
-                .addCity(173, 277)
-                .addCity(20, 230)
-                .addCity(370, 250)
-                .addCity(263, 267);
+            for (var i = 0; i < numberCities; i++) {
+                tsp.addCity(parseInt(Math.random() * width, 10), parseInt(Math.random() * height, 10));
+            }
 
             $('#calc').click(function () {
                 tsp.run();

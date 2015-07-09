@@ -3,7 +3,7 @@ var Printer = require('../lib/tsp/lib/Printer');
 var TspAlgorithm = require('../lib/tsp/Tsp');
 
 function Tsp(canvasId, options) {
-    this._printer = new Printer(canvasId);
+    this._printer = new Printer(canvasId, options);
     this._algorithm = new TspAlgorithm(options);
     this._options = options || {};
 }
