@@ -7,15 +7,15 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var numberCities = 30;
+            var numberCities = 20;
             var width = 800;
             var height = 800;
 
-            var tsp = EVO.tsp('tspCanvas', {
-                sizePopulation: 35,
+            var tsp = EVO.tspWebworker('tspCanvas', {
+                sizePopulation: 100,
                 maxRunTime: Infinity,
                 interval: 1,
-                childCheck: true,
+                childCheck: false,
                 width: width,
                 height: height
             });
