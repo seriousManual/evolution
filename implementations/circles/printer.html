@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CirclePprinter</title>
+    <script src="../../build/vendor.js" type="text/javascript"></script>
+    <script src="../../build/app.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var width = 800;
+            var height = 200;
+
+            var printer = (EVO.circles.printer('canvas', {
+                width: width,
+                height: height,
+                number: 10
+            }))
+                .addScenarioCircle(200, 150, 100)
+                .addScenarioCircle(80, 150, 14)
+                .addScenarioCircle(350, 20, 44);
+        });
+    </script>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+</html>

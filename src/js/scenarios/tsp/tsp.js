@@ -1,6 +1,6 @@
-var City = require('../lib/tsp/lib/City');
-var Printer = require('../lib/tsp/lib/Printer');
-var TspAlgorithm = require('../lib/tsp/Tsp');
+var City = require('../../lib/tsp/lib/City');
+var Printer = require('../../lib/tsp/lib/Printer');
+var TspAlgorithm = require('../../lib/tsp/Tsp');
 
 function Tsp(canvasId, options) {
     options = options || {};

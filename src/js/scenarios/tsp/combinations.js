@@ -1,4 +1,4 @@
-var createCombinations = require('./../lib/tsp/lib/combinations');
+var createCombinations = require('./../../lib/tsp/lib/combinations');
 
 module.exports = {
     create: function(input, update, finished) {

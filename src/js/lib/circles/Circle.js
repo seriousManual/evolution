@@ -3,12 +3,12 @@ var util = require('util');
 var Individuum = require('../geneticAlgorithm/Individuum');
 
 
-function Circle() {
+function Circle(x, y, radius) {
     Individuum.call(this);
 
-    this._x = 0;
-    this._y = 0;
-    this._radius = 0;
+    this._x = x;
+    this._y = y;
+    this._radius = radius;
 }
 
 util.inherits(Circle, Individuum);
@@ -38,13 +38,13 @@ Circle.prototype.setY = function(y) {
 };
 
 Circle.prototype.getRadius = function() {
-    return this._x;
+    return this._radius;
 };
 
 Circle.prototype.setRadius = function(radius) {
     this._radius = radius;
 
-    return this._radius;
+    return this;
 };
 
 Circle.prototype.recombinate = function(circle) {

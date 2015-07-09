@@ -20,44 +20,38 @@ TspPrinter.prototype.addScenarioCircle = function (circle) {
     this._scenarioCircles.push(scenarioCircleObject);
 };
 
-TspPrinter.prototype.addCircle = function(circle) {
-    var circleIndex = 1000 - this._circles.length;
-    var scenarioCircleObject = this._createCircleObject(circle, 'rgb(255, 0, 0)', circleIndex);
-
-    this._circles.push(scenarioCircleObject);
-};
-
 TspPrinter.prototype._createCircleObject = function(circle, color, index) {
     var scenarioCircleObject = new fabric.Circle({
         radius: circle.getRadius(),
         left: circle.getX(),
         top: circle.getY(),
-        borderColor: color,
-        selectable: false
+        stroke: color,
+        strokeWidth: 2,
+        selectable: false,
+        originX: 'center',
+        originY: 'center',
+        fill: 'transparent'
     });
 
     this._canvas.insertAt(scenarioCircleObject, index, true);
     this._canvas.renderAll();
+
+    return scenarioCircleObject;
 };
 
-TspPrinter.prototype._updateCourse = function (course, courseObjects) {
+TspPrinter.prototype.updateCircles = function (circlesList) {
     var that = this;
-    var order = course.getOrder();
-    var previousCity = order[order.length - 1];
 
-    var i = 0;
-    order.forEach(function (city) {
-        var line = courseObjects[i];
-        var offset = that._cityRadius - line.get('strokeWidth') / 2;
+    circlesList.forEach(function(circle, index) {
+        if (!that._circles[index]) {
+            that._circles[index] = that._createCircleObject(circle, 'rgb(255, 0, 0)', 1000 - index);
+        }
 
-        line
-            .set('x1', previousCity.getX() + offset)
-            .set('y1', previousCity.getY() + offset)
-            .set('x2', city.getX() + offset)
-            .set('y2', city.getY() + offset);
-
-        previousCity = city;
-        i++;
+        that._circles[index]
+            .set('left', circle.getX())
+            .set('top', circle.getY())
+            .set('radius', circle.getRadius())
+            .setCoords();
     });
 
     this._canvas.renderAll();

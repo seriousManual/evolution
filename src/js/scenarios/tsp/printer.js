@@ -1,7 +1,7 @@
-var TspPrinter = require('./../lib/tsp/lib/Printer');
-var City = require('./../lib/tsp/lib/City');
+var TspPrinter = require('./../../lib/tsp/lib/Printer');
+var City = require('./../../lib/tsp/lib/City');
 
-var shuffle = require('./../lib/shuffle');
+var shuffle = require('./../../lib/shuffle');
 
 function tspPrinter(placeholderId) {
     var printer = new TspPrinter(placeholderId);
