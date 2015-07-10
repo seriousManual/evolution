@@ -8,8 +8,8 @@ function TspPrinter(canvasId, options) {
 
     this._canvas = new fabric.Canvas(canvasId, {
         backgroundColor: 'rgb(0, 0, 0)',
-        width: options.width || 420,
-        height: options.height || 420
+        width: options.width,
+        height: options.height
     });
 }
 
@@ -47,10 +47,12 @@ TspPrinter.prototype.updateCircles = function (circlesList) {
             that._circles[index] = that._createCircleObject(circle, 'rgb(255, 0, 0)', 1000 - index);
         }
 
+        var radius = circle.getRadius() <= 0 ? 1 : circle.getRadius();
+
         that._circles[index]
             .set('left', circle.getX())
             .set('top', circle.getY())
-            .set('radius', circle.getRadius())
+            .set('radius', radius)
             .setCoords();
     });
 

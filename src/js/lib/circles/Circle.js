@@ -9,6 +9,7 @@ function Circle(x, y, radius) {
     this._x = x;
     this._y = y;
     this._radius = radius;
+    this.setFitness(-Infinity);
 }
 
 util.inherits(Circle, Individuum);
@@ -48,10 +49,17 @@ Circle.prototype.setRadius = function (radius) {
 };
 
 Circle.prototype.recombinate = function (circle) {
-    return new Circle()
-        .setX(Math.random() < 0.5 ? this.getX() : circle.getX())
-        .setY(Math.random() < 0.5 ? this.getY() : circle.getY())
-        .setRadius(Math.random() < 0.5 ? this.getRadius() : circle.getRadius());
+    if (Math.random() < 0.5) {
+        return new Circle()
+            .setX(Math.random() < 0.5 ? this.getX() : circle.getX())
+            .setY(Math.random() < 0.5 ? this.getY() : circle.getY())
+            .setRadius(Math.random() < 0.5 ? this.getRadius() : circle.getRadius());
+    } else {
+        return new Circle()
+            .setX(parseInt((this.getX() + this.getX()) / 2, 10))
+            .setY(parseInt((this.getY() + this.getY()) / 2, 10))
+            .setRadius(parseInt((this.getRadius() + this.getRadius()) / 2, 10));
+    }
 };
 
 Circle.prototype.mutate = function () {

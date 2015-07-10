@@ -38,9 +38,7 @@ Tsp.prototype.run = function () {
     });
 
     this._algorithm.on('terminated', function () {
-        {
-            console.log('terminated');
-        }
+        console.log('terminated');
     });
 
     if (!!this._options.childCheck) {
@@ -48,7 +46,6 @@ Tsp.prototype.run = function () {
             courseGolden.setOrder(child.getCityOrder());
         });
     }
-
 };
 
 module.exports = function (canvasId, options) {

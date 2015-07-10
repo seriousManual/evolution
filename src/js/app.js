@@ -7,6 +7,7 @@ window.EVO = {
     tspWebworker: require('./scenarios/tsp/tspWebworker'),
 
     circles: {
-        printer: require('./scenarios/circles/printer')
+        printer: require('./scenarios/circles/printer'),
+        circles: require('./scenarios/circles/circles')
     }
 };

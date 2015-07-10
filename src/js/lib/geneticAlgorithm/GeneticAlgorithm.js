@@ -89,6 +89,7 @@ GeneticAlgorithm.prototype.run = function () {
 
 GeneticAlgorithm.prototype._runByInterval = function () {
     this._intervalHandle = setInterval(this._step.bind(this), this._interval);
+    this._step();
 };
 
 GeneticAlgorithm.prototype._runFast = function () {
