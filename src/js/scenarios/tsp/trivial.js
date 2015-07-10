@@ -18,14 +18,14 @@ function TspTrivial(canvasId) {
     this._cities = [];
     this._lengthShortestWay = Infinity;
 
-    this._sampler.on('rate', function(rate) {
+    this._sampler.on('rate', function (rate) {
         that.emit('rate', rate);
     });
 }
 
 util.inherits(TspTrivial, Emitter);
 
-TspTrivial.prototype.start = function() {
+TspTrivial.prototype.start = function () {
     var that = this;
 
     var testCourse = this._printer.createCourse({
@@ -45,7 +45,7 @@ TspTrivial.prototype.start = function() {
 
     setInterval(run.bind(this), 0);
 
-    function run () {
+    function run() {
         that._sampler.sample();
         var next = combinations.next();
         var combination = next.value;
@@ -61,7 +61,7 @@ TspTrivial.prototype.start = function() {
     }
 };
 
-TspTrivial.prototype.addCity = function(x, y) {
+TspTrivial.prototype.addCity = function (x, y) {
     var city = new City(x, y);
 
     this._cities.push(city);
@@ -72,7 +72,7 @@ TspTrivial.prototype.addCity = function(x, y) {
     return this;
 };
 
-function createTspTrivial (canvasId) {
+function createTspTrivial(canvasId) {
     return new TspTrivial(canvasId);
 }
 

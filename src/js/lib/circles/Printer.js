@@ -20,7 +20,7 @@ TspPrinter.prototype.addScenarioCircle = function (circle) {
     this._scenarioCircles.push(scenarioCircleObject);
 };
 
-TspPrinter.prototype._createCircleObject = function(circle, color, index) {
+TspPrinter.prototype._createCircleObject = function (circle, color, index) {
     var scenarioCircleObject = new fabric.Circle({
         radius: circle.getRadius(),
         left: circle.getX(),
@@ -42,7 +42,7 @@ TspPrinter.prototype._createCircleObject = function(circle, color, index) {
 TspPrinter.prototype.updateCircles = function (circlesList) {
     var that = this;
 
-    circlesList.forEach(function(circle, index) {
+    circlesList.forEach(function (circle, index) {
         if (!that._circles[index]) {
             that._circles[index] = that._createCircleObject(circle, 'rgb(255, 0, 0)', 1000 - index);
         }

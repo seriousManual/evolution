@@ -1,13 +1,13 @@
 var createCombinations = require('./../../lib/tsp/lib/combinations');
 
 module.exports = {
-    create: function(input, update, finished) {
+    create: function (input, update, finished) {
         var iterator = createCombinations(input);
         var handle;
 
         return {
-            run: function() {
-                handle = setInterval(function() {
+            run: function () {
+                handle = setInterval(function () {
                     var next = iterator.next();
                     if (next.done) {
                         clearInterval(handle);
@@ -18,7 +18,7 @@ module.exports = {
                 }, 100);
             },
 
-            stop: function() {
+            stop: function () {
                 clearInterval(handle);
             }
         }

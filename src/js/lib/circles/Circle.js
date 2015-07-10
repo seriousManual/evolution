@@ -13,48 +13,48 @@ function Circle(x, y, radius) {
 
 util.inherits(Circle, Individuum);
 
-Circle.prototype.area = function() {
+Circle.prototype.area = function () {
     return Math.PI * Math.pow(this.getRadius(), 2);
 };
 
-Circle.prototype.getX = function() {
+Circle.prototype.getX = function () {
     return this._x;
 };
 
-Circle.prototype.setX = function(x) {
+Circle.prototype.setX = function (x) {
     this._x = x;
 
     return this;
 };
 
-Circle.prototype.getY = function() {
+Circle.prototype.getY = function () {
     return this._y;
 };
 
-Circle.prototype.setY = function(y) {
+Circle.prototype.setY = function (y) {
     this._y = y;
 
     return this;
 };
 
-Circle.prototype.getRadius = function() {
+Circle.prototype.getRadius = function () {
     return this._radius;
 };
 
-Circle.prototype.setRadius = function(radius) {
+Circle.prototype.setRadius = function (radius) {
     this._radius = radius;
 
     return this;
 };
 
-Circle.prototype.recombinate = function(circle) {
+Circle.prototype.recombinate = function (circle) {
     return new Circle()
         .setX(Math.random() < 0.5 ? this.getX() : circle.getX())
         .setY(Math.random() < 0.5 ? this.getY() : circle.getY())
         .setRadius(Math.random() < 0.5 ? this.getRadius() : circle.getRadius());
 };
 
-Circle.prototype.mutate = function() {
+Circle.prototype.mutate = function () {
     var maxMutate = 10;
 
     var r = Math.random();

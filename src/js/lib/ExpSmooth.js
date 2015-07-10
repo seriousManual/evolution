@@ -3,7 +3,7 @@ function ExpSmooth(rate) {
     this._currentValue = null;
 }
 
-ExpSmooth.prototype.update = function(value) {
+ExpSmooth.prototype.update = function (value) {
     if (this._currentValue === null) {
         this._currentValue = value;
     } else {
@@ -11,7 +11,7 @@ ExpSmooth.prototype.update = function(value) {
     }
 };
 
-ExpSmooth.prototype.getValue = function() {
+ExpSmooth.prototype.getValue = function () {
     return this._currentValue;
 };
 

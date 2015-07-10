@@ -11,17 +11,17 @@ function Way() {
 
 util.inherits(Way, Individuum);
 
-Way.prototype.setCityOrder = function(cityOrder) {
+Way.prototype.setCityOrder = function (cityOrder) {
     this._cityOrder = cityOrder;
 
     return this;
 };
 
-Way.prototype.getCityOrder = function() {
+Way.prototype.getCityOrder = function () {
     return this._cityOrder;
 };
 
-Way.prototype.recombinate = function(way) {
+Way.prototype.recombinate = function (way) {
     var order1 = this.getCityOrder();
     var order2 = way.getCityOrder();
     var newOrder = recombinate(order1, order2);
@@ -29,7 +29,7 @@ Way.prototype.recombinate = function(way) {
     return (new Way()).setCityOrder(newOrder);
 };
 
-Way.prototype.mutate = function() {
+Way.prototype.mutate = function () {
     var order = this.getCityOrder();
 
     var index1 = 0;

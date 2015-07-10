@@ -37,7 +37,7 @@ Circles.prototype.calculateFitness = function (child) {
     var overlapping = 0;
     var outside = 0;
 
-    this._scenario.forEach(function(scenarioCircle) {
+    this._scenario.forEach(function (scenarioCircle) {
         if (pyth(scenarioCircle, child) < child.getRadius() + scenarioCircle.getRadius()) {
             overlapping++;
         }
@@ -65,7 +65,7 @@ Circles.prototype.calculateFitness = function (child) {
         outside += 100;
     }
 
-    function pyth (c1, c2) {
+    function pyth(c1, c2) {
         return Math.sqrt(Math.pow(c1.getX() - c2.getX(), 2) + Math.pow(c1.getY() - c2.getY(), 2));
     }
 

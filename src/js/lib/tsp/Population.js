@@ -7,7 +7,7 @@ function TspPopulation() {
 
 util.inherits(TspPopulation, Population);
 
-TspPopulation.prototype.fitnessCompare = function(a, b) {
+TspPopulation.prototype.fitnessCompare = function (a, b) {
     return a.getFitness() < b.getFitness() ? a : b;
 };
 

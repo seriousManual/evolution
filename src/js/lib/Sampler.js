@@ -12,18 +12,18 @@ function Sampler(interval) {
     this._lastExecution = Date.now();
     this._expSmooth = new ExpSmooth(0.7);
 
-    this._intervalHandle = setInterval(function() {
+    this._intervalHandle = setInterval(function () {
         that._measure();
     }, interval || 1000);
 }
 
 util.inherits(Sampler, Emitter);
 
-Sampler.prototype.stop = function() {
+Sampler.prototype.stop = function () {
     clearInterval(this._intervalHandle);
 };
 
-Sampler.prototype.sample = function(value) {
+Sampler.prototype.sample = function (value) {
     if (value) {
         this._count += value;
     } else {
@@ -31,11 +31,11 @@ Sampler.prototype.sample = function(value) {
     }
 };
 
-Sampler.prototype.getRate = function() {
+Sampler.prototype.getRate = function () {
     return this._expSmooth.getValue();
 };
 
-Sampler.prototype._measure = function() {
+Sampler.prototype._measure = function () {
     var now = Date.now();
     var elapsedTime = (now - this._lastExecution) / 1000;
     var samplePerSecond = this._count / elapsedTime;

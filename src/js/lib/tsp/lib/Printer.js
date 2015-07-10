@@ -12,13 +12,13 @@ function TspPrinter(canvasId, options) {
     this._courses = [];
 
     this._canvas = new fabric.Canvas(canvasId, {
-        backgroundColor:'rgb(0, 0, 0)',
+        backgroundColor: 'rgb(0, 0, 0)',
         width: this._options.width || 420,
         height: this._options.height || 420
     });
 }
 
-TspPrinter.prototype.addCity = function(city) {
+TspPrinter.prototype.addCity = function (city) {
     this._cities.push(city);
 
     var cityIndex = 3000;
@@ -36,12 +36,12 @@ TspPrinter.prototype.createCourse = function (options) {
     var that = this;
 
     var courseObjects = [];
-    var course = new Course(function() {
+    var course = new Course(function () {
         that._updateCourse(course, courseObjects);
     });
 
     var i = 1000 - (this._courses.length * 100);
-    this._cities.forEach(function(city) {
+    this._cities.forEach(function (city) {
         course.addCity(city);
 
         var line = new fabric.Line([0, 0, 0, 0], {
@@ -59,13 +59,13 @@ TspPrinter.prototype.createCourse = function (options) {
     return course;
 };
 
-TspPrinter.prototype._updateCourse = function(course, courseObjects) {
+TspPrinter.prototype._updateCourse = function (course, courseObjects) {
     var that = this;
     var order = course.getOrder();
     var previousCity = order[order.length - 1];
 
     var i = 0;
-    order.forEach(function(city) {
+    order.forEach(function (city) {
         var line = courseObjects[i];
         var offset = that._cityRadius - line.get('strokeWidth') / 2;
 

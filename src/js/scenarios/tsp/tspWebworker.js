@@ -10,7 +10,7 @@ function Tsp(canvasId, options) {
     this._options = options || {};
 }
 
-Tsp.prototype.addCity = function(x, y) {
+Tsp.prototype.addCity = function (x, y) {
     var city = new City(x, y);
 
     this._printer.addCity(city);
@@ -19,11 +19,11 @@ Tsp.prototype.addCity = function(x, y) {
     return this;
 };
 
-Tsp.prototype.run = function() {
+Tsp.prototype.run = function () {
     var algorithm = worker(require('../../lib/tsp/TspWebworker'));
-    var course = this._printer.createCourse({ lineWidth: 2, lineColor: 'rgb(255, 0, 0)' });
+    var course = this._printer.createCourse({lineWidth: 2, lineColor: 'rgb(255, 0, 0)'});
 
-    algorithm.addEventListener('message', function(message) {
+    algorithm.addEventListener('message', function (message) {
         var data = message.data;
         var type = data.type;
         var payload = data.payload;
@@ -40,7 +40,7 @@ Tsp.prototype.run = function() {
     algorithm.postMessage({
         type: 'init',
         payload: {
-            cities: this._cities.map(function(city) {
+            cities: this._cities.map(function (city) {
                 return {x: city.getX(), y: city.getY()};
             }),
             options: this._options
@@ -48,6 +48,6 @@ Tsp.prototype.run = function() {
     })
 };
 
-module.exports = function(canvasId, options) {
+module.exports = function (canvasId, options) {
     return new Tsp(canvasId, options);
 };

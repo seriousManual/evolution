@@ -15,7 +15,7 @@ function GeneticAlgorithm(options) {
     this._numberRuns = 0;
     this._sampler = new Sampler();
 
-    this._sampler.on('rate', function(rate) {
+    this._sampler.on('rate', function (rate) {
         that.emit('rate', rate);
     });
 }
@@ -87,19 +87,19 @@ GeneticAlgorithm.prototype.run = function () {
     }
 };
 
-GeneticAlgorithm.prototype._runByInterval = function() {
+GeneticAlgorithm.prototype._runByInterval = function () {
     this._intervalHandle = setInterval(this._step.bind(this), this._interval);
 };
 
-GeneticAlgorithm.prototype._runFast = function() {
-    while(true) {
+GeneticAlgorithm.prototype._runFast = function () {
+    while (true) {
         if (!this._step()) {
             return;
         }
     }
 };
 
-GeneticAlgorithm.prototype._step = function() {
+GeneticAlgorithm.prototype._step = function () {
     var population = this.getPopulation();
 
     this._numberRuns++;
@@ -130,7 +130,7 @@ GeneticAlgorithm.prototype._step = function() {
     return true;
 };
 
-GeneticAlgorithm.prototype._terminate = function() {
+GeneticAlgorithm.prototype._terminate = function () {
     if (this._intervalHandle) {
         clearInterval(this._intervalHandle);
     }

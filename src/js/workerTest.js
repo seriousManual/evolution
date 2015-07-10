@@ -1,14 +1,14 @@
 var shuffle = require('./lib/shuffle');
 
 module.exports = function (self) {
-    self.addEventListener('message',function (ev){
+    self.addEventListener('message', function (ev) {
         var list = ev.data;
 
         var res = list;
 
-            res = shuffle(res);
+        res = shuffle(res);
 
-        setTimeout(function() {
+        setTimeout(function () {
             self.postMessage({drugs: 'foo'});
         }, 1000);
 

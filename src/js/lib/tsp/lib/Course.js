@@ -11,7 +11,7 @@ TspCourse.prototype.addCity = function (city) {
 TspCourse.prototype.setOrder = function (order) {
     var that = this;
 
-    this._order = order.reduce(function(carry, index) {
+    this._order = order.reduce(function (carry, index) {
         carry.push(that._cities[index]);
         return carry;
     }, []);
@@ -19,7 +19,7 @@ TspCourse.prototype.setOrder = function (order) {
     this._onUpdate();
 };
 
-TspCourse.prototype.getOrder = function() {
+TspCourse.prototype.getOrder = function () {
     return this._order;
 };
 
