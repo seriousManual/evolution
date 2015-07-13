@@ -124,14 +124,14 @@ GeneticAlgorithm.prototype._step = function () {
     }
 
     if (this.termCriterium()) {
-        this._terminate();
+        this.terminate();
         return false;
     }
 
     return true;
 };
 
-GeneticAlgorithm.prototype._terminate = function () {
+GeneticAlgorithm.prototype.terminate = function () {
     if (this._intervalHandle) {
         clearInterval(this._intervalHandle);
     }

@@ -4,20 +4,26 @@ var CircleAlgorithm = require('../../lib/circles/Circles');
 
 function CirclesScenario(canvasId, options) {
     this._circles = [];
-    this._printer = new Printer(canvasId, options);
-    this._algorithm = new CircleAlgorithm(options);
+    this._options = options;
+    this._canvasId = canvasId;
 
+    this._printer = null;
+    this._algorithm = null;
+
+    this._setup();
 }
 
 CirclesScenario.prototype.addScenarioCircle = function (x, y, radius) {
     var circle = new Circle(x, y, radius);
+
+    this._circles.push(circle);
     this._printer.addScenarioCircle(circle);
     this._algorithm.addScenarioCircle(circle);
 
     return this;
 };
 
-CirclesScenario.prototype.run = function() {
+CirclesScenario.prototype.run = function () {
     var that = this;
 
     this._algorithm.run();
@@ -32,7 +38,27 @@ CirclesScenario.prototype.run = function() {
 
     this._algorithm.on('terminated', function (population) {
         that._printer.setGoldenCircle(population.getFirst());
-        console.log('term');
+    });
+};
+
+CirclesScenario.prototype.reset = function () {
+    this._algorithm.terminate();
+    this._setup();
+};
+
+CirclesScenario.prototype.restart = function () {
+    this.reset();
+    this.run();
+};
+
+CirclesScenario.prototype._setup = function () {
+    var that = this;
+    this._printer = new Printer(this._canvasId, this._options);
+    this._algorithm = new CircleAlgorithm(this._options);
+
+    this._circles.forEach(function(circle) {
+        that._printer.addScenarioCircle(circle);
+        that._algorithm.addScenarioCircle(circle);
     });
 };
 
