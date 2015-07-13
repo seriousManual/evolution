@@ -69,7 +69,7 @@ Circle.prototype.mutate = function () {
     if (r < 0.3) {
         this.setRadius(this.getRadius() + weightedMutate(maxMutate));
     } else if (r < 0.6) {
-        this.setRadius(this.getRadius() - weightedMutate(maxMutate));
+        this.setRadius(Math.max(1, this.getRadius() - weightedMutate(maxMutate)));
     }
 
     r = Math.random();
@@ -83,7 +83,7 @@ Circle.prototype.mutate = function () {
     if (r < 0.3) {
         this.setY(this.getY() + weightedMutate(maxMutate));
     } else if (r < 0.6) {
-        this.setY(Math.max(1, this.getY() - weightedMutate(maxMutate)));
+        this.setY(this.getY() - weightedMutate(maxMutate));
     }
 
     function weightedMutate(nr) {

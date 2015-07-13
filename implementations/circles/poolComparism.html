@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Circles</title>
+    <script src="../../build/vendor.js" type="text/javascript"></script>
+    <script src="../../build/app.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var circlesHigh = EVO.circles.circles('canvasHighPool', {
+                sizePopulation: 100,
+                maxRunTime: Infinity,
+                interval: 10,
+                width: 210,
+                height: 210
+            });
+
+            var circlesMid = EVO.circles.circles('canvasMidPool', {
+                sizePopulation: 35,
+                maxRunTime: Infinity,
+                interval: 10,
+                width: 210,
+                height: 210
+            });
+
+            var circlesLow = EVO.circles.circles('canvasLowPool', {
+                sizePopulation: 7,
+                maxRunTime: Infinity,
+                interval: 10,
+                width: 210,
+                height: 210
+            });
+
+            circlesHigh
+                .addScenarioCircle(200, 200, 40)
+                .addScenarioCircle(15, 80, 75)
+                .addScenarioCircle(150, 20, 20);
+
+            circlesLow
+                .addScenarioCircle(200, 200, 40)
+                .addScenarioCircle(15, 80, 75)
+                .addScenarioCircle(150, 20, 20);
+
+            circlesMid
+                .addScenarioCircle(200, 200, 40)
+                .addScenarioCircle(15, 80, 75)
+                .addScenarioCircle(150, 20, 20);
+
+            $('#calc').click(function () {
+                circlesHigh.run();
+                circlesMid.run();
+                circlesLow.run();
+            });
+
+            $('#restart').click(function () {
+                circlesHigh.restart();
+                circlesMid.restart();
+                circlesLow.restart();
+            });
+
+            $('#reset').click(function () {
+                circlesHigh.reset();
+                circlesMid.reset();
+                circlesLow.reset();
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <table>
+        <tr>
+            <td><canvas id="canvasHighPool"></canvas></td>
+            <td><canvas id="canvasMidPool"></canvas></td>
+            <td><canvas id="canvasLowPool"></canvas></td>
+        </tr>
+    </table>
+
+    <input type="button" id="calc" value="calc"><br>
+    <input type="button" id="restart" value="restart"><br>
+    <input type="button" id="reset" value="reset"><br>
+</body>
+</html>

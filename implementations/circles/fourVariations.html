@@ -34,19 +34,19 @@
             });
         });
 
-        function createCircles(canvasId) {
+        function createCircles (canvasId) {
             var circles = EVO.circles.circles(canvasId, {
                 sizePopulation: 35,
                 maxRunTime: Infinity,
-                interval: 100,
+                interval: 10,
                 width: 210,
                 height: 210
             });
 
             circles
-                    .addScenarioCircle(200, 200, 40)
-                    .addScenarioCircle(15, 80, 75)
-                    .addScenarioCircle(150, 20, 20);
+                .addScenarioCircle(200, 200, 40)
+                .addScenarioCircle(15, 80, 75)
+                .addScenarioCircle(150, 20, 20);
 
             return circles;
         }
