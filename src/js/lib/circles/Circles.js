@@ -21,27 +21,12 @@ Circles.prototype.addScenarioCircle = function (circle) {
 Circles.prototype._createPopulation = function () {
     var population = new Population();
 
-    var cnt = 0;
-    var div = Math.ceil(Math.sqrt(this._sizePopulation));
-    var rasterX = parseInt(this._options.width / div, 10);
-    var rasterY = parseInt(this._options.height / div, 10);
-    for (var x = 0; x < div; x++) {
-        for (var y = 0; y < div; y++) {
-            population.addIndividuum(new Circle()
-                .setRadius(50)
-                .setX((x + 1) * rasterX)
-                .setY((y + 1) * rasterY)
-            );
-
-            cnt++;
-
-            if (cnt == this._sizePopulation) {
-                break;
-            }
-        }
-        if (cnt == this._sizePopulation) {
-            break;
-        }
+    for (var i = 0; i < this._sizePopulation; i ++) {
+        population.addIndividuum(new Circle()
+            .setRadius(parseInt(Math.random() * 100, 10))
+            .setX(parseInt(Math.random() * this._options.width, 10))
+            .setY(parseInt(Math.random() * this._options.height, 10))
+        );
     }
 
     return population;

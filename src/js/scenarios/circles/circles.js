@@ -30,8 +30,9 @@ CirclesScenario.prototype.run = function() {
         console.log('rate', rate);
     });
 
-    this._algorithm.on('terminated', function () {
-        console.log('terminated');
+    this._algorithm.on('terminated', function (population) {
+        that._printer.setGoldenCircle(population.getFirst());
+        console.log('term');
     });
 };
 
