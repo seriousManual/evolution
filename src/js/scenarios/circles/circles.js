@@ -36,6 +36,14 @@ CirclesScenario.prototype.run = function () {
         console.log('rate', rate);
     });
 
+    this._algorithm.on('missRate', function (rate) {
+        console.log('missRate', rate);
+    });
+
+    this._algorithm.on('hitRate', function (rate) {
+        console.log('hitRate', rate);
+    });
+
     this._algorithm.on('terminated', function (population) {
         that._printer.setGoldenCircle(population.getFirst());
     });

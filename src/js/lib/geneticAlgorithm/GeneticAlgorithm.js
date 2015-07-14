@@ -13,10 +13,21 @@ function GeneticAlgorithm(options) {
     this._interval = options.interval || 1000;
     this._intervalHandle = null;
     this._numberRuns = 0;
-    this._sampler = new Sampler();
 
-    this._sampler.on('rate', function (rate) {
+    this._samplerCount = new Sampler();
+    this._samplerHit = new Sampler();
+    this._samplerMiss = new Sampler();
+
+    this._samplerCount.on('rate', function (rate) {
         that.emit('rate', rate);
+    });
+
+    this._samplerHit.on('rate', function (rate) {
+        that.emit('hitRate', rate);
+    });
+
+    this._samplerMiss.on('rate', function (rate) {
+        that.emit('missRate', rate);
     });
 }
 
@@ -104,7 +115,7 @@ GeneticAlgorithm.prototype._step = function () {
     var population = this.getPopulation();
 
     this._numberRuns++;
-    this._sampler.sample();
+    this._samplerCount.sample();
 
     var parents = this.chooseParents();
     var bestIndividuum = population.getFirst();
@@ -117,6 +128,9 @@ GeneticAlgorithm.prototype._step = function () {
 
     if (population.fitsIn(child)) {
         population.replaceLastIndividuum(child);
+        this._samplerHit.sample();
+    } else {
+        this._samplerMiss.sample();
     }
 
     if (population.getFirst() !== bestIndividuum) {
@@ -136,7 +150,9 @@ GeneticAlgorithm.prototype.terminate = function () {
         clearInterval(this._intervalHandle);
     }
 
-    this._sampler.stop();
+    this._samplerCount.stop();
+    this._samplerHit.stop();
+    this._samplerMiss.stop();
     this.emit('terminated', this.getPopulation());
 };
 

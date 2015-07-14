@@ -29,8 +29,7 @@ TspPrinter.prototype.setGoldenCircle = function (circle) {
         .set('left', circle.getX())
         .set('top', circle.getY())
         .set('radius', circle.getRadius())
-        .set('opacity', 0.6)
-        .setCoords();
+        .set('opacity', 0.6);
 
     this._canvas.renderAll();
 };
@@ -66,13 +65,12 @@ TspPrinter.prototype.updateCircles = function (circlesList) {
             that._circles[index] = that._createCircleObject(circle, 'rgb(255, 0, 0)', null, null, 1000 - index);
         }
 
-        var radius = circle.getRadius() <= 0 ? 1 : circle.getRadius();
+        var radius = Math.max(1, circle.getRadius());
 
         that._circles[index]
             .set('left', circle.getX())
             .set('top', circle.getY())
-            .set('radius', radius)
-            .setCoords();
+            .set('radius', radius);
     });
 
     this._canvas.renderAll();

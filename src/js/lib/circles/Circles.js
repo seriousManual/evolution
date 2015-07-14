@@ -23,7 +23,7 @@ Circles.prototype._createPopulation = function () {
 
     for (var i = 0; i < this._sizePopulation; i ++) {
         population.addIndividuum(new Circle()
-            .setRadius(parseInt(Math.random() * 100, 10))
+            .setRadius(parseInt(Math.random() * this._options.width * 0.4, 10))
             .setX(parseInt(Math.random() * this._options.width, 10))
             .setY(parseInt(Math.random() * this._options.height, 10))
         );

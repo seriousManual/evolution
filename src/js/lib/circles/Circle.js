@@ -49,28 +49,16 @@ Circle.prototype.setRadius = function (radius) {
 };
 
 Circle.prototype.recombinate = function (circle) {
-    if (Math.random() < 0.5) {
-        return new Circle()
-            .setX(Math.random() < 0.5 ? this.getX() : circle.getX())
-            .setY(Math.random() < 0.5 ? this.getY() : circle.getY())
-            .setRadius(Math.random() < 0.5 ? this.getRadius() : circle.getRadius());
-    } else {
-        return new Circle()
-            .setX(parseInt((this.getX() + this.getX()) / 2, 10))
-            .setY(parseInt((this.getY() + this.getY()) / 2, 10))
-            .setRadius(parseInt((this.getRadius() + this.getRadius()) / 2, 10));
-    }
+    return new Circle()
+        .setX(Math.random() < 0.5 ? this.getX() : circle.getX())
+        .setY(Math.random() < 0.5 ? this.getY() : circle.getY())
+        .setRadius(Math.random() < 0.5 ? this.getRadius() : circle.getRadius());
 };
 
 Circle.prototype.mutate = function () {
     var maxMutate = 10;
 
-    var r = Math.random();
-    if (r < 0.3) {
-        this.setRadius(this.getRadius() + weightedMutate(maxMutate));
-    } else if (r < 0.6) {
-        this.setRadius(Math.max(1, this.getRadius() - weightedMutate(maxMutate)));
-    }
+    this.setRadius(this.getRadius() + weightedMutate(30));
 
     r = Math.random();
     if (r < 0.3) {
@@ -87,7 +75,7 @@ Circle.prototype.mutate = function () {
     }
 
     function weightedMutate(nr) {
-        return parseInt(( 1 - Math.random() * Math.random() ) * nr, 10);
+        return parseInt((Math.random() * Math.random()) * nr, 10);
     }
 };
 
