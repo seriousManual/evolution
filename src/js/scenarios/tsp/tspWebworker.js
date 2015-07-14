@@ -2,6 +2,7 @@ var worker = require('webworkify');
 
 var City = require('../../lib/tsp/lib/City');
 var Printer = require('../../lib/tsp/lib/Printer');
+var tspWebworker = require('../../lib/tsp/TspWebworker');
 
 function Tsp(canvasId, options) {
     this._printer = new Printer(canvasId, options);
@@ -20,7 +21,7 @@ Tsp.prototype.addCity = function (x, y) {
 };
 
 Tsp.prototype.run = function () {
-    var algorithm = worker(require('../../lib/tsp/TspWebworker'));
+    var algorithm = worker(tspWebworker);
     var course = this._printer.createCourse({lineWidth: 2, lineColor: 'rgb(255, 0, 0)'});
 
     algorithm.addEventListener('message', function (message) {
