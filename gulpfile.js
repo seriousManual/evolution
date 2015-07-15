@@ -38,7 +38,7 @@ gulp.task('libscripts', ['bower_components'], function () {
 ////////////////////////////////////////////////////// manage //////////////////////////////////////////////////
 
 gulp.task('dev', function (callback) {
-    build(function() {
+    build(function () {
         gulp.watch(SOURCE_DIR + '/js/**/*.js', ['scripts']);
 
         callback();

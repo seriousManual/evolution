@@ -9,5 +9,9 @@ window.EVO = {
     circles: {
         printer: require('./scenarios/circles/printer'),
         circles: require('./scenarios/circles/circles')
+    },
+
+    circleWorld: {
+        Printer: require('./lib/circleworld/Printer')
     }
 };
