@@ -153,6 +153,7 @@ GeneticAlgorithm.prototype.terminate = function () {
     this._samplerCount.stop();
     this._samplerHit.stop();
     this._samplerMiss.stop();
+
     this.emit('terminated', this.getPopulation());
 };
 
