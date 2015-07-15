@@ -18,7 +18,7 @@ function CircleWorldPrinter(canvasId, options) {
 }
 
 CircleWorldPrinter.prototype._init = function () {
-    var number = this._options.number;
+    var number = this._options.sizePopulation;
     var squareSize = Math.ceil(Math.sqrt(number));
     var padding = 50;
 

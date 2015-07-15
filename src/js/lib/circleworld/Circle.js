@@ -13,10 +13,6 @@ function Circle(radius, color) {
 
 util.inherits(Circle, Individuum);
 
-Circle.prototype.area = function () {
-    return Math.PI * Math.pow(this.getRadius(), 2);
-};
-
 Circle.prototype.getColor = function(color) {
     return this._color;
 };
@@ -38,11 +34,11 @@ Circle.prototype.setRadius = function (radius) {
 };
 
 Circle.prototype.recombinate = function (circle) {
-
+    //TODO
 };
 
 Circle.prototype.mutate = function () {
-
+    //TODO
 };
 
 module.exports = Circle;
