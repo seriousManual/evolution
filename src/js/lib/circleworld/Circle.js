@@ -7,7 +7,7 @@ function Circle(radius, color) {
     Individuum.call(this);
 
     this._radius = radius;
-    this._color = [0, 0, 0];
+    this._color = color;
     this.setFitness(-Infinity);
 }
 
@@ -34,11 +34,43 @@ Circle.prototype.setRadius = function (radius) {
 };
 
 Circle.prototype.recombinate = function (circle) {
-    //TODO
+    var myColor = this.getColor();
+    var circleColor = circle.getColor();
+
+    var newRadius = (this.getRadius() + circle.getRadius()) / 2;
+    var newColor = [
+        parseInt((myColor[0] + circleColor[0]) / 2, 10),
+        parseInt((myColor[1] + circleColor[1]) / 2, 10),
+        parseInt((myColor[2] + circleColor[2]) / 2, 10)
+    ];
+
+    return new Circle()
+        .setColor(newColor)
+        .setRadius(newRadius);
 };
 
 Circle.prototype.mutate = function () {
-    //TODO
+    var myColor = this.getColor();
+    this.setColor([
+        this._mutate(myColor[0]),
+        this._mutate(myColor[1]),
+        this._mutate(myColor[2])
+    ]);
+
+    this.setRadius(this._mutate(this.getRadius()));
+};
+
+Circle.prototype._mutate = function(value) {
+    if (Math.random() > 0.7) {
+        var a = 1;
+        if (Math.random() < 0.5) {
+            a = -1;
+        }
+        var b = Math.max(1, parseInt((Math.random() * Math.random() * 10) * a + value, 10))
+        return b;
+    }
+
+    return value;
 };
 
 module.exports = Circle;

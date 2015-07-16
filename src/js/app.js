@@ -12,6 +12,7 @@ window.EVO = {
     },
 
     circleWorld: {
-        Printer: require('./lib/circleworld/Printer')
+        Printer: require('./lib/circleworld/Printer'),
+        circleWorld: require('./scenarios/circleworld/circleworld')
     }
 };

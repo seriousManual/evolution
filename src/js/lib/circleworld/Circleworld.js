@@ -9,6 +9,9 @@ function Circleworld(options) {
 
     this._sizePopulation = options.sizePopulation || 35;
     this._options = options;
+
+    this._targetColor = options.targetColor || [255, 0, 0];
+    this._targetRadius = options.targetRadius || 50;
 }
 
 util.inherits(Circleworld, GeneticAlgorithm);
@@ -31,7 +34,14 @@ Circleworld.prototype._createPopulation = function () {
 };
 
 Circleworld.prototype.calculateFitness = function (child) {
-    //TODO
+    var color = child.getColor();
+
+    var fitnessRad = Math.abs(this._targetRadius - child.getRadius());
+    var fitnessCol = Math.abs(this._targetColor[0] - color[0]) +
+                     Math.abs(this._targetColor[1] - color[1]) +
+                     Math.abs(this._targetColor[2] - color[2]);
+
+    return (fitnessRad + fitnessCol) * -1;
 };
 
 module.exports = Circleworld;
