@@ -11,7 +11,7 @@ function Circleworld(options) {
     this._options = options;
 
     this._targetColor = options.targetColor || [255, 0, 0];
-    this._targetRadius = options.targetRadius || 80;
+    this._targetRadius = options.targetRadius || 60;
 }
 
 util.inherits(Circleworld, GeneticAlgorithm);
@@ -20,19 +20,27 @@ Circleworld.prototype._createPopulation = function () {
     var population = new Population();
 
     for (var i = 0; i < this._sizePopulation; i ++) {
-        var radius = parseInt(Math.random() * 60, 10);
-        var color = [
-            parseInt(Math.random() * 255, 10),
-            parseInt(Math.random() * 255, 10),
-            parseInt(Math.random() * 255, 10)
-        ];
-
-        var individuum = new Circle(radius, color);
+        var individuum = this._createIndividuum();
         individuum.setFitness(this.calculateFitness(individuum));
         population.addIndividuum(individuum);
     }
 
     return population;
+};
+
+Circleworld.prototype._createIndividuum = function() {
+    if (this._options.createIndividuum) {
+        return this._options.createIndividuum();
+    }
+
+    var radius = parseInt(Math.random() * 60, 10);
+    var color = [
+        parseInt(Math.random() * 255, 10),
+        parseInt(Math.random() * 255, 10),
+        parseInt(Math.random() * 255, 10)
+    ];
+
+    return new Circle(radius, color);
 };
 
 Circleworld.prototype.calculateFitness = function (child) {
@@ -44,6 +52,12 @@ Circleworld.prototype.calculateFitness = function (child) {
                       Math.abs(this._targetColor[2] - color[2])) / 3;
 
     return (fitnessRad + parseInt(fitnessCol, 10) * 2) * -1;
+};
+
+Circleworld.prototype.setTargetColor = function(targetColor) {
+    this._targetColor = targetColor;
+
+    this.evaluatePopulation();
 };
 
 module.exports = Circleworld;

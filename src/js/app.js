@@ -12,6 +12,7 @@ window.EVO = {
     },
 
     circleWorld: {
+        Circle: require('./lib/circleworld/Circle'),
         Printer: require('./lib/circleworld/Printer'),
         circleWorld: require('./scenarios/circleworld/circleworld')
     }

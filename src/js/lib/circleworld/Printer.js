@@ -101,7 +101,9 @@ CircleWorldPrinter.prototype._createCircle = function(x, y) {
         selectable: false,
         originX: 'center',
         originY: 'center',
-        fill: 'rgb(255, 0, 0)'
+        fill: 'rgb(255, 0, 0)',
+        stroke: 'rgb(255, 255, 255)',
+        strokeWidth: 3
     });
 };
 
@@ -130,6 +132,10 @@ CircleWorldPrinter.prototype.setPreviewCircle = function(circle) {
     this._previewCircle
         .set('radius', circle.getRadius())
         .set('fill', 'rgb(' + c[0] + ', ' + c[1] + ', ' + c[2] + ')');
+};
+
+CircleWorldPrinter.prototype.setBackgroundcolor = function(backgroundColor) {
+    this._canvas.setBackgroundColor('rgb(' + backgroundColor[0] + ', ' + backgroundColor[1] + ', ' + backgroundColor[2] + ')');
 };
 
 CircleWorldPrinter.prototype._calcInverseColor = function (color) {

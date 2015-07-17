@@ -44,6 +44,17 @@ CircleworldScenario.prototype._setup = function () {
     this._printer = new Printer(this._canvasId, this._options);
     this._algorithm = new CircleworldAlgorithm(this._options);
 
+    this._printCircles();
+};
+
+CircleworldScenario.prototype.setTargetColor = function(targetColor) {
+    this._algorithm.setTargetColor(targetColor);
+    this._printer.setBackgroundcolor(targetColor);
+
+    this._printCircles();
+};
+
+CircleworldScenario.prototype._printCircles = function() {
     this._printer.updateCircles(this._algorithm.getPopulation().getIndividuums());
 };
 

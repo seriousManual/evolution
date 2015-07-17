@@ -7,12 +7,24 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            var Circle = EVO.circleWorld.Circle;
+
             var circles = EVO.circleWorld.circleWorld('canvas', {
                 sizePopulation: 35,
                 maxRunTime: Infinity,
-                interval: 1000,
+                interval: 100,
                 width: 1000,
-                height: 800
+                height: 800,
+                createIndividuum: function() {
+                    var radius = parseInt(Math.random() * 50, 10);
+                    var color = [
+                        parseInt(0, 10),
+                        parseInt(0, 10),
+                        parseInt(255, 10)
+                    ];
+
+                    return new Circle(radius, color);
+                }
             });
 
             $('#calc').click(function () {

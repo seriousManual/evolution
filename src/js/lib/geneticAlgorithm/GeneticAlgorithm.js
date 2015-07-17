@@ -98,6 +98,16 @@ GeneticAlgorithm.prototype.run = function () {
     }
 };
 
+GeneticAlgorithm.prototype.evaluatePopulation = function() {
+    var that = this;
+
+    this._population.getIndividuums().forEach(function(individuum) {
+        individuum.setFitness(that.calculateFitness(individuum));
+    });
+
+    this._population.sort();
+};
+
 GeneticAlgorithm.prototype._runByInterval = function () {
     this._intervalHandle = setInterval(this._step.bind(this), this._interval);
     this._step();
