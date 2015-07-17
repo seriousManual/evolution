@@ -82,7 +82,7 @@ CircleWorldPrinter.prototype._createRenderObject = function (x, y) {
 
 CircleWorldPrinter.prototype._createTextObject = function(text, x, y) {
     return new fabric.Text(text, {
-        fontFamily: 'Comic Sans',
+        fontFamily: 'Comic Sans MS',
         fontSize: 25,
         fill: 'rgb(255, 255, 255)',
         left: x,
