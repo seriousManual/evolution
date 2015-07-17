@@ -50,20 +50,20 @@ CircleWorldPrinter.prototype._init = function () {
 };
 
 CircleWorldPrinter.prototype._buildPreview = function() {
-    this._previewCircle = this._createCircle(this._options.width - this._paddingRight + 200, 150);
+    this._previewCircle = this._createCircle(this._options.width - this._paddingRight + 200, 140);
     this._canvas.add(this._previewCircle);
 
     var rect = new fabric.Rect({
         left: this._options.width - this._paddingRight + 100,
-        top: this._padding,
+        top: this._padding + 15,
         fill: 'transparent',
         stroke: 'rgb(255, 255, 255)',
         width: this._paddingRight - 150,
-        height: 200
+        height: 150
     });
     this._canvas.add(rect);
 
-    var text = this._createTextObject('Preview', this._options.width - this._paddingRight + 120, this._padding - 15);
+    var text = this._createTextObject('The New Candidate', this._options.width - this._paddingRight + 200, this._padding);
     this._canvas.add(text);
 };
 
