@@ -37,7 +37,7 @@ Circle.prototype.recombinate = function (circle) {
     var myColor = this.getColor();
     var circleColor = circle.getColor();
 
-    var newRadius = (this.getRadius() + circle.getRadius()) / 2;
+    var newRadius = parseInt((this.getRadius() + circle.getRadius()) / 2, 10);
     var newColor = [
         parseInt((myColor[0] + circleColor[0]) / 2, 10),
         parseInt((myColor[1] + circleColor[1]) / 2, 10),
@@ -61,16 +61,16 @@ Circle.prototype.mutate = function () {
 };
 
 Circle.prototype._mutate = function(value) {
-    if (Math.random() > 0.7) {
-        var a = 1;
-        if (Math.random() < 0.5) {
-            a = -1;
-        }
-        var b = Math.max(1, parseInt((Math.random() * Math.random() * 10) * a + value, 10))
-        return b;
+    var modificator = 1;
+    if (Math.random() < 0.5) {
+        modificator = -1;
     }
+    var deltaAbs = Math.random() * Math.random() * 50;
+    var delta = deltaAbs * modificator;
+    var newvalue = delta +  value;
+    var b = Math.max(1, parseInt(newvalue, 10));
 
-    return value;
+    return b;
 };
 
 module.exports = Circle;

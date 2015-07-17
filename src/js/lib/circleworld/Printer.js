@@ -14,16 +14,18 @@ function CircleWorldPrinter(canvasId, options) {
         height: options.height
     });
 
+    this._padding = 50;
+    this._paddingRight = 350;
+
     this._init();
 }
 
 CircleWorldPrinter.prototype._init = function () {
     var number = this._options.sizePopulation;
     var squareSize = Math.ceil(Math.sqrt(number));
-    var padding = 50;
 
-    var availableWidth = this._options.width - (padding * 2);
-    var availableHeight = this._options.height - (padding * 2);
+    var availableWidth = this._options.width - this._padding - this._paddingRight;
+    var availableHeight = this._options.height - (this._padding * 2);
 
     var rasterX = availableWidth / (squareSize - 1);
     var rasterY = availableHeight / (squareSize - 1);
@@ -35,18 +37,64 @@ CircleWorldPrinter.prototype._init = function () {
                 break outerLoop;
             }
 
-            var xPosition = padding + xIndex * rasterX;
-            var yPosition = padding + yIndex * rasterY;
+            var xPosition = this._padding + xIndex * rasterX;
+            var yPosition = this._padding + yIndex * rasterY;
 
             this._createRenderObject(xPosition, yPosition);
 
             count++;
         }
     }
+
+    this._buildPreview();
+};
+
+CircleWorldPrinter.prototype._buildPreview = function() {
+    this._previewCircle = this._createCircle(this._options.width - this._paddingRight + 200, 150);
+    this._canvas.add(this._previewCircle);
+
+    var rect = new fabric.Rect({
+        left: this._options.width - this._paddingRight + 100,
+        top: this._padding,
+        fill: 'transparent',
+        stroke: 'rgb(255, 255, 255)',
+        width: this._paddingRight - 150,
+        height: 200
+    });
+    this._canvas.add(rect);
+
+    var text = this._createTextObject('Preview', this._options.width - this._paddingRight + 120, this._padding - 15);
+    this._canvas.add(text);
 };
 
 CircleWorldPrinter.prototype._createRenderObject = function (x, y) {
-    var circleObject = new fabric.Circle({
+    var circleObject = this._createCircle(x, y);
+    this._canvas.add(circleObject);
+    this._circles.push(circleObject);
+
+    var textObject = this._createTextObject('', x, y);
+    this._canvas.add(textObject);
+    this._texts.push(textObject);
+
+    this._canvas.renderAll();
+
+};
+
+CircleWorldPrinter.prototype._createTextObject = function(text, x, y) {
+    return new fabric.Text(text, {
+        fontFamily: 'Comic Sans',
+        fontSize: 25,
+        fill: 'rgb(255, 255, 255)',
+        left: x,
+        top: y + 2,
+        originX: 'center',
+        originY: 'center',
+        selectable: false
+    });
+};
+
+CircleWorldPrinter.prototype._createCircle = function(x, y) {
+    return new fabric.Circle({
         radius: 5,
         left: x,
         top: y,
@@ -55,23 +103,6 @@ CircleWorldPrinter.prototype._createRenderObject = function (x, y) {
         originY: 'center',
         fill: 'rgb(255, 0, 0)'
     });
-    this._canvas.add(circleObject);
-    this._circles.push(circleObject);
-
-    var textObject = new fabric.Text('0', {
-        fontFamily: 'Comic Sans',
-        fontSize: 25,
-        fill: 'rgb(255, 255, 255)',
-        left: x,
-        top: y + 2,
-        originX: 'center',
-        originY: 'center'
-    });
-    this._canvas.add(textObject);
-    this._texts.push(textObject);
-
-    this._canvas.renderAll();
-
 };
 
 CircleWorldPrinter.prototype.updateCircles = function (circlesList) {
@@ -91,6 +122,14 @@ CircleWorldPrinter.prototype.updateCircles = function (circlesList) {
     });
 
     this._canvas.renderAll();
+};
+
+CircleWorldPrinter.prototype.setPreviewCircle = function(circle) {
+    var c = circle.getColor();
+
+    this._previewCircle
+        .set('radius', circle.getRadius())
+        .set('fill', 'rgb(' + c[0] + ', ' + c[1] + ', ' + c[2] + ')');
 };
 
 CircleWorldPrinter.prototype._calcInverseColor = function (color) {

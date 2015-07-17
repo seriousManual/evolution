@@ -129,6 +129,7 @@ GeneticAlgorithm.prototype._step = function () {
     if (population.fitsIn(child)) {
         population.replaceLastIndividuum(child);
         this._samplerHit.sample();
+        this.emit('populationImprovement', population);
     } else {
         this._samplerMiss.sample();
     }
