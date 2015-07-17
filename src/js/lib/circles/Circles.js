@@ -1,7 +1,7 @@
 var util = require('util');
 
 var GeneticAlgorithm = require('../geneticAlgorithm/GeneticAlgorithm');
-var Population = require('./Population');
+var Population = require('../geneticAlgorithm/Population');
 var Circle = require('./Circle');
 
 function Circles(options) {
