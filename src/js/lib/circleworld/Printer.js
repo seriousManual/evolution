@@ -8,14 +8,15 @@ function CircleWorldPrinter(canvasId, options) {
     this._circles = [];
     this._texts = [];
 
+    this._backgroundColor = this._options.backgroundColor || [255, 0, 0];
+    this._padding = 50;
+    this._paddingRight = 350;
+
     this._canvas = new fabric.Canvas(canvasId, {
-        backgroundColor: 'rgb(0, 0, 0)',
+        backgroundColor: this._buildColorString(this._backgroundColor),
         width: options.width,
         height: options.height
     });
-
-    this._padding = 50;
-    this._paddingRight = 350;
 
     this._init();
 }
@@ -57,7 +58,7 @@ CircleWorldPrinter.prototype._buildPreview = function() {
         left: this._options.width - this._paddingRight + 100,
         top: this._padding + 15,
         fill: 'transparent',
-        stroke: 'rgb(255, 255, 255)',
+        stroke: this._buildColorString([255, 255, 255]),
         width: this._paddingRight - 150,
         height: 150
     });
@@ -84,7 +85,7 @@ CircleWorldPrinter.prototype._createTextObject = function(text, x, y) {
     return new fabric.Text(text, {
         fontFamily: 'Comic Sans MS',
         fontSize: 25,
-        fill: 'rgb(255, 255, 255)',
+        fill: this._buildColorString([255, 255, 255]),
         left: x,
         top: y + 2,
         originX: 'center',
@@ -101,8 +102,8 @@ CircleWorldPrinter.prototype._createCircle = function(x, y) {
         selectable: false,
         originX: 'center',
         originY: 'center',
-        fill: 'rgb(255, 0, 0)',
-        stroke: 'rgb(255, 255, 255)',
+        fill: this._buildColorString([255, 255, 255]),
+        stroke: this._buildColorString([255, 255, 255]),
         strokeWidth: 3
     });
 };
@@ -116,11 +117,12 @@ CircleWorldPrinter.prototype.updateCircles = function (circlesList) {
 
         that._circles[index]
             .set('radius', circle.getRadius())
-            .set('fill', 'rgb(' + c[0] + ', ' + c[1] + ', ' + c[2] + ')');
+            .set('fill', that._buildColorString(c))
+//            .set('stroke', that._buildColorString(that._calcComplementaryColor(c)));
 
         that._texts[index]
             .set('text', circle.getFitness() + '')
-            .set('fill', 'rgb(' + inverseColor[0] + ', ' + inverseColor[1] + ', ' + inverseColor[2] + ')');
+            .set('fill', that._buildColorString(inverseColor));
     });
 
     this._canvas.renderAll();
@@ -131,11 +133,12 @@ CircleWorldPrinter.prototype.setPreviewCircle = function(circle) {
 
     this._previewCircle
         .set('radius', circle.getRadius())
-        .set('fill', 'rgb(' + c[0] + ', ' + c[1] + ', ' + c[2] + ')');
+        .set('fill', this._buildColorString(c));
 };
 
 CircleWorldPrinter.prototype.setBackgroundcolor = function(backgroundColor) {
-    this._canvas.setBackgroundColor('rgb(' + backgroundColor[0] + ', ' + backgroundColor[1] + ', ' + backgroundColor[2] + ')');
+    this._canvas.setBackgroundColor(this._buildColorString(backgroundColor));
+    this._backgroundColorComplementary = this._calcComplementaryColor(backgroundColor);
 };
 
 CircleWorldPrinter.prototype._calcInverseColor = function (color) {
@@ -146,6 +149,18 @@ CircleWorldPrinter.prototype._calcInverseColor = function (color) {
     } else {
         return [255, 255, 255];
     }
+};
+
+CircleWorldPrinter.prototype._calcComplementaryColor = function(color) {
+    return [
+        Math.abs(255 - color[0]),
+        Math.abs(255 - color[1]),
+        Math.abs(255 - color[2])
+    ];
+};
+
+CircleWorldPrinter.prototype._buildColorString = function(color) {
+    return 'rgb(' + color[0] + ', ' + color[1] + ', ' + color[2] + ')';
 };
 
 module.exports = CircleWorldPrinter;
