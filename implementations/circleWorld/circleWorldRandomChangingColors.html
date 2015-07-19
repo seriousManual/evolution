@@ -16,7 +16,7 @@
             ];
 
             var circles = EVO.circleWorld.circleWorld('canvas', {
-                sizePopulation: 35,
+                sizePopulation: 36,
                 backgroundColor: currentTargetColor,
                 maxRunTime: Infinity,
                 interval: 100,
@@ -45,7 +45,7 @@
 
                 console.log(currentTargetColor);
                 circles.setTargetColor(currentTargetColor);
-            }, 300);
+            }, 100);
 
             function mutate(c) {
                 var mod = Math.random() > 0.5 ? 1 : -1;
