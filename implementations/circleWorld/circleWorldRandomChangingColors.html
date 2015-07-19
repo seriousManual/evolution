@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Circleworld</title>
+    <script src="../../build/vendor.js" type="text/javascript"></script>
+    <script src="../../build/app.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var Circle = EVO.circleWorld.Circle;
+
+            var currentTargetColor = [
+                parseInt(Math.random() * 255, 10),
+                parseInt(Math.random() * 255, 10),
+                parseInt(Math.random() * 255, 10)
+            ];
+
+            var circles = EVO.circleWorld.circleWorld('canvas', {
+                sizePopulation: 35,
+                backgroundColor: currentTargetColor,
+                maxRunTime: Infinity,
+                interval: 100,
+                width: 1000,
+                height: 800
+            });
+
+            $('#calc').click(function () {
+                circles.run();
+            });
+
+            $('#restart').click(function () {
+                circles.restart();
+            });
+
+            $('#reset').click(function () {
+                circles.reset();
+            });
+
+            setInterval(function() {
+                currentTargetColor = [
+                    mutate(currentTargetColor[0]),
+                    mutate(currentTargetColor[1]),
+                    mutate(currentTargetColor[2])
+                ];
+
+                console.log(currentTargetColor);
+                circles.setTargetColor(currentTargetColor);
+            }, 300);
+
+            function mutate(c) {
+                var mod = Math.random() > 0.5 ? 1 : -1;
+                var delta = parseInt(mod * Math.random() * 8, 10);
+
+                return Math.min(255, Math.max(0, c + delta));
+            }
+        });
+    </script>
+
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <br>
+    <input type="button" id="calc" value="calc"> <input type="button" id="restart" value="restart"> <input type="button" id="reset" value="reset">
+</body>
+</html>
