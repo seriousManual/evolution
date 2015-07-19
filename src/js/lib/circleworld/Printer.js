@@ -138,7 +138,6 @@ CircleWorldPrinter.prototype.setPreviewCircle = function(circle) {
 
 CircleWorldPrinter.prototype.setBackgroundcolor = function(backgroundColor) {
     this._canvas.setBackgroundColor(this._buildColorString(backgroundColor));
-    this._backgroundColorComplementary = this._calcComplementaryColor(backgroundColor);
 };
 
 CircleWorldPrinter.prototype._calcInverseColor = function (color) {
