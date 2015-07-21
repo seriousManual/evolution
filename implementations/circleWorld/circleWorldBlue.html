@@ -16,14 +16,7 @@
                 width: 1000,
                 height: 800,
                 createIndividuum: function() {
-                    var radius = parseInt(Math.random() * 50, 10);
-                    var color = [
-                        parseInt(0, 10),
-                        parseInt(0, 10),
-                        parseInt(255, 10)
-                    ];
-
-                    return new Circle(radius, color);
+                    return new Circle(parseInt(Math.random() * 50, 10), [0, 0, 255]);
                 }
             });
 
