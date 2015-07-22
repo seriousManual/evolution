@@ -14,7 +14,7 @@
             var tsp = EVO.tspWebworker('tspCanvas', {
                 sizePopulation: 100,
                 maxRunTime: Infinity,
-                interval: 1,
+                interval: 'fast',
                 childCheck: false,
                 width: width,
                 height: height
@@ -33,7 +33,6 @@
 </head>
 <body>
     <canvas id="tspCanvas"></canvas>
-    <br>
     <input type="button" id="calc" value="calc"><br>
 </body>
 </html>

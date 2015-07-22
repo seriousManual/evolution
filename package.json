@@ -28,7 +28,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-util": "^3.0.6",
     "rimraf": "^2.4.2",
-    "run-sequence": "^1.0.1",
+    "run-sequence": "^1.1.2",
     "webworkify": "^1.0.2"
   }
 }

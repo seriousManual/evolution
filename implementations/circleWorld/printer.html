@@ -7,6 +7,18 @@
     <script src="../../build/app.js" type="text/javascript"></script>
 
     <script type="text/javascript">
+        var myRandomCircle = {
+            getRadius: function() {
+                return parseInt(Math.random() * 30 + 10, 10);
+            },
+            getColor: function() {
+                return [parseInt(Math.random() * 255, 10), parseInt(Math.random() * 255, 10), parseInt(Math.random() * 255, 10)];
+            },
+            getFitness: function() {
+                return Math.round(Math.random() * 100);
+            }
+        };
+
         $(document).ready(function() {
             var number = 25;
 
@@ -18,17 +30,7 @@
 
             var list = [];
             for (var i = 0; i < number; i++) {
-                list.push({
-                    getRadius: function() {
-                        return parseInt(Math.random() * 30 + 10, 10);
-                    },
-                    getColor: function() {
-                        return [parseInt(Math.random() * 255, 10), parseInt(Math.random() * 255, 10), parseInt(Math.random() * 255, 10)];
-                    },
-                    getFitness: function() {
-                        return Math.round(Math.random() * 100);
-                    }
-                })
+                list.push(myRandomCircle);
             }
 
             setInterval(function() {
@@ -38,6 +40,6 @@
     </script>
 </head>
 <body>
-    <canvas id="fooCanvas"></canvas>
+<canvas id="fooCanvas"></canvas>
 </body>
 </html>
