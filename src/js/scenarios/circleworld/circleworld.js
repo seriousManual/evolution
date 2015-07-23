@@ -44,6 +44,10 @@ CircleworldScenario.prototype._setup = function () {
     this._printer = new Printer(this._canvasId, this._options);
     this._algorithm = new CircleworldAlgorithm(this._options);
 
+    if (this._options.targetColor) {
+        this._printer.setBackgroundcolor(this._options.targetColor);
+    }
+
     this._printCircles();
 };
 
