@@ -52,11 +52,11 @@ gulp.task('staticserve', function (callback) {
     var port = 8080;
 
     express()
-        .use(express.static(require('path').join(__dirname, 'presentation')))
+        .use(express.static(__dirname))
         .listen(port, function(error) {
             if (error) throw new Error(error);
 
-            console.log('static server running, visit http://localhost:' + port + '/presentation.html');
+            console.log('static server running, visit http://localhost:' + port + '/presentation/presentation.html');
 
             callback();
         });
@@ -77,9 +77,9 @@ gulp.task('build', function (callback) {
 });
 
 gulp.task('presentation', function (callback) {
-    sequence('clean','reveal', 'staticserve', callback);
+    sequence('build', 'staticserve', callback);
 });
 
 function build (callback) {
-    sequence('clean', ['libscripts', 'scripts'], callback);
+    sequence('clean', ['libscripts', 'scripts', 'reveal'], callback);
 }
