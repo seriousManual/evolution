@@ -1,3 +1,4 @@
+var express = require('express');
 var gulp = require('gulp');
 var bower = require('gulp-bower');
 var concat = require('gulp-concat');
@@ -7,10 +8,15 @@ var sequence = require('run-sequence');
 var gutil = require('gulp-util');
 
 var SOURCE_DIR = 'src';
-var TARGET_DIR = 'build';
+var BUILD_TARGET_DIR = 'build';
+var REVEAL_TARGET_DIR = 'presentation/reveal';
 
 gulp.task('clean', function (callback) {
-    rimraf(TARGET_DIR, callback);
+    rimraf(BUILD_TARGET_DIR, function (error) {
+        if (error) return callback(error);
+
+        rimraf(REVEAL_TARGET_DIR, callback);
+    });
 });
 
 ////////////////////////////////////////////////////// script //////////////////////////////////////////////////
@@ -19,7 +25,7 @@ gulp.task('scripts', function () {
     return gulp
         .src(SOURCE_DIR + '/js/app.js')
         .pipe(browserify()).on('error', gutil.log)
-        .pipe(gulp.dest(TARGET_DIR));
+        .pipe(gulp.dest(BUILD_TARGET_DIR));
 });
 
 gulp.task('bower_components', function () {
@@ -32,7 +38,28 @@ gulp.task('libscripts', ['bower_components'], function () {
         'bower_components/fabric/dist/fabric.min.js'
     ])
         .pipe(concat('vendor.js'))
-        .pipe(gulp.dest(TARGET_DIR));
+        .pipe(gulp.dest(BUILD_TARGET_DIR));
+});
+
+////////////////////////////////////////////////////// presentation //////////////////////////////////////////////////
+
+gulp.task('reveal', ['libscripts'], function () {
+    return gulp.src('bower_components/reveal.js/**')
+        .pipe(gulp.dest(REVEAL_TARGET_DIR));
+});
+
+gulp.task('staticserve', function (callback) {
+    var port = 8080;
+
+    express()
+        .use(express.static(require('path').join(__dirname, 'presentation')))
+        .listen(port, function(error) {
+            if (error) throw new Error(error);
+
+            console.log('static server running, visit http://localhost:' + port + '/presentation.html');
+
+            callback();
+        });
 });
 
 ////////////////////////////////////////////////////// manage //////////////////////////////////////////////////
@@ -49,6 +76,10 @@ gulp.task('build', function (callback) {
     build(callback);
 });
 
-function build(callback) {
+gulp.task('presentation', function (callback) {
+    sequence('clean','reveal', 'staticserve', callback);
+});
+
+function build (callback) {
     sequence('clean', ['libscripts', 'scripts'], callback);
 }

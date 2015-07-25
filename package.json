@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "node .\\node_modules\\gulp\\bin\\gulp.js build",
-    "dev": "npm i && npm prune && npm outdated --depth=0 && node .\\node_modules\\gulp\\bin\\gulp.js dev"
+    "dev": "node .\\node_modules\\gulp\\bin\\gulp.js dev",
+    "install": "npm i && npm prune && npm outdated --depth=0",
+    "presentation": "node .\\node_modules\\gulp\\bin\\gulp.js presentation"
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,7 @@
   },
   "homepage": "https://github.com/seriousManual/evolution",
   "devDependencies": {
+    "express": "^4.13.1",
     "gulp": "^3.8.6",
     "gulp-bower": "0.0.10",
     "gulp-browserify": "^0.5.0",
