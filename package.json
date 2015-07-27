@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node .\\node_modules\\gulp\\bin\\gulp.js build",
     "dev": "node .\\node_modules\\gulp\\bin\\gulp.js dev",
-    "install": "npm i && npm prune && npm outdated --depth=0",
+    "setup": "npm i && npm prune && npm outdated --depth=0",
     "presentation": "node .\\node_modules\\gulp\\bin\\gulp.js presentation"
   },
   "repository": {
