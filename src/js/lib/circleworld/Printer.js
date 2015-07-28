@@ -68,7 +68,8 @@ CircleWorldPrinter.prototype._buildPreview = function() {
         stroke: this._buildColorString([255, 255, 255]),
         strokeWidth: 3,
         width: this._paddingRight - 150,
-        height: 600
+        height: 600,
+        selectable: false
     });
     this._canvas.add(rect);
 

@@ -40,6 +40,10 @@ CircleworldScenario.prototype.restart = function () {
     this.run();
 };
 
+CircleworldScenario.prototype.setInterval = function(interval) {
+    this._algorithm.setInterval(interval);
+};
+
 CircleworldScenario.prototype._setup = function () {
     this._printer = new Printer(this._canvasId, this._options);
     this._algorithm = new CircleworldAlgorithm(this._options);

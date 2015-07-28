@@ -3,7 +3,9 @@ var Emitter = require('events').EventEmitter;
 
 var Sampler = require('../Sampler');
 
-function GeneticAlgorithm(options) {
+var MARKER_FAST = 'fast';
+
+function GeneticAlgorithm (options) {
     var that = this;
     options = options || {};
 
@@ -78,17 +80,17 @@ GeneticAlgorithm.prototype.calculateFitness = function () {
 };
 
 GeneticAlgorithm.prototype.run = function () {
-    if (this._interval == 'fast') {
+    if (this._interval == MARKER_FAST) {
         this._runFast();
     } else {
         this._runByInterval();
     }
 };
 
-GeneticAlgorithm.prototype.evaluatePopulation = function() {
+GeneticAlgorithm.prototype.evaluatePopulation = function () {
     var that = this;
 
-    this._population.getIndividuums().forEach(function(individuum) {
+    this._population.getIndividuums().forEach(function (individuum) {
         individuum.setFitness(that.calculateFitness(individuum));
     });
 
@@ -96,6 +98,10 @@ GeneticAlgorithm.prototype.evaluatePopulation = function() {
 };
 
 GeneticAlgorithm.prototype._runByInterval = function () {
+    if (this._intervalHandle) {
+        clearInterval(this._intervalHandle);
+    }
+
     this._intervalHandle = setInterval(this._step.bind(this), this._interval);
     this._step();
 };
@@ -153,6 +159,15 @@ GeneticAlgorithm.prototype.terminate = function () {
     this._samplerMiss.stop();
 
     this.emit('terminated', this.getPopulation());
+};
+
+GeneticAlgorithm.prototype.setInterval = function (interval) {
+    if (this._interval == MARKER_FAST) {
+        return;
+    }
+
+    this._interval = interval;
+    this._runByInterval();
 };
 
 module.exports = GeneticAlgorithm;
