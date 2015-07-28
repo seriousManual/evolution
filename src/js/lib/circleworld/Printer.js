@@ -5,6 +5,9 @@ var Circle = require('./Circle');
 function CircleWorldPrinter(canvasId, options) {
     this._options = options || {};
 
+    this._previewCircle = null;
+    this._parent1Circle = null;
+    this._parent2Circle = null;
     this._circles = [];
     this._texts = [];
 
@@ -51,20 +54,32 @@ CircleWorldPrinter.prototype._init = function () {
 };
 
 CircleWorldPrinter.prototype._buildPreview = function() {
-    this._previewCircle = this._createCircle(this._options.width - this._paddingRight + 200, 140);
+    this._parent1Circle = this._createCircle(this._options.width - this._paddingRight + 200, 140);
+    this._parent2Circle = this._createCircle(this._options.width - this._paddingRight + 200, 300);
+    this._previewCircle = this._createCircle(this._options.width - this._paddingRight + 200, 550);
     this._canvas.add(this._previewCircle);
+    this._canvas.add(this._parent1Circle);
+    this._canvas.add(this._parent2Circle);
 
     var rect = new fabric.Rect({
         left: this._options.width - this._paddingRight + 100,
         top: this._padding + 15,
         fill: 'transparent',
         stroke: this._buildColorString([255, 255, 255]),
+        strokeWidth: 3,
         width: this._paddingRight - 150,
-        height: 150
+        height: 600
     });
     this._canvas.add(rect);
 
-    var text = this._createTextObject('The New Candidate', this._options.width - this._paddingRight + 200, this._padding);
+    this._canvas.add(new fabric.Line([50, 10, 250, 10], {
+        left: 750,
+        top: 440,
+        stroke: 'white',
+        strokeWidth: 3
+    }));
+
+    var text = this._createTextObject('Recombination', this._options.width - this._paddingRight + 200, this._padding);
     this._canvas.add(text);
 };
 
@@ -128,12 +143,18 @@ CircleWorldPrinter.prototype.updateCircles = function (circlesList) {
     this._canvas.renderAll();
 };
 
-CircleWorldPrinter.prototype.setPreviewCircle = function(circle) {
-    var c = circle.getColor();
-
+CircleWorldPrinter.prototype.setPreviewCircle = function(newChildCircle, parent1Circle, parent2Circle) {
     this._previewCircle
-        .set('radius', circle.getRadius())
-        .set('fill', this._buildColorString(c));
+        .set('radius', newChildCircle.getRadius())
+        .set('fill', this._buildColorString(newChildCircle.getColor()));
+
+    this._parent1Circle
+        .set('radius', parent1Circle.getRadius())
+        .set('fill', this._buildColorString(parent1Circle.getColor()));
+
+    this._parent2Circle
+        .set('radius', parent2Circle.getRadius())
+        .set('fill', this._buildColorString(parent2Circle.getColor()));
 };
 
 CircleWorldPrinter.prototype.setBackgroundcolor = function(backgroundColor) {

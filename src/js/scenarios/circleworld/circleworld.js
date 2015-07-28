@@ -21,8 +21,8 @@ CircleworldScenario.prototype.run = function () {
         that._printer.updateCircles(that._algorithm.getPopulation().getIndividuums());
     });
 
-    this._algorithm.on('childCheck', function(child) {
-        that._printer.setPreviewCircle(child);
+    this._algorithm.on('childCheck', function(child, parent1, parent2) {
+        that._printer.setPreviewCircle(child, parent1, parent2);
     });
 
     this._algorithm.on('rate', function (rate) {
