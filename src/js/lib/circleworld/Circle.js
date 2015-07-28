@@ -75,6 +75,7 @@ Circle.prototype._mutate = function(value) {
         modificator = -1;
     }
     var deltaAbs = Math.random() * Math.random() * 50;
+
     var delta = deltaAbs * modificator;
     var newvalue = delta +  value;
     var b = Math.max(1, parseInt(newvalue, 10));
