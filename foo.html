@@ -1,0 +1,78 @@
+<script type="text/javascript">
+    function combinations1(arr, size) {
+        var len = arr.length;
+
+        if (size > len) return [];
+        if (!size) return [[]];
+        if (size == len) return [arr];
+
+        return arr.reduce(function (acc, val, i) {
+            var res = combinations1(arr.slice(i + 1), size - 1)
+                    .map(function (comb) {
+                        return [val].concat(comb);
+                    });
+
+            return acc.concat(res);
+        }, []);
+    }
+
+    function combinations2(arr) {
+        var result = [];
+        for (var i = 0; i <= arr.length; i++) {
+            for (var x = i + 1; x <= arr.length - i; x++) {
+                result.push([arr[i], arr[x]]);
+            }
+        }
+
+        return result;
+    }
+
+    var combs = combinations1([1,2,3,4,5], 2);
+
+    console.time('f');
+    console.log(combs);
+    console.timeEnd('f');
+
+    var c0 = {
+        getX: function() { return 0; },
+        getY: function() { return 0; }
+    };
+
+    var c1 = {
+        getX: function() { return 10; },
+        getY: function() { return 10; }
+    };
+
+    var c2 = {
+        getX: function() { return 0; },
+        getY: function() { return 10; }
+    };
+
+    var c3 = {
+        getX: function() { return 10; },
+        getY: function() { return 0; }
+    };
+
+    console.time('isCrossing');
+    console.log(isCrossing([c0, c1], [c2, c3]));
+    console.timeEnd('isCrossing');
+    console.log(build([c0, c1]));
+
+    function isCrossing(a, b) {
+        var l1 = build(a);
+        var l2 = build(b);
+
+        var i = intersectX(l1, l2);
+    }
+
+    function build(a) {
+        var m = (a[0].getY() - a[1].getY()) / (a[0].getX() - a[1].getX())
+        var t = a[0].getY() - m * a[0].getX();
+
+        return {m: m, t: t};
+    }
+
+    function intersectX(l1, l2) {
+        return (l1.m - l2.m) / (l2.t - l1.t);
+    }
+</script>

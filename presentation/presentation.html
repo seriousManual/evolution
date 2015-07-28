@@ -106,6 +106,29 @@
             </section>
 
             <section>
+                <h2>Algorithm</h2>
+                <pre class="highlight" style="font-size:28px">
+Create Population
+
+While True
+    <span class="fragment zoom-in">Choose Parents</span>
+
+    <span class="fragment zoom-in">Combinate Parents (Recombination)</span>
+
+    <span class="fragment zoom-in">Mutate Offspring (Mutation)</span>
+
+    <span class="fragment zoom-in">Rate Offspring (Fitness)</span>
+
+    <span class="fragment zoom-in">Add Offspring to Population</span>
+
+    <span class="fragment zoom-in">Remove Unfittest Individual (Selection)</span>
+
+    <span class="fragment zoom-in">If Termination Criterion Is Met: End Loop</span>
+Next
+                </pre>
+            </section>
+
+            <section>
                 <iframe src="../implementations/circleWorld/circleWorld.html" width="1000" height="900"></iframe>
             </section>
 
@@ -233,7 +256,11 @@ function linkify( selector ) {
                 { src: 'reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
                 { src: 'reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
                 { src: 'reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                { src: 'reveal/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: 'reveal/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() {
+                    [].forEach.call( document.querySelectorAll( '.highlight' ), function( v, i) {
+                        hljs.highlightBlock(v);
+                    });
+                } },
                 { src: 'reveal/plugin/zoom-js/zoom.js', async: true },
                 { src: 'reveal/plugin/notes/notes.js', async: true }
             ]
