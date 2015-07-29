@@ -3,7 +3,9 @@ var Emitter = require('events').EventEmitter;
 
 var Sampler = require('../Sampler');
 
-function GeneticAlgorithm(options) {
+var MARKER_FAST = 'fast';
+
+function GeneticAlgorithm (options) {
     var that = this;
     options = options || {};
 
@@ -11,6 +13,7 @@ function GeneticAlgorithm(options) {
 
     this._population = null;
     this._interval = options.interval || 1000;
+    this._withMutation = options.withMutation !== false;
     this._intervalHandle = null;
     this._numberRuns = 0;
 
@@ -51,19 +54,6 @@ GeneticAlgorithm.prototype.termCriterium = function () {
     var cnt = poplation.getSize() * 0.8;
     var maxFitness = poplation.maxFitness();
 
-    //var a = individuums.reduce(function(carry, i) {
-    //    if (!carry[i.getFitness()]) carry[i.getFitness()] = 0;
-    //
-    //    carry[i.getFitness()]++;
-    //    return carry;
-    //}, {});
-    //
-    //Object.keys(a).forEach(function(key) {
-    //    console.log(key, a[key]);
-    //});
-    //
-    //console.log('---------');
-
     for (var i = 0; i < cnt; i++) {
         var individuum = individuums[i];
         if (individuum.getFitness() !== maxFitness) {
@@ -91,17 +81,17 @@ GeneticAlgorithm.prototype.calculateFitness = function () {
 };
 
 GeneticAlgorithm.prototype.run = function () {
-    if (this._interval == 'fast') {
+    if (this._interval == MARKER_FAST) {
         this._runFast();
     } else {
         this._runByInterval();
     }
 };
 
-GeneticAlgorithm.prototype.evaluatePopulation = function() {
+GeneticAlgorithm.prototype.evaluatePopulation = function () {
     var that = this;
 
-    this._population.getIndividuums().forEach(function(individuum) {
+    this._population.getIndividuums().forEach(function (individuum) {
         individuum.setFitness(that.calculateFitness(individuum));
     });
 
@@ -109,6 +99,10 @@ GeneticAlgorithm.prototype.evaluatePopulation = function() {
 };
 
 GeneticAlgorithm.prototype._runByInterval = function () {
+    if (this._intervalHandle) {
+        clearInterval(this._intervalHandle);
+    }
+
     this._intervalHandle = setInterval(this._step.bind(this), this._interval);
     this._step();
 };
@@ -131,10 +125,12 @@ GeneticAlgorithm.prototype._step = function () {
     var bestIndividuum = population.getFirst();
 
     var child = parents[0].recombinate(parents[1]);
-    child.mutate();
+    if (this._withMutation) {
+        child.mutate();
+    }
     child.setFitness(this.calculateFitness(child));
 
-    this.emit('childCheck', child);
+    this.emit('childCheck', child, parents[0], parents[1]);
 
     if (population.fitsIn(child)) {
         population.replaceLastIndividuum(child);
@@ -166,6 +162,15 @@ GeneticAlgorithm.prototype.terminate = function () {
     this._samplerMiss.stop();
 
     this.emit('terminated', this.getPopulation());
+};
+
+GeneticAlgorithm.prototype.setInterval = function (interval) {
+    if (this._interval == MARKER_FAST) {
+        return;
+    }
+
+    this._interval = interval;
+    this._runByInterval();
 };
 
 module.exports = GeneticAlgorithm;

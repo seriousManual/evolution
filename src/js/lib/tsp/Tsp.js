@@ -45,17 +45,20 @@ Tsp.prototype._createPopulation = function () {
 
 Tsp.prototype.calculateFitness = function (child) {
     var order = child.getCityOrder();
+    var prevCity = this._cities[order[order.length - 1]];
 
-    var length = 0;
-    var prevCityIndex = order[order.length - 1];
-    var prevCity = this._cities[prevCityIndex];
-
+    var pairs = [];
     for (var i = 0; i < order.length; i++) {
         var city = this._cities[order[i]];
-        length += prevCity.distance(city);
+
+        pairs.push([prevCity, city]);
 
         prevCity = city;
     }
+
+    var length = pairs.reduce(function(carry, pair) {
+        return (carry + pair[0].distance(pair[1]));
+    }, 0);
 
     return length;
 };

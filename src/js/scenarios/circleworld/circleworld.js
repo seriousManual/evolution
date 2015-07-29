@@ -21,8 +21,8 @@ CircleworldScenario.prototype.run = function () {
         that._printer.updateCircles(that._algorithm.getPopulation().getIndividuums());
     });
 
-    this._algorithm.on('childCheck', function(child) {
-        that._printer.setPreviewCircle(child);
+    this._algorithm.on('childCheck', function(child, parent1, parent2) {
+        that._printer.setPreviewCircle(child, parent1, parent2);
     });
 
     this._algorithm.on('rate', function (rate) {
@@ -38,6 +38,10 @@ CircleworldScenario.prototype.reset = function () {
 CircleworldScenario.prototype.restart = function () {
     this.reset();
     this.run();
+};
+
+CircleworldScenario.prototype.setInterval = function(interval) {
+    this._algorithm.setInterval(interval);
 };
 
 CircleworldScenario.prototype._setup = function () {
