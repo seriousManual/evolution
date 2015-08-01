@@ -233,6 +233,7 @@ if outside > 0 or overlapping > 0
                     </ul>
                 </aside>
             </section>
+
             <section>
                 <h2>Circles: <em>Implementation</em></h2>
                 <iframe src="../implementations/circles/circles.html" width="1000" height="900"></iframe>
@@ -274,12 +275,58 @@ if outside > 0 or overlapping > 0
             </section>
 
             <section>
-                <h3>Travelling Salesman Problem</h3>
+                <h3>Travelling Salesman</h3>
                 <div class="imageStack" style="width:450px;height:600px;margin: 0 auto">
                     <img data-src="img/germany.png" class="fragment">
                     <img data-src="img/germany2.png" class="fragment">
                     <img data-src="img/germany3.png" class="fragment">
                 </div>
+            </section>
+
+            <section>
+                <h2>TSP: <em>Trivial</em></h2>
+                <iframe src="../implementations/tsp/tspTrivial.html" width="1000" height="420"></iframe>
+
+                <div class="fragment">
+                    13 cities: (n - 1)! / 2 combinations<br>
+                    -&gt; 239500800 possible solutions<br>
+                    @ 10k tests every second: 6.6h
+                </div>
+            </section>
+
+            <section>
+                <h2>Travelling Salesman</h2>
+
+                Possible Way:<br>
+                1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 1<br>
+                <br>
+                <div class="fragment">
+                    Parents:<br>
+                    <span style="color:green">5</span> -&gt; <span style="color:green">3</span> -&gt; <span style="color:green">1</span> -&gt; <span style="color:green">4</span> -&gt; <span style="color:green">2</span> -&gt; <span style="color:green">5</span><br>
+                    <span style="color:blue">2</span> -&gt; <span style="color:blue">4</span> -&gt; <span style="color:blue">5</span> -&gt; <span style="color:blue">3</span> -&gt; <span style="color:blue">1</span> -&gt; <span style="color:blue">2</span><br>
+                    <br>
+                </div>
+
+                <div class="fragment">
+                    Child:<br>
+                    <span style="color:green">5</span> -&gt; <span style="color:blue">4</span> -&gt; <span style="color:green">1</span> -&gt; <span style="color:blue">3 </span>-&gt; <span style="color:green">2</span> -&gt; <span style="color:green">5</span><br>
+                    <br>
+                </div>
+
+                <div class="fragment">
+                    Mutation<br>
+                    <span style="color:green">5</span> -&gt; <span style="color:blue">4</span> -&gt; <span style="color:green">1</span> -&gt; <span style="color:red">2</span> -&gt; <span style="color:red">3</span> -&gt; <span style="color:green">5</span><br>
+                </div>
+            </section>
+
+            <section>
+                <h2>Travelling Salesman</h2>
+                Fitness: The complete length of a way
+            </section>
+
+            <section>
+                <h2>Travelling Salesman</h2>
+                <iframe src="../implementations/tsp/tsp.html" width="1000" height="900"></iframe>
             </section>
         </div>
     </div>
