@@ -132,6 +132,147 @@
             <section>
                 <iframe src="../implementations/circleWorld/circleWorld.html" width="1000" height="900"></iframe>
             </section>
+
+            <section data-background="img/circles.png">
+                <h1>Circles</h1>
+                <small style="position:absolute;bottom:0;left:0"><i>source: http://blog.eagerbug.com/circles/</i></small>
+            </section>
+
+            <section>
+                <h2>Circles: <em>Description</em></h2>
+                <ul>
+                    <li class="fragment"><strong>Given:</strong> Some circles on a arbitrary playground</li>
+                    <li class="fragment">
+                        <strong>Task:</strong> Find a circle
+                        <ul>
+                            <li class="fragment">...that does not cross the playground border,</li>
+                            <li class="fragment">...that does not cross another circle</li>
+                            <li class="fragment">...that has a maximum circular area.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="imageStack" style="width:400px;height:400px;margin: 0 auto">
+                    <img data-src="img/circles1.png" class="fragment">
+                    <img data-src="img/circlesTask.png" class="fragment">
+                </div>
+            </section>
+
+            <section>
+                <h2>Circles: <em>Trivial</em></h2>
+
+                //TODO
+            </section>
+
+            <section>
+                <h2>Circles: <em>Approach</em></h2>
+                <h3>Initial Population</h3>
+                Arbitratry circles (x- and y-coordinate, radius)
+            </section>
+
+            <section>
+                <h2>Circles: <em>Approach</em></h2>
+                <h3>Fitness</h3>
+                <ul>
+                    <li class="fragment">Crossing the playground border? (<span style="color:red">Malus</span>)</li>
+                    <li class="fragment">Crossing another circle? (<span style="color:red">Malus</span>)</li>
+                    <li class="fragment">How big is the circle? (<span style="color:green">Bonus</span>)</li>
+                </ul>
+
+                <aside class="notes">
+                    <ul>
+                        <li>rating of one particular circle</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section>
+                <h2>Circles: <em>Approach</em></h2>
+                <h3>Fitness</h3>
+                <pre class="highlight" style="font-size:28px">
+<span class="fragment zoom-in">var overlapping = number of overlapping circles</span>
+<span class="fragment zoom-in">var outside = crossings with the playground border</span>
+<span class="fragment zoom-in">var area = area of the circle</span>
+<span class="fragment zoom-in">var fitness = area</span>
+<span class="fragment zoom-in">
+if outside > 0 or overlapping > 0
+    fitness = fitness * -1
+
+    <span class="fragment zoom-in">if overlapping > 0
+        fitness = fitness * 2 * overlapping;</span>
+
+    <span class="fragment zoom-in">if outside > 0
+        fitness = fitness * 4 * outside;</span></span>
+                </pre>
+            </section>
+
+            <section>
+                <h2>Circles: <em>Approach</em></h2>
+
+                <div class="fragment">
+                    <h3>Recombination</h3>
+                    <div class="fragment">
+                        Parents:<br>
+                        {<span style="color:green">x: 100</span>, <span style="color:green">y: 10</span>, <span style="color:green">radius: 7</span>}<br>
+                        {<span style="color:blue">x: 331</span>, <span style="color:blue">y: 77</span>, <span style="color:blue">radius: 50</span>}<br>
+                        <br>
+                    </div>
+                    <div class="fragment">
+                        Child:<br>
+                        {<span style="color:green">x: 100</span>, <span style="color:blue">y: 77</span>, <span style="color:blue">radius: 50</span>}<br>
+                        <br>
+                    </div>
+                </div>
+                <div class="fragment">
+                    <h3>Mutation</h3>
+                    {<span style="color:red">x: 103</span>, <span style="color:blue">y: 77</span>, <span style="color:red">radius: 49</span>}<br>
+                </div>
+                <aside class="notes">
+                    <ul>
+                        <li>feel free to check repo for implementation details</li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2>Circles: <em>Implementation</em></h2>
+                <iframe src="../implementations/circles/circles.html" width="1000" height="900"></iframe>
+            </section>
+
+            <section>
+                <h2>Charakteristics</h2>
+                The chosen approach is never the same
+                <iframe src="../implementations/circles/fourVariations.html" width="1000" height="900"></iframe>
+            </section>
+
+            <section>
+                <h2>Charakteristics</h2>
+                The choosen approach is not always the optimal one
+                <iframe src="../implementations/circles/suboptimal.html" width="1000" height="900"></iframe>
+            </section>
+
+            <section>
+                <h2>Charakteristics</h2>
+                The result is not always deterministic
+                <iframe src="../implementations/circles/vary.html" width="1000" height="900"></iframe>
+            </section>
+
+            <section>
+                <h2>Charakteristics</h2>
+                Extreme conditions
+                <iframe src="../implementations/circles/fail.html" width="1000" height="900"></iframe>
+            </section>
+
+            <section>
+                <h2>Charakteristics</h2>
+                Extreme conditions
+                <iframe src="../implementations/circles/fail2.html" width="1000" height="900"></iframe>
+            </section>
+
+            <section data-background="img/tsp.jpg">
+                <h1>Travelling Salesman Problem</h1>
+                <small style="position:absolute;bottom:0;left:0"><i>http://business-coaching-ulm24.de/seminare/burnoutberaterin.html</i></small>
+            </section>
+
         </div>
     </div>
 
@@ -147,7 +288,7 @@
             progress: true,
             history: true,
             center: true,
-
+            slideNumber: 'c / t',
             transition: 'slide', // none/fade/slide/convex/concave/zoom
 
             // Optional reveal.js plugins

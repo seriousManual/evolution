@@ -71,14 +71,14 @@ Circles.prototype.calculateFitness = function (child) {
     var rating = 1;
     if (outside > 0 || overlapping > 0) {
         rating = -1;
-    }
 
-    if (outside !== 0) {
-        rating = rating * (outside * 4);
-    }
+        if (outside > 0) {
+            rating = rating * (outside );
+        }
 
-    if (!overlapping == 0) {
-        rating = rating * (overlapping * 2);
+        if (overlapping > 0) {
+            rating = rating * (overlapping );
+        }
     }
 
     rating = rating * child.area();
