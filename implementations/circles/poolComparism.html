@@ -11,24 +11,24 @@
                 sizePopulation: 100,
                 maxRunTime: Infinity,
                 interval: 10,
-                width: 210,
-                height: 210
+                width: 200,
+                height: 200
             });
 
             var circlesMid = EVO.circles.circles('canvasMidPool', {
                 sizePopulation: 35,
                 maxRunTime: Infinity,
                 interval: 10,
-                width: 210,
-                height: 210
+                width: 200,
+                height: 200
             });
 
             var circlesLow = EVO.circles.circles('canvasLowPool', {
                 sizePopulation: 7,
                 maxRunTime: Infinity,
                 interval: 10,
-                width: 210,
-                height: 210
+                width: 200,
+                height: 200
             });
 
             circlesHigh
@@ -66,13 +66,33 @@
         });
     </script>
 
+    <style>
+        body {
+
+        }
+
+        td {
+            text-align:center;
+            color:#fff;
+            font-family:Comic Sans MS;
+        }
+    </style>
 </head>
 <body>
     <table>
         <tr>
-            <td><canvas id="canvasHighPool"></canvas></td>
-            <td><canvas id="canvasMidPool"></canvas></td>
-            <td><canvas id="canvasLowPool"></canvas></td>
+            <td>
+                <canvas id="canvasHighPool"></canvas>
+                Populationsize: 100
+            </td>
+            <td>
+                <canvas id="canvasMidPool"></canvas>
+                Populationsize: 35
+            </td>
+            <td>
+                <canvas id="canvasLowPool"></canvas>
+                Populationsize: 7
+            </td>
         </tr>
     </table>
     <br>

@@ -9,9 +9,13 @@ function Tsp(canvasId, options) {
         options.interval = 1;
     }
 
-    this._printer = new Printer(canvasId, options);
-    this._algorithm = new TspAlgorithm(options);
     this._options = options;
+    this._canvasId = canvasId;
+
+    this._printer = null;
+    this._algorithm = null;
+
+    this._setup();
 }
 
 Tsp.prototype.addCity = function (x, y) {
@@ -21,6 +25,21 @@ Tsp.prototype.addCity = function (x, y) {
     this._algorithm.addCity(x, y);
 
     return this;
+};
+
+Tsp.prototype._setup = function() {
+    this._printer = new Printer(this._canvasId, this._options);
+    this._algorithm = new TspAlgorithm(this._options);
+};
+
+Tsp.prototype.reset = function() {
+    this._algorithm.terminate();
+    this._setup();
+};
+
+Tsp.prototype.restart = function() {
+    this.reset();
+    this.run();
 };
 
 Tsp.prototype.run = function () {

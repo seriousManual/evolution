@@ -104,110 +104,233 @@
             </section>
 
             <section>
+                <h2>Algorithm</h2>
+                <pre class="highlight" style="font-size:28px">
+<span class="fragment zoom-in" data-fragment-index="0">Create Population</span>
+
+<span class="fragment zoom-in" data-fragment-index="1">While True</span>
+    <span class="fragment zoom-in">Choose Parents</span>
+
+    <span class="fragment zoom-in">Combinate Parents (Recombination)</span>
+
+    <span class="fragment zoom-in">Mutate Offspring (Mutation)</span>
+
+    <span class="fragment zoom-in">Rate Offspring (Fitness)</span>
+
+    <span class="fragment zoom-in">Add Offspring to Population</span>
+
+    <span class="fragment zoom-in">Remove Unfittest Individual (Selection)</span>
+
+    <span class="fragment zoom-in">If Termination Criterion Is Met: End Loop</span>
+<span class="fragment zoom-in" data-fragment-index="2">Next</span>
+                </pre>
+                <pre><code data-trim contenteditable></code></pre>
+            </section>
+
+            <section>
                 <iframe src="../implementations/circleWorld/circleWorld.html" width="1000" height="900"></iframe>
             </section>
 
-            <section>
-                <h2>Pretty Code</h2>
-                <pre><code data-trim contenteditable>
-function linkify( selector ) {
-    if( supports3DTransforms ) {
-        var nodes = document.querySelectorAll( selector );
-
-        for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-            var node = nodes[i];
-
-            if( !node.className ) {
-                node.className += ' roll';
-            }
-        }
-    }
-}
-                </code></pre>
+            <section data-background="img/circles.png">
+                <h1>Circles</h1>
+                <small style="position:absolute;bottom:0;left:0"><i>source: http://blog.eagerbug.com/circles/</i></small>
             </section>
 
             <section>
-                <h2>Marvelous List</h2>
+                <h2>Circles: <em>Description</em></h2>
                 <ul>
-                    <li class="fragment">No order here</li>
-                    <li>Or here</li>
-                    <li>Or here</li>
-                    <li class="fragment">Or here</li>
+                    <li class="fragment"><strong>Given:</strong> Some circles on a arbitrary playground</li>
+                    <li class="fragment">
+                        <strong>Task:</strong> Find a circle
+                        <ul>
+                            <li class="fragment">...that does not cross the playground border,</li>
+                            <li class="fragment">...that does not cross another circle</li>
+                            <li class="fragment">...that has a maximum circular area.</li>
+                        </ul>
+                    </li>
                 </ul>
+
+                <div class="imageStack" style="width:400px;height:400px;margin: 0 auto">
+                    <img data-src="img/circles1.png" class="fragment">
+                    <img data-src="img/circlesTask.png" class="fragment">
+                </div>
             </section>
 
             <section>
-                <h2>Fantastic Ordered List</h2>
-                <ol>
-                    <li>One is smaller than...</li>
-                    <li>Two is smaller than...</li>
-                    <li>Three!</li>
-                </ol>
+                <h2>Circles: <em>Trivial</em></h2>
+
+                //TODO
             </section>
 
             <section>
-                <h2>Tabular Tables</h2>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Value</th>
-                        <th>Quantity</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Apples</td>
-                        <td>$1</td>
-                        <td>7</td>
-                    <tr>
-                    <tr>
-                        <td>Lemonade</td>
-                        <td>$2</td>
-                        <td>18</td>
-                    <tr>
-                    <tr>
-                        <td>Bread</td>
-                        <td>$3</td>
-                        <td>2</td>
-                    <tr>
-                    </tbody>
-                </table>
+                <h2>Circles: <em>Approach</em></h2>
+                <h3>Initial Population</h3>
+                Arbitratry circles (x- and y-coordinate, radius)
             </section>
 
             <section>
-                <h2>Clever Quotes</h2>
-                <p>
-                    These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-                    &ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-                </p>
-                <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-                    &ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-                    reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-                </blockquote>
-            </section>
-
-            <section>
-                <h2>Speaker View</h2>
-                <p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-                <p>Press the <em>S</em> key to try it out.</p>
+                <h2>Circles: <em>Approach</em></h2>
+                <h3>Fitness</h3>
+                <ul>
+                    <li class="fragment">Crossing the playground border? (<span style="color:red">Malus</span>)</li>
+                    <li class="fragment">Crossing another circle? (<span style="color:red">Malus</span>)</li>
+                    <li class="fragment">How big is the circle? (<span style="color:green">Bonus</span>)</li>
+                </ul>
 
                 <aside class="notes">
                     <ul>
-                        <li>foo bar</li>
-                        <li>foo bar</li>
-                        <li>foo bar</li>
-                        <li>foo bar</li>
+                        <li>rating of one particular circle</li>
                     </ul>
                 </aside>
             </section>
 
-            <!--<section>-->
-                <!--<h2>Take a Moment</h2>-->
-                <!--<p>-->
-                    <!--Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.-->
-                <!--</p>-->
-            <!--</section>-->
+            <section>
+                <h2>Circles: <em>Approach</em></h2>
+                <h3>Fitness</h3>
+                <pre class="highlight" style="font-size:28px">
+<span class="fragment zoom-in">var overlapping = number of overlapping circles</span>
+<span class="fragment zoom-in">var outside = crossings with the playground border</span>
+<span class="fragment zoom-in">var area = area of the circle</span>
+<span class="fragment zoom-in">var fitness = area</span>
+<span class="fragment zoom-in">
+if outside > 0 or overlapping > 0
+    fitness = fitness * -1
+
+    <span class="fragment zoom-in">if overlapping > 0
+        fitness = fitness * 2 * overlapping;</span>
+
+    <span class="fragment zoom-in">if outside > 0
+        fitness = fitness * 4 * outside;</span></span>
+                </pre>
+            </section>
+
+            <section>
+                <h2>Circles: <em>Approach</em></h2>
+
+                <div class="fragment">
+                    <h3>Recombination</h3>
+                    <div class="fragment">
+                        Parents:<br>
+                        {<span style="color:green">x: 100</span>, <span style="color:green">y: 10</span>, <span style="color:green">radius: 7</span>}<br>
+                        {<span style="color:blue">x: 331</span>, <span style="color:blue">y: 77</span>, <span style="color:blue">radius: 50</span>}<br>
+                        <br>
+                    </div>
+                    <div class="fragment">
+                        Child:<br>
+                        {<span style="color:green">x: 100</span>, <span style="color:blue">y: 77</span>, <span style="color:blue">radius: 50</span>}<br>
+                        <br>
+                    </div>
+                </div>
+                <div class="fragment">
+                    <h3>Mutation</h3>
+                    {<span style="color:red">x: 103</span>, <span style="color:blue">y: 77</span>, <span style="color:red">radius: 49</span>}<br>
+                </div>
+                <aside class="notes">
+                    <ul>
+                        <li>feel free to check repo for implementation details</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section>
+                <h2>Circles: <em>Implementation</em></h2>
+                <iframe src="../implementations/circles/circles.html" width="1000" height="900"></iframe>
+            </section>
+
+            <section>
+                <h2>Charakteristics</h2>
+                The chosen approach is never the same
+                <iframe src="../implementations/circles/fourVariations.html" width="1000" height="900"></iframe>
+            </section>
+
+            <section>
+                <h2>Charakteristics</h2>
+                The choosen approach is not always the optimal one
+                <iframe src="../implementations/circles/suboptimal.html" width="1000" height="900"></iframe>
+            </section>
+
+            <section>
+                <h2>Charakteristics</h2>
+                The result is not always deterministic
+                <iframe src="../implementations/circles/vary.html" width="1000" height="900"></iframe>
+            </section>
+
+            <section>
+                <h2>Charakteristics</h2>
+                Extreme conditions
+                <iframe src="../implementations/circles/fail.html" width="1000" height="900"></iframe>
+            </section>
+
+            <section>
+                <h2>Charakteristics</h2>
+                Extreme conditions
+                <iframe src="../implementations/circles/fail2.html" width="1000" height="900"></iframe>
+            </section>
+
+            <section data-background="img/tsp.jpg">
+                <h1>Travelling Salesman Problem</h1>
+                <small style="position:absolute;bottom:0;left:0"><i>http://business-coaching-ulm24.de/seminare/burnoutberaterin.html</i></small>
+            </section>
+
+            <section>
+                <h3>Travelling Salesman</h3>
+                <div class="imageStack" style="width:450px;height:600px;margin: 0 auto">
+                    <img data-src="img/germany.png" class="fragment">
+                    <img data-src="img/germany2.png" class="fragment">
+                    <img data-src="img/germany3.png" class="fragment">
+                </div>
+            </section>
+
+            <section>
+                <h2>TSP: <em>Trivial</em></h2>
+                <iframe src="../implementations/tsp/tspTrivial.html" width="1000" height="420"></iframe>
+
+                <div class="fragment">
+                    13 cities: (n - 1)! / 2 combinations<br>
+                    -&gt; 239500800 possible solutions<br>
+                    @ 10k tests every second: 6.6h
+                </div>
+            </section>
+
+            <section>
+                <h2>Travelling Salesman</h2>
+
+                Possible Way:<br>
+                1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 1<br>
+                <br>
+                <div class="fragment">
+                    Parents:<br>
+                    <span style="color:green">5</span> -&gt; <span style="color:green">3</span> -&gt; <span style="color:green">1</span> -&gt; <span style="color:green">4</span> -&gt; <span style="color:green">2</span> -&gt; <span style="color:green">5</span><br>
+                    <span style="color:blue">2</span> -&gt; <span style="color:blue">4</span> -&gt; <span style="color:blue">5</span> -&gt; <span style="color:blue">3</span> -&gt; <span style="color:blue">1</span> -&gt; <span style="color:blue">2</span><br>
+                    <br>
+                </div>
+
+                <div class="fragment">
+                    Child:<br>
+                    <span style="color:green">5</span> -&gt; <span style="color:blue">4</span> -&gt; <span style="color:green">1</span> -&gt; <span style="color:blue">3 </span>-&gt; <span style="color:green">2</span> -&gt; <span style="color:green">5</span><br>
+                    <br>
+                </div>
+
+                <div class="fragment">
+                    Mutation<br>
+                    <span style="color:green">5</span> -&gt; <span style="color:blue">4</span> -&gt; <span style="color:green">1</span> -&gt; <span style="color:red">2</span> -&gt; <span style="color:red">3</span> -&gt; <span style="color:green">5</span><br>
+                </div>
+            </section>
+
+            <section>
+                <h2>Travelling Salesman</h2>
+                Fitness: The complete length of a way
+            </section>
+
+            <section>
+                <h2>Travelling Salesman</h2>
+                <iframe src="../implementations/tsp/tsp.html" width="1000" height="900"></iframe>
+            </section>
+
+            <section>
+                <h2>Travelling Salesman</h2>
+                <iframe src="../implementations/tsp/tspRandom.html" width="800" height="900"></iframe>
+            </section>
         </div>
     </div>
 
@@ -223,7 +346,7 @@ function linkify( selector ) {
             progress: true,
             history: true,
             center: true,
-
+            slideNumber: 'c / t',
             transition: 'slide', // none/fade/slide/convex/concave/zoom
 
             // Optional reveal.js plugins
@@ -231,7 +354,11 @@ function linkify( selector ) {
                 { src: 'reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
                 { src: 'reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
                 { src: 'reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                { src: 'reveal/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: 'reveal/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() {
+                    [].forEach.call( document.querySelectorAll( '.highlight' ), function( v, i) {
+                        hljs.highlightBlock(v);
+                    });
+                } },
                 { src: 'reveal/plugin/zoom-js/zoom.js', async: true },
                 { src: 'reveal/plugin/notes/notes.js', async: true }
             ]
