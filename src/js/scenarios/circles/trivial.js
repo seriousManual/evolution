@@ -40,7 +40,7 @@ Trivial.prototype._step = function () {
                 this._runner.setX(this._runner.getX() + 1);
                 break;
             case 'r':
-                this._runner.setX(0);
+                this._runner.setX(parseInt(this._runner.getRadius() / 2, 10));
                 this._runner.setY(this._runner.getY() + 1);
                 break;
             default:
