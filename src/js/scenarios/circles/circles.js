@@ -28,7 +28,7 @@ CirclesScenario.prototype.run = function () {
 
     this._algorithm.run();
 
-    this._algorithm.on('newOptimum', function (child) {
+    this._algorithm.on('populationImprovement', function (child) {
         that._printer.updateCircles(that._algorithm.getPopulation().getIndividuums());
     });
 
