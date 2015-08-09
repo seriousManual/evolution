@@ -55,8 +55,8 @@ Circle.prototype.recombinate = function (circle) {
         .setRadius(Math.random() < 0.5 ? this.getRadius() : circle.getRadius());
 };
 
-Circle.prototype.mutate = function () {
-    var maxMutate = 200;
+Circle.prototype.mutate = function (mutateData) {
+    var maxMutate = mutateData.maxMutate || 200;
 
     this.setRadius(this.getRadius() + weightedMutate(130));
 

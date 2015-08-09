@@ -14,6 +14,7 @@ function GeneticAlgorithm (options) {
     this._population = null;
     this._interval = options.interval || 1000;
     this._withMutation = options.withMutation !== false;
+    this._mutateData = options.mutateData || {};
     this._intervalHandle = null;
     this._numberRuns = 0;
 
@@ -126,7 +127,7 @@ GeneticAlgorithm.prototype._step = function () {
 
     var child = parents[0].recombinate(parents[1]);
     if (this._withMutation) {
-        child.mutate();
+        child.mutate(this._mutateData);
     }
     child.setFitness(this.calculateFitness(child));
 

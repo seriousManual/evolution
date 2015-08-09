@@ -12,7 +12,10 @@
                 maxRunTime: Infinity,
                 interval: 10,
                 width: 200,
-                height: 200
+                height: 200,
+                mutateData: {
+                    maxMutate: 50
+                }
             });
 
             var circlesMid = EVO.circles.circles('canvasMidPool', {
@@ -20,7 +23,10 @@
                 maxRunTime: Infinity,
                 interval: 10,
                 width: 200,
-                height: 200
+                height: 200,
+                mutateData: {
+                    maxMutate: 50
+                }
             });
 
             var circlesLow = EVO.circles.circles('canvasLowPool', {
@@ -28,7 +34,10 @@
                 maxRunTime: Infinity,
                 interval: 10,
                 width: 200,
-                height: 200
+                height: 200,
+                mutateData: {
+                    maxMutate: 50
+                }
             });
 
             circlesHigh
@@ -79,25 +88,27 @@
     </style>
 </head>
 <body>
-    <input type="button" id="calc" value="calc">
-    <input type="button" id="restart" value="restart">
-    <input type="button" id="reset" value="reset">
-    <br><br>
-    <table>
-        <tr>
-            <td>
-                <canvas id="canvasHighPool"></canvas>
-                Populationsize: 100
-            </td>
-            <td>
-                <canvas id="canvasMidPool"></canvas>
-                Populationsize: 35
-            </td>
-            <td>
-                <canvas id="canvasLowPool"></canvas>
-                Populationsize: 7
-            </td>
-        </tr>
-    </table>
+    <div style="width:650px;margin:0 auto">
+        <input type="button" id="calc" value="calc">
+        <input type="button" id="restart" value="restart">
+        <input type="button" id="reset" value="reset">
+        <br><br>
+        <table>
+            <tr>
+                <td>
+                    <canvas id="canvasHighPool"></canvas>
+                    Populationsize: 100
+                </td>
+                <td>
+                    <canvas id="canvasMidPool"></canvas>
+                    Populationsize: 35
+                </td>
+                <td>
+                    <canvas id="canvasLowPool"></canvas>
+                    Populationsize: 7
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
