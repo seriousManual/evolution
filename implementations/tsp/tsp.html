@@ -36,13 +36,19 @@
             $('#restart').click(function () {
                 tsp.restart();
             });
+
+            $('#reset').click(function () {
+                tsp.reset();
+            });
         });
     </script>
 
 </head>
 <body>
     <div style="width:400px;margin:0 auto">
-        <input type="button" id="calc" value="calc"> <input type="button" id="restart" value="restart">
+        <input type="button" id="calc" value="calc">
+        <input type="button" id="restart" value="restart">
+        <input type="button" id="reset" value="reset">
         <br><br>
         <canvas id="tspCanvas"></canvas>
     </div>

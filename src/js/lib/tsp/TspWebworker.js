@@ -29,9 +29,10 @@ module.exports = function (self) {
                 });
             });
 
-            algorithm.on('terminated', function () {
+            algorithm.on('terminated', function (population) {
                 self.postMessage({
-                    type: 'terminated'
+                    type: 'terminated',
+                    payload: population
                 });
             });
 

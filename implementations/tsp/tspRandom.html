@@ -27,6 +27,14 @@
             $('#calc').click(function () {
                 tsp.run();
             });
+
+            $('#reset').click(function () {
+                tsp.reset();
+            });
+
+            $('#restart').click(function () {
+                tsp.restart();
+            });
         });
     </script>
 
@@ -34,6 +42,8 @@
 <body>
     <div style="width:800px;margin:0 auto">
         <input type="button" id="calc" value="calc">
+        <input type="button" id="restart" value="restart">
+        <input type="button" id="reset" value="reset">
         <br><br>
         <canvas id="tspCanvas"></canvas>
     </div>

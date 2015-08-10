@@ -11,6 +11,7 @@ function Tsp(canvasId, options) {
 
     this._options = options;
     this._canvasId = canvasId;
+    this._cities = [];
 
     this._printer = null;
     this._algorithm = null;
@@ -22,7 +23,8 @@ Tsp.prototype.addCity = function (x, y) {
     var city = new City(x, y);
 
     this._printer.addCity(city);
-    this._algorithm.addCity(x, y);
+    this._algorithm.addCity(city.getX(), city.getY());
+    this._cities.push(city);
 
     return this;
 };
@@ -33,8 +35,15 @@ Tsp.prototype._setup = function() {
 };
 
 Tsp.prototype.reset = function() {
+    var that = this;
+
     this._algorithm.terminate();
     this._setup();
+
+    this._cities.forEach(function(city) {
+        that._printer.addCity(city);
+        that._algorithm.addCity(city.getX(), city.getY());
+    });
 };
 
 Tsp.prototype.restart = function() {

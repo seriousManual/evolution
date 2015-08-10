@@ -5,10 +5,14 @@ var Printer = require('../../lib/tsp/lib/Printer');
 var tspWebworker = require('../../lib/tsp/TspWebworker');
 
 function Tsp(canvasId, options) {
-    this._printer = new Printer(canvasId, options);
-
     this._cities = [];
+    this._canvasId = canvasId;
     this._options = options || {};
+
+    this._algorithm = null;
+    this._printer = null;
+
+    this._setup();
 }
 
 Tsp.prototype.addCity = function (x, y) {
@@ -20,11 +24,15 @@ Tsp.prototype.addCity = function (x, y) {
     return this;
 };
 
+Tsp.prototype._setup = function() {
+    this._printer = new Printer(this._canvasId, this._options);
+};
+
 Tsp.prototype.run = function () {
-    var algorithm = worker(tspWebworker);
+    this._algorithm = worker(tspWebworker);
     var course = this._printer.createCourse({lineWidth: 2, lineColor: 'rgb(255, 0, 0)'});
 
-    algorithm.addEventListener('message', function (message) {
+    this._algorithm.addEventListener('message', function (message) {
         var data = message.data;
         var type = data.type;
         var payload = data.payload;
@@ -38,7 +46,7 @@ Tsp.prototype.run = function () {
         }
     });
 
-    algorithm.postMessage({
+    this._algorithm.postMessage({
         type: 'init',
         payload: {
             cities: this._cities.map(function (city) {
@@ -46,7 +54,23 @@ Tsp.prototype.run = function () {
             }),
             options: this._options
         }
-    })
+    });
+};
+
+Tsp.prototype.reset = function() {
+    var that = this;
+
+    this._algorithm.terminate();
+    this._setup();
+
+    this._cities.forEach(function(city) {
+        that._printer.addCity(city);
+    });
+};
+
+Tsp.prototype.restart = function() {
+    this.reset();
+    this.run();
 };
 
 module.exports = function (canvasId, options) {
