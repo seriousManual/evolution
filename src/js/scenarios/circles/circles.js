@@ -32,6 +32,10 @@ CirclesScenario.prototype.run = function () {
         that._printer.updateCircles(that._algorithm.getPopulation().getIndividuums());
     });
 
+    this._algorithm.on('newOptimum', function (child) {
+        that._printer.setGoldenCircle(child);
+    });
+
     this._algorithm.on('rate', function (rate) {
         console.log('rate', rate);
     });

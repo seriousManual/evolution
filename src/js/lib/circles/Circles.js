@@ -33,11 +33,12 @@ Circles.prototype._createPopulation = function () {
 };
 
 Circles.prototype.calculateFitness = function (child) {
+    var that = this;
     var overlapping = 0;
     var outside = 0;
 
     this._scenario.forEach(function (scenarioCircle) {
-        if (pyth(scenarioCircle, child) < child.getRadius() + scenarioCircle.getRadius()) {
+        if (that._pyth(scenarioCircle, child) < child.getRadius() + scenarioCircle.getRadius()) {
             overlapping++;
         }
     });
@@ -64,26 +65,26 @@ Circles.prototype.calculateFitness = function (child) {
         outside += 100;
     }
 
-    function pyth(c1, c2) {
-        return Math.sqrt(Math.pow(c1.getX() - c2.getX(), 2) + Math.pow(c1.getY() - c2.getY(), 2));
-    }
-
     var rating = 1;
     if (outside > 0 || overlapping > 0) {
         rating = -1;
 
         if (outside > 0) {
-            rating = rating * (outside );
+            rating = rating * outside * 4;
         }
 
         if (overlapping > 0) {
-            rating = rating * (overlapping );
+            rating = rating * overlapping * 2;
         }
     }
 
-    rating = rating * child.area();
+    rating = rating * area;
 
     return rating;
+};
+
+Circles.prototype._pyth = function(c1, c2) {
+    return Math.sqrt(Math.pow(c1.getX() - c2.getX(), 2) + Math.pow(c1.getY() - c2.getY(), 2));
 };
 
 module.exports = Circles;
