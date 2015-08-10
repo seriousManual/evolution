@@ -1,6 +1,6 @@
 .idea
 node_modules
-build
 bower_components
-presentation/reveal
-presentation/img/*.uas
+frontend/presentation/reveal
+frontend/presentation/img/*.uas
+frontend/script

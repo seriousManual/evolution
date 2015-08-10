@@ -8,8 +8,8 @@ var sequence = require('run-sequence');
 var gutil = require('gulp-util');
 
 var SOURCE_DIR = 'src';
-var BUILD_TARGET_DIR = 'build';
-var REVEAL_TARGET_DIR = 'presentation/reveal';
+var BUILD_TARGET_DIR = 'frontend/script';
+var REVEAL_TARGET_DIR = 'frontend/presentation/reveal';
 
 gulp.task('clean', function (callback) {
     rimraf(BUILD_TARGET_DIR, function (error) {
@@ -52,7 +52,7 @@ gulp.task('staticserve', function (callback) {
     var port = 8080;
 
     express()
-        .use(express.static(__dirname))
+        .use(express.static(require('path').join(__dirname, 'frontend')))
         .listen(port, function(error) {
             if (error) throw new Error(error);
 

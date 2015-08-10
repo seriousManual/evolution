@@ -61,7 +61,6 @@
                 <div class="imageStack" style="width:980px;height:625px">
                     <img data-src="img/cw0.png">
                     <img data-src="img/cw1.png" class="fragment">
-                    <img data-src="img/cw4.png" class="fragment">
                     <img data-src="img/cw_repro.png" class="fragment">
                     <img data-src="img/cw5.png" class="fragment">
                     <img data-src="img/cw6.png" class="fragment">
@@ -301,9 +300,9 @@ if outside > 0 or overlapping > 0
             <section>
                 <h3>Travelling Salesman</h3>
                 <div class="imageStack" style="width:450px;height:600px;margin: 0 auto">
-                    <img data-src="img/germany.png" class="fragment">
-                    <img data-src="img/germany2.png" class="fragment">
-                    <img data-src="img/germany3.png" class="fragment">
+                    <img data-src="img/germany.png" class="fragment" style="background:0;border:0; box-shadow:none">
+                    <img data-src="img/germany2.png" class="fragment" style="background:0;border:0;box-shadow:none">
+                    <img data-src="img/germany3.png" class="fragment" style="background:0;border:0;box-shadow:none">
                 </div>
             </section>
 
@@ -321,9 +320,15 @@ if outside > 0 or overlapping > 0
             <section>
                 <h2>Travelling Salesman</h2>
 
-                Possible Way:<br>
-                1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 1<br>
-                <br>
+                <h3 class="fragment">Genes</h3>
+                <div class="fragment">1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 1</div>
+
+                <h3 style="margin-top:50px" class="fragment">Initial Population</h3>
+                <div class="fragment">Arbitrary combinations of all cities on the map</div>
+            </section>
+            <section>
+                <h2>Travelling Salesman</h2>
+                <h3 class="fragment">Recombination</h3>
                 <div class="fragment">
                     Parents:<br>
                     <span style="color:green">5</span> -&gt; <span style="color:green">3</span> -&gt; <span style="color:green">1</span> -&gt; <span style="color:green">4</span> -&gt; <span style="color:green">2</span> -&gt; <span style="color:green">5</span><br>
@@ -338,14 +343,14 @@ if outside > 0 or overlapping > 0
                 </div>
 
                 <div class="fragment">
-                    Mutation<br>
+                    <h3>Mutation</h3>
                     <span style="color:green">5</span> -&gt; <span style="color:blue">4</span> -&gt; <span style="color:green">1</span> -&gt; <span style="color:red">2</span> -&gt; <span style="color:red">3</span> -&gt; <span style="color:green">5</span><br>
                 </div>
             </section>
 
             <section>
                 <h2>Travelling Salesman</h2>
-                <h3>Fitness</h3>
+                <h3 class="fragment">Fitness</h3>
                 <div class="fragment">The complete length of a way</div>
             </section>
 
@@ -357,6 +362,30 @@ if outside > 0 or overlapping > 0
             <section>
                 <h2>Travelling Salesman</h2>
                 <iframe data-src="../implementations/tsp/tspRandom.html" width="800" height="900"></iframe>
+            </section>
+
+            <section>
+                <h1>Thank you!</h1>
+                <h2>Questions?</h2>
+                <ul>
+                    <li>I'll be around!</li>
+                    <li>OTSConf Slack</li>
+                    <li>Twitter (<a href="http://www.twitter.com/seriousManual">@seriousManual</a>)</li>
+                    <li>
+                        Github (<a href="http://www.github.com/seriousManual/evolution">github.com/seriousManual/evolution</a>)
+                        <ul>
+                            <li>Issues</li>
+                            <li>Pull requests!</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="http://www.ernestly.com/evolution">ernestly.com/evolution</a>
+                        <ul>
+                            <li>Slides</li>
+                            <li>Implementations</li>
+                        </ul>
+                    </li>
+                </ul>
             </section>
         </div>
     </div>
