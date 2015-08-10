@@ -1,6 +1,8 @@
 var util = require('util');
 
 var shuffle = require('../shuffle');
+var lineIntersections = require('./lib/lineIntersection');
+var singleCombination = require('./lib/singleCombination');
 
 var GeneticAlgorithm = require('../geneticAlgorithm/GeneticAlgorithm');
 var Population = require('./Population');
@@ -59,6 +61,13 @@ Tsp.prototype.calculateFitness = function (child) {
     var length = pairs.reduce(function(carry, pair) {
         return (carry + pair[0].distance(pair[1]));
     }, 0);
+    //
+    //var numberOfIntersections = singleCombination(pairs).reduce(function(carry, combination) {
+    //    var city0 = combination[0];
+    //    var city1 = combination[1];
+    //
+    //    return carry + (lineIntersections(city0[0], city0[1], city1[0], city1[1]) ? 1 : 0);
+    //}, 1);
 
     return length;
 };
