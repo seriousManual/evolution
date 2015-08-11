@@ -7,7 +7,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var tsp = EVO.tsp('tspCanvas', {
+            var tsp = EVO.tsp.tsp('tspCanvas', {
                 sizePopulation: 35,
                 maxRunTime: Infinity,
                 interval: 1,
@@ -39,6 +39,14 @@
             $('#calc').click(function () {
                 tsp.run();
             });
+
+            $('#restart').click(function () {
+                tsp.restart();
+            });
+
+            $('#reset').click(function () {
+                tsp.reset();
+            });
         });
     </script>
 
@@ -46,6 +54,8 @@
 <body>
     <div style="width:400px;margin:0 auto">
         <input type="button" id="calc" value="calc">
+        <input type="button" id="restart" value="restart">
+        <input type="button" id="reset" value="reset">
         <br><br>
         <canvas id="tspCanvas"></canvas>
     </div>
