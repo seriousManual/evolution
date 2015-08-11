@@ -7,7 +7,7 @@
     "build": "node ./node_modules/gulp/bin/gulp.js build",
     "dev": "node ./node_modules/gulp/bin/gulp.js dev",
     "setup": "npm i && npm prune && npm outdated --depth=0",
-    "presentation": "node ./node_modules/gulp/bin/gulp.js presentation"
+    "slides": "node ./node_modules/gulp/bin/gulp.js slides"
   },
   "repository": {
     "type": "git",

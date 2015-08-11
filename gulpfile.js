@@ -9,7 +9,7 @@ var gutil = require('gulp-util');
 
 var SOURCE_DIR = 'src';
 var BUILD_TARGET_DIR = 'frontend/script';
-var REVEAL_TARGET_DIR = 'frontend/presentation/reveal';
+var REVEAL_TARGET_DIR = 'frontend/slides/reveal';
 
 gulp.task('clean', function (callback) {
     rimraf(BUILD_TARGET_DIR, function (error) {
@@ -41,7 +41,7 @@ gulp.task('libscripts', ['bower_components'], function () {
         .pipe(gulp.dest(BUILD_TARGET_DIR));
 });
 
-////////////////////////////////////////////////////// presentation //////////////////////////////////////////////////
+////////////////////////////////////////////////////// slides //////////////////////////////////////////////////
 
 gulp.task('reveal', ['libscripts'], function () {
     return gulp.src('bower_components/reveal.js/**')
@@ -56,7 +56,7 @@ gulp.task('staticserve', function (callback) {
         .listen(port, function(error) {
             if (error) throw new Error(error);
 
-            console.log('static server running, visit http://localhost:' + port + '/presentation/presentation.html');
+            console.log('static server running, visit http://localhost:' + port + '/slides/slides.html');
 
             callback();
         });
@@ -76,7 +76,7 @@ gulp.task('build', function (callback) {
     build(callback);
 });
 
-gulp.task('presentation', function (callback) {
+gulp.task('slides', function (callback) {
     sequence('build', 'staticserve', callback);
 });
 
