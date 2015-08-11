@@ -7,7 +7,7 @@
     "build": "node ./node_modules/gulp/bin/gulp.js build",
     "dev": "node ./node_modules/gulp/bin/gulp.js dev",
     "setup": "npm i && npm prune && npm outdated --depth=0",
-    "slides": "node ./node_modules/gulp/bin/gulp.js slides"
+    "serve": "node ./node_modules/gulp/bin/gulp.js serve"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "gulp-bower": "0.0.10",
     "gulp-browserify": "^0.5.0",
     "gulp-concat": "^2.6.0",
+    "gulp-less": "^3.0.3",
     "gulp-util": "^3.0.6",
     "rimraf": "^2.4.2",
     "run-sequence": "^1.1.2",

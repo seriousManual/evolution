@@ -4,3 +4,4 @@ bower_components
 frontend/slides/reveal
 frontend/slides/img/*.uas
 frontend/script
+frontend/style
