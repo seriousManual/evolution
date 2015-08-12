@@ -1,9 +1,14 @@
+var util = require('util');
+var Emitter = require('events').EventEmitter;
+
 var fabric = require('../../fabric');
 
 var Course = require('./Course');
 
 function TspPrinter(canvasId, options) {
     this._options = options || {};
+
+    Emitter.call(this);
 
     this._cityRadius = 8;
     this._cities = [];
@@ -16,7 +21,11 @@ function TspPrinter(canvasId, options) {
         width: this._options.width || 420,
         height: this._options.height || 420
     });
+
+    this._canvas.on('mouse:up', this.emit.bind(this, 'click'));
 }
+
+util.inherits(TspPrinter, Emitter);
 
 TspPrinter.prototype.addCity = function (city) {
     this._cities.push(city);
@@ -26,7 +35,7 @@ TspPrinter.prototype.addCity = function (city) {
         radius: 8, fill: 'white', left: city.getX(), top: city.getY(), selectable: false
     });
 
-    this._canvas.insertAt(cityObject, cityIndex + this._cityObjects.length, true);
+    this._canvas.add(cityObject);
     this._canvas.renderAll();
 
     this._cityObjects.push(cityObject);
@@ -49,7 +58,7 @@ TspPrinter.prototype.createCourse = function (options) {
             stroke: options.lineColor
         });
 
-        that._canvas.insertAt(line, i++, true);
+        that._canvas.add(line);
         courseObjects.push(line);
     });
 

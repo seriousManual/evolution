@@ -52,6 +52,8 @@ CircleworldScenario.prototype._setup = function () {
         this._printer.setBackgroundcolor(this._options.targetColor);
     }
 
+    this._printer.on('click', this.restart.bind(this));
+
     this._printCircles();
 };
 

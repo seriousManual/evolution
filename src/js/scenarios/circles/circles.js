@@ -72,6 +72,8 @@ CirclesScenario.prototype._setup = function () {
         that._printer.addScenarioCircle(circle);
         that._algorithm.addScenarioCircle(circle);
     });
+
+    this._printer.on('click', this.restart.bind(this));
 };
 
 module.exports = function (canvasId, options) {

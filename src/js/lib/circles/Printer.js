@@ -1,8 +1,13 @@
+var util = require('util');
+var Emitter = require('events').EventEmitter;
+
 var fabric = require('../fabric');
 
 var Circle = require('./Circle');
 
 function TspPrinter(canvasId, options) {
+    Emitter.call(this);
+
     this._options = options || {};
 
     this._scenarioCircles = [];
@@ -14,8 +19,12 @@ function TspPrinter(canvasId, options) {
         height: options.height
     });
 
+    this._canvas.on('mouse:up', this.emit.bind(this, 'click'));
+
     this._goldenCircle = this._createCircleObject(new Circle(1, 1, 100), null, 'rgb(255, 255, 0)', 0, 4000);
 }
+
+util.inherits(TspPrinter, Emitter);
 
 TspPrinter.prototype.addScenarioCircle = function (circle) {
     var scenarioCircleIndex = 3000;
@@ -51,7 +60,7 @@ TspPrinter.prototype._createCircleObject = function (circle, color, backgroundCo
         opacity: opacity
     });
 
-    this._canvas.insertAt(scenarioCircleObject, index, true);
+    this._canvas.add(scenarioCircleObject);
     this._canvas.renderAll();
 
     return scenarioCircleObject;

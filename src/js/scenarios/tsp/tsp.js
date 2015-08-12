@@ -32,6 +32,8 @@ Tsp.prototype.addCity = function (x, y) {
 Tsp.prototype._setup = function() {
     this._printer = new Printer(this._canvasId, this._options);
     this._algorithm = new TspAlgorithm(this._options);
+
+    this._printer.on('click', this.restart.bind(this));
 };
 
 Tsp.prototype.reset = function() {

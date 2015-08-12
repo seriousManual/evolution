@@ -1,9 +1,14 @@
+var util = require('util');
+var Emitter = require('events').EventEmitter;
+
 var fabric = require('../fabric');
 
 var Circle = require('./Circle');
 
 function CircleWorldPrinter(canvasId, options) {
     this._options = options || {};
+
+    Emitter.call(this);
 
     this._previewCircle = null;
     this._parent1Circle = null;
@@ -21,8 +26,12 @@ function CircleWorldPrinter(canvasId, options) {
         height: options.height
     });
 
+    this._canvas.on('mouse:up', this.emit.bind(this, 'click'));
+
     this._init();
 }
+
+util.inherits(CircleWorldPrinter, Emitter);
 
 CircleWorldPrinter.prototype._init = function () {
     var number = this._options.sizePopulation;
@@ -94,7 +103,6 @@ CircleWorldPrinter.prototype._createRenderObject = function (x, y) {
     this._texts.push(textObject);
 
     this._canvas.renderAll();
-
 };
 
 CircleWorldPrinter.prototype._createTextObject = function(text, x, y) {
@@ -133,8 +141,7 @@ CircleWorldPrinter.prototype.updateCircles = function (circlesList) {
 
         that._circles[index]
             .set('radius', circle.getRadius())
-            .set('fill', that._buildColorString(c))
-//            .set('stroke', that._buildColorString(that._calcComplementaryColor(c)));
+            .set('fill', that._buildColorString(c));
 
         that._texts[index]
             .set('text', circle.getFitness() + '')
