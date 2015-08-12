@@ -6,8 +6,8 @@
   "scripts": {
     "build": "node ./node_modules/gulp/bin/gulp.js build",
     "dev": "node ./node_modules/gulp/bin/gulp.js dev",
-    "setup": "npm i && npm prune && npm outdated --depth=0",
-    "serve": "node ./node_modules/gulp/bin/gulp.js serve"
+    "serve": "node ./node_modules/gulp/bin/gulp.js serve",
+    "setup": "npm i && npm prune && npm outdated --depth=0"
   },
   "repository": {
     "type": "git",
