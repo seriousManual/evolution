@@ -37,7 +37,9 @@ Tsp.prototype._setup = function() {
 Tsp.prototype.reset = function() {
     var that = this;
 
-    this._algorithm.terminate();
+    if (this._algorithm) {
+        this._algorithm.terminate();
+    }
     this._setup();
 
     this._cities.forEach(function(city) {
