@@ -15,6 +15,8 @@ Trivial.prototype.addScenarioCircle = function (x, y, radius) {
     this._circles.push(circle);
     this._printer.addScenarioCircle(circle);
 
+    this._printer.on('click', this.run.bind(this));
+
     return this;
 };
 

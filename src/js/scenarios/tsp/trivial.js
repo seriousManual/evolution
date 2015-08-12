@@ -18,9 +18,8 @@ function TspTrivial(canvasId) {
     this._cities = [];
     this._lengthShortestWay = Infinity;
 
-    this._sampler.on('rate', function (rate) {
-        that.emit('rate', rate);
-    });
+    this._sampler.on('rate', this.emit.bind(this, 'rate'));
+    this._printer.on('click', this.start.bind(this));
 }
 
 util.inherits(TspTrivial, Emitter);
