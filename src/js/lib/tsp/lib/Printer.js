@@ -30,7 +30,6 @@ util.inherits(TspPrinter, Emitter);
 TspPrinter.prototype.addCity = function (city) {
     this._cities.push(city);
 
-    var cityIndex = 3000;
     var cityObject = new fabric.Circle({
         radius: 8, fill: 'white', left: city.getX(), top: city.getY(), selectable: false
     });

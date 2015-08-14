@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TSPprpop</title>
+    <script src="../../script/vendor.js" type="text/javascript"></script>
+    <script src="../../script/app.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var prepopulation = EVO.tsp.prepopulation('canvas');
+
+//            prepopulation.addCity(30, 90);
+//            prepopulation.addCity(30, 180);
+//            prepopulation.addCity(300, 90);
+//            prepopulation.addCity(300, 180);
+//            prepopulation.addCity(150, 180);
+//            prepopulation.addCity(150, 90);
+//            prepopulation.addCity(210, 90);
+//            prepopulation.addCity(90, 180);
+
+            for(var i = 0; i < 100; i++) {
+                prepopulation.addCity(parseInt(Math.random() * 420, 10), parseInt(Math.random() * 420, 10));
+            }
+
+            prepopulation.run();
+        });
+    </script>
+</head>
+
+<body>
+<canvas id="canvas"></canvas>
+</body>
+</html>
