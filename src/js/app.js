@@ -5,7 +5,8 @@ window.EVO = {
         tspPrinter: require('./scenarios/tsp/printer'),
         tspTrivial: require('./scenarios/tsp/trivial'),
         tsp: require('./scenarios/tsp/tsp'),
-        tspWebworker: require('./scenarios/tsp/tspWebworker')
+        tspWebworker: require('./scenarios/tsp/tspWebworker'),
+        prepopulation: require('./scenarios/tsp/prepop')
     },
 
     circles: {
