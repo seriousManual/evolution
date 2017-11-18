@@ -21,9 +21,10 @@
         }
 
         .imageStack img {
-            position:absolute;
+            position: absolute;
             top: 0;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
@@ -32,7 +33,7 @@
     <div class="reveal">
         <div class="slides">
             <section>
-                <h2>Evolutionary Algorithms 101</h2>
+                <h3>Evolutionary Algorithms 101</h3>
                 <h4>Basics and Applications</h4>
             </section>
 
@@ -41,24 +42,20 @@
                 <p><img data-src="img/manu.jpg" width="400"></p>
                 <ul>
                     <li class="fragment">from Erlangen, <span style="text-decoration: line-through">Bavaria</span> Franconia</li>
-                    <li class="fragment">
-                        Developer &amp; Technical Lead @ <a href="http://www.thomann.de">Thomann GmbH</a><br>
-                        <small>biggest retailer for musical instruments in <span style="text-decoration: line-through">europe</span> the world (we're hiring!)</small>
-                    </li>
-                    <li class="fragment"><a href="http://www.github.com/seriousManual">seriousManual</a> @ Github</li>
-                    <li class="fragment"><a href="http://www.twitter.com/seriousManual">@seriousManual</a> @ Twitter</li>
+                    <li class="fragment">Software Engineer @ Methodpark</li>
+                    <li class="fragment"><a href="http://www.github.com/seriousManual">@seriousManual</a> on Github &amp; Twitter</li>
                 </ul>
             </section>
 
             <section data-transition="fade">
-                <h2>Evolution?</h2>
+                <h3>Evolution?</h3>
                 <img data-src="img/darwin.jpg" class="fragment"><br>
                 <small class="fragment" style="position:absolute;bottom:0;left:0"><i>source: https://de.wikipedia.org/wiki/Charles_Darwin</i></small>
             </section>
 
             <section>
                 <h3>Circleworld</h3>
-                <div class="imageStack" style="width:980px;height:625px">
+                <div class="imageStack" style="height:500px">
                     <img data-src="img/cw0.png">
                     <img data-src="img/cw1.png" class="fragment">
                     <img data-src="img/cw_repro.png" class="fragment">
@@ -81,32 +78,32 @@
             </section>
 
             <section>
-                <h2>Terms: Population</h2>
+                <h3>Terms: Population</h3>
                 <img data-src="img/terms_population.png">
             </section>
 
             <section>
-                <h2>Terms: Recombination</h2>
+                <h3>Terms: Recombination</h3>
                 <img data-src="img/terms_recombination.png">
             </section>
 
             <section>
-                <h2>Terms: Mutation</h2>
+                <h3>Terms: Mutation</h3>
                 <img data-src="img/terms_mutation.png">
             </section>
 
             <section>
-                <h2>Terms: Selection</h2>
+                <h3>Terms: Selection</h3>
                 <img data-src="img/terms_selection.png">
             </section>
 
             <section>
-                <h2>Terms: Fitness</h2>
+                <h3>Terms: Fitness</h3>
                 <img data-src="img/terms_fitness.png">
             </section>
 
             <section>
-                <h2>Algorithm</h2>
+                <h3>Algorithm</h3>
                 <pre class="highlight" style="font-size:28px">
 <span class="fragment zoom-in" data-fragment-index="0">Create Population</span>
 
@@ -124,8 +121,7 @@
     <span class="fragment zoom-in">Remove Unfittest Individual (Selection)</span>
 
     <span class="fragment zoom-in">If Termination Criterion Is Met: End Loop</span>
-<span class="fragment zoom-in" data-fragment-index="2">Next</span>
-                </pre>
+<span class="fragment zoom-in" data-fragment-index="2">Next</span></pre>
             </section>
 
             <section>
@@ -138,11 +134,11 @@
             </section>
 
             <section>
-                <h2>Circles: <em>Description</em></h2>
-                <ul>
-                    <li class="fragment"><strong>Given:</strong> Some circles on a arbitrary playground sprinkeled with circles</li>
+                <h3>Circles: <em>Definition</em></h3>
+                <ul style="float: left;width:45%;">
+                    <li class="fragment"><strong>Given:</strong> Some circles on na arbitrary playground</li>
                     <li class="fragment">
-                        <strong>Task:</strong> Find a circle
+                        <strong>Task:</strong> Find an additional circle
                         <ul>
                             <li class="fragment">...that does not cross the playground border,</li>
                             <li class="fragment">...that does not cross another circle</li>
@@ -151,23 +147,23 @@
                     </li>
                 </ul>
 
-                <div class="imageStack" style="width:400px;height:400px;margin: 0 auto">
+                <div class="imageStack" style="width:400px;height:400px;float: right;width:45%">
                     <img data-src="img/circles1.png" class="fragment">
                     <img data-src="img/circlesTask.png" class="fragment">
                 </div>
             </section>
 
             <section>
-                <h2>Circles: <em>Trivial</em></h2>
+                <h3>Circles: <em>Trivial</em></h3>
 
                 <iframe data-src="../implementations/circles/trivial.html" width="400" height="400"></iframe>
             </section>
 
             <section>
-                <h2 style="margin-bottom:40px">Circles: <em>Approach</em></h2>
+                <h3 style="margin-bottom:40px">Circles: <em>Approach</em></h3>
 
                 <div class="fragment" style="margin-bottom:60px;">
-                    <h3>Genes</h3>
+                    <h4>Genes</h4>
                     <pre class="fragment"><code data-trim contenteditable>
 {
     x: &lt;int&gt;,
@@ -177,14 +173,14 @@
                     </code></pre>
                 </div>
                 <div class="fragment">
-                    <h3>Initial Population</h3>
+                    <h4>Initial Population</h4>
                     <div class="fragment">Arbitrary circles (x- and y-coordinate, radius)</div>
                 </div>
             </section>
 
             <section>
-                <h2>Circles: <em>Approach</em></h2>
-                <h3>Fitness</h3>
+                <h3>Circles: <em>Approach</em></h3>
+                <h4>Fitness</h4>
                 <ul>
                     <li class="fragment">Crossing the playground border? (<span style="color:red">Penalty</span>)</li>
                     <li class="fragment">Crossing another circle? (<span style="color:red">Penalty</span>)</li>
@@ -199,8 +195,8 @@
             </section>
 
             <section>
-                <h2>Circles: <em>Approach</em></h2>
-                <h3>Fitness</h3>
+                <h3>Circles: <em>Approach</em></h3>
+                <h4>Fitness</h4>
                 <pre class="highlight" style="font-size:28px">
 <span class="fragment zoom-in">var overlapping = number of overlapping circles</span>
 <span class="fragment zoom-in">var outside = crossings with the playground border</span>
@@ -219,10 +215,10 @@ if outside > 0 or overlapping > 0
             </section>
 
             <section>
-                <h2>Circles: <em>Approach</em></h2>
+                <h3>Circles: <em>Approach</em></h3>
 
                 <div class="fragment">
-                    <h3>Recombination</h3>
+                    <h4>Recombination</h4>
                     <div class="fragment">
                         Parents:<br>
                         {<span style="color:green">x: 100</span>, <span style="color:green">y: 10</span>, <span style="color:green">radius: 7</span>}<br>
@@ -247,7 +243,7 @@ if outside > 0 or overlapping > 0
             </section>
 
             <section>
-                <h2>Circles: <em>Implementation</em></h2>
+                <h3>Circles: <em>Implementation</em></h3>
                 <iframe data-src="../implementations/circles/circles.html" width="1000" height="900"></iframe>
             </section>
 
@@ -257,40 +253,40 @@ if outside > 0 or overlapping > 0
             </section>
 
             <section>
-                <h2>Charakteristics</h2>
+                <h3>characteristics</h3>
                 The chosen approach is never the same
                 <iframe data-src="../implementations/circles/fourVariations.html" width="1000" height="900"></iframe>
             </section>
 
-            <!--<section>-->
-                <!--<h2>Charakteristics</h2>-->
-                <!--The choosen approach is not always the optimal one-->
-                <!--<iframe data-src="../implementations/circles/suboptimal.html" width="1000" height="900"></iframe>-->
-            <!--</section>-->
+            <section>
+                <h3>characteristics</h3>
+                The choosen approach is not always the optimal one
+                <iframe data-src="../implementations/circles/suboptimal.html" width="1000" height="900"></iframe>
+            </section>
 
             <section>
-                <h2>Charakteristics</h2>
+                <h3>characteristics</h3>
                 The solution is not deterministic
                 <iframe data-src="../implementations/circles/vary.html" width="1000" height="900"></iframe>
             </section>
 
             <section>
-                <h2>Charakteristics</h2>
+                <h3>characteristics</h3>
                 Extreme conditions
                 <iframe data-src="../implementations/circles/fail.html" width="1000" height="900"></iframe>
             </section>
 
-            <!--<section>-->
-                <!--<h2>Charakteristics</h2>-->
-                <!--Extreme conditions-->
-                <!--<iframe data-src="../implementations/circles/fail2.html" width="1000" height="900"></iframe>-->
-            <!--</section>-->
+            <section>
+                <h3>characteristics</h3>
+                Extreme conditions
+                <iframe data-src="../implementations/circles/fail2.html" width="1000" height="900"></iframe>
+            </section>
 
-            <!--<section>-->
-                <!--<h2>Charakteristics</h2>-->
-                <!--The initial population size does matter-->
-                <!--<iframe data-src="../implementations/circles/poolComparism.html" width="1000" height="900"></iframe>-->
-            <!--</section>-->
+            <!-- <section>
+                <h3>characteristics</h3>
+                The initial population size does matter
+                <iframe data-src="../implementations/circles/poolComparism.html" width="1000" height="900"></iframe>
+            </section> -->
 
             <section data-background="img/tsp.jpg">
                 <h1>Travelling Salesman Problem</h1>
@@ -307,8 +303,8 @@ if outside > 0 or overlapping > 0
             </section>
 
             <section>
-                <h2>TSP: <em>Trivial</em></h2>
-                <iframe data-src="../implementations/tsp/tspTrivial.html" width="1000" height="420"></iframe>
+                <h3>TSP: <em>Trivial</em></h3>
+                <iframe data-src="../implementations/tsp/tspTrivial.html" width="1000" height="420" style="height:380px"></iframe>
 
                 <div class="fragment">
                     13 cities: (n - 1)! / 2 combinations<br>
@@ -318,17 +314,17 @@ if outside > 0 or overlapping > 0
             </section>
 
             <section>
-                <h2>Travelling Salesman</h2>
+                <h3>Travelling Salesman</h3>
 
-                <h3 class="fragment">Genes</h3>
+                <h4 class="fragment">Genes</h4>
                 <div class="fragment">1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 1</div>
 
-                <h3 style="margin-top:50px" class="fragment">Initial Population</h3>
+                <h4 style="margin-top:50px" class="fragment">Initial Population</h4>
                 <div class="fragment">Arbitrary combinations of all cities on the map</div>
             </section>
             <section>
-                <h2>Travelling Salesman</h2>
-                <h3 class="fragment">Recombination</h3>
+                <h3>Travelling Salesman</h3>
+                <h4 class="fragment">Recombination</h4>
                 <div class="fragment">
                     Parents:<br>
                     <span style="color:green">5</span> -&gt; <span style="color:green">3</span> -&gt; <span style="color:green">1</span> -&gt; <span style="color:green">4</span> -&gt; <span style="color:green">2</span> -&gt; <span style="color:green">5</span><br>
@@ -343,25 +339,25 @@ if outside > 0 or overlapping > 0
                 </div>
 
                 <div class="fragment">
-                    <h3>Mutation</h3>
+                    <h4>Mutation</h4>
                     <span style="color:green">5</span> -&gt; <span style="color:blue">4</span> -&gt; <span style="color:green">1</span> -&gt; <span style="color:red">2</span> -&gt; <span style="color:red">3</span> -&gt; <span style="color:green">5</span><br>
                 </div>
             </section>
 
             <section>
-                <h2>Travelling Salesman</h2>
-                <h3 class="fragment">Fitness</h3>
+                <h3>Travelling Salesman</h3>
+                <h4 class="fragment">Fitness</h4>
                 <div class="fragment">The complete length of a way</div>
             </section>
 
             <section>
-                <h2>Travelling Salesman</h2>
+                <h3>Travelling Salesman</h3>
                 <iframe data-src="../implementations/tsp/tsp.html" width="1000" height="900"></iframe>
             </section>
 
             <section>
-                <h2>Travelling Salesman</h2>
-                <iframe data-src="../implementations/tsp/tspHard.html" width="800" height="420"></iframe>
+                <h3>Travelling Salesman</h3>
+                <iframe data-src="../implementations/tsp/tspHard.html" width="800" height="420" style="height:350px"></iframe>
                 <ul class="fragment">
                     <li>18 cities</li>
                     <li>1.79e+14 possible solutions</li>
@@ -376,18 +372,10 @@ if outside > 0 or overlapping > 0
 
             <section>
                 <h1>Thank you!</h1>
-                <h2>Questions?</h2>
+                <h3>Questions?</h3>
                 <ul>
-                    <li>I'll be around!</li>
-                    <li>OTSConf Slack</li>
                     <li>Twitter (<a href="http://www.twitter.com/seriousManual">@seriousManual</a>)</li>
-                    <li>
-                        Github (<a href="http://www.github.com/seriousManual/evolution">github.com/seriousManual/evolution</a>)
-                        <ul>
-                            <li>Issues</li>
-                            <li>Pull requests!</li>
-                        </ul>
-                    </li>
+                    <li>Github (<a href="http://www.github.com/seriousManual/evolution">github.com/seriousManual/evolution</a>)</li>
                     <li>
                         <a href="http://www.ernestly.com/evolution">ernestly.com/evolution</a>
                         <ul>
@@ -403,22 +391,22 @@ if outside > 0 or overlapping > 0
             </section>
 
             <section>
-                <h2>Aliens!!!</h2>
+                <h3>Aliens!!!</h3>
                 <iframe data-src="../implementations/circleWorld/circleWorldBlue.html" width="1000" height="900"></iframe>
             </section>
 
             <section>
-                <h2>Ever changing environment</h2>
+                <h3>changing environment</h3>
                 <iframe data-src="../implementations/circleWorld/circleWorldChangingColors.html" width="1000" height="900"></iframe>
             </section>
 
             <section>
-                <h2>Ever changing environment</h2>
+                <h3>changing environment</h3>
                 <iframe data-src="../implementations/circleWorld/circleWorldRandomChangingColors.html" width="1000" height="900"></iframe>
             </section>
 
             <section>
-                <h2>No Mutations</h2>
+                <h3>No Mutations</h3>
                 <iframe data-src="../implementations/circleWorld/circleWorldNoMutation.html" width="1000" height="900"></iframe>
             </section>
         </div>

@@ -53,6 +53,10 @@ CirclesScenario.prototype.run = function () {
     });
 };
 
+CirclesScenario.prototype.step = function () {
+    this._algorithm._step();
+};
+
 CirclesScenario.prototype.reset = function () {
     this._algorithm.terminate();
     this._setup();

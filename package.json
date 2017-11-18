@@ -4,9 +4,9 @@
   "description": "evolutionary algorithms",
   "main": "index.js",
   "scripts": {
-    "build": "node ./node_modules/gulp/bin/gulp.js build",
-    "dev": "node ./node_modules/gulp/bin/gulp.js dev",
-    "serve": "node ./node_modules/gulp/bin/gulp.js serve",
+    "build": "gulp build",
+    "dev": "gulp dev",
+    "serve": "gulp serve",
     "setup": "npm i && npm prune && npm outdated --depth=0"
   },
   "repository": {
