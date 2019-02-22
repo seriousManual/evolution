@@ -86,7 +86,7 @@ gulp.task('staticserve', function (callback) {
 
 ////////////////////////////////////////////////////// manage //////////////////////////////////////////////////
 
-gulp.task('dev', function (callback) {
+gulp.task('dev', ['staticserve'], function (callback) {
     build(function () {
         gulp.watch(SOURCE_DIR + '/js/**/*.js', ['scripts']);
         gulp.watch(SOURCE_DIR + '/style/**/*.less', ['style_app']);

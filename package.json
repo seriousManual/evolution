@@ -24,15 +24,15 @@
   },
   "homepage": "https://github.com/seriousManual/evolution",
   "devDependencies": {
-    "express": "^4.13.1",
-    "gulp": "^3.8.6",
-    "gulp-bower": "0.0.10",
+    "express": "^4.16.4",
+    "gulp": "^3.9.1",
+    "gulp-bower": "0.0.14",
     "gulp-browserify": "^0.5.0",
     "gulp-concat": "^2.6.0",
-    "gulp-less": "^3.0.3",
+    "gulp-less": "^4.0.1",
     "gulp-util": "^3.0.6",
-    "rimraf": "^2.4.2",
-    "run-sequence": "^1.1.2",
+    "rimraf": "^2.6.3",
+    "run-sequence": "^2.2.1",
     "webworkify": "^1.0.2"
   }
 }
